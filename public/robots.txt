@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: *?*
+Disallow: *$*
+Disallow: /privacy-policy
+Disallow: /terms-of-use
+Host: https://istra-les.ru
+Sitemap: https://istra-les.ru/sitemap.xml
