@@ -4,6 +4,6 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="wrapper" />
+    <main />
   );
 }

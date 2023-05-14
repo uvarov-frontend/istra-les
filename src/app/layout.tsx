@@ -1,9 +1,10 @@
-import './globals.css';
-
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import { ttnorms } from '@/fonts';
 
+import './globals.css';
+
 export const metadata = {
-  description: 'Истра Лес изготавливает и продает пиломатериалы в розницу и опт. В Москве и Московской области, розничные точки находятся в Истре и Истринском районе.',
   icons: '/favicon.svg',
   keywords: 'продажа пиломатериалов, купить пиломатериалы цена, пиломатериалы купить в москве, пиломатериалы область купить, цена куба пиломатериалов, пиломатериалы в москве и области, пиломатериалы с доставкой, пиломатериалы недорого, сайт пиломатериалов, купить пиломатериал недорого, пиломатериалы в москве и московской области, пиломатериалы от производителя в московской области, купить пиломатериал в московской области',
 };
@@ -16,7 +17,11 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={ttnorms.className}>
-        {children}
+        <div className="">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
