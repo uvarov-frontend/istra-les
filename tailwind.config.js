@@ -10,10 +10,12 @@ module.exports = {
   theme: {
     colors: {
       white: '#fff',
+      lite: '#f6f6f6',
       dark: '#444',
       green: '#5ec03b',
       green_hover: '#51a335',
       gray: '#ddd',
+      dark_gray: '#8c8c8c',
     },
     screens: {
       'sm': '640px',

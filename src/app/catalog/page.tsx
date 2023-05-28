@@ -5,6 +5,6 @@ export const metadata = {
 
 export default function Catalog() {
   return (
-    <main />
+    <main className="min-h-[350px]" />
   );
 }

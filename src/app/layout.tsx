@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={`${ttnorms.className} text-dark`}>
+      <body className={`${ttnorms.className} text-dark min-h-screen grid grid-rows-[auto_auto_1fr_auto]`}>
         <Header />
         {children}
         <Footer />

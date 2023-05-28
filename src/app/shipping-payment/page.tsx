@@ -5,6 +5,6 @@ export const metadata = {
 
 export default function ShippingPayment() {
   return (
-    <main />
+    <main className="min-h-[350px]" />
   );
 }

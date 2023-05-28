@@ -30,6 +30,18 @@ body:after {
   mask: url('/img/phone.svg') no-repeat 50% 50%;
 }
 
+.icon-mail {
+  mask: url('/img/mail.svg') no-repeat 50% 50%;
+}
+
+.icon-telegram {
+  mask: url('/img/telegram.svg') no-repeat 50% 50%;
+}
+
+.icon-whatsapp {
+  mask: url('/img/whatsapp.svg') no-repeat 50% 50%;
+}
+
 @layer components {
   .btn {
     @apply w-max flex font-medium text-white justify-center items-center rounded-full py-3 px-9 bg-green hover:bg-green_hover
