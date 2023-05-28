@@ -16,12 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={ttnorms.className}>
-        <div className="">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+      <body className={`${ttnorms.className} text-dark`}>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );

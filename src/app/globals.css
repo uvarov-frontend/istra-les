@@ -12,3 +12,34 @@
   font-smoothing: auto;
   text-rendering: optimizeLegibility;
 }
+
+body:after {
+	content: "";
+  @apply bg-[rgba(140,_140,_140,_0.6)] fixed left-0 right-0 top-0 bottom-0 z-10 opacity-0 pointer-events-none transition-all
+}
+
+.overlay-show:after {
+  @apply opacity-100
+}
+
+.icon-address {
+  mask: url('/img/address.svg') no-repeat 50% 50%;
+}
+
+.icon-phone {
+  mask: url('/img/phone.svg') no-repeat 50% 50%;
+}
+
+@layer components {
+  .btn {
+    @apply w-max flex font-medium text-white justify-center items-center rounded-full py-3 px-9 bg-green hover:bg-green_hover
+  }
+
+  .logo-transition-hidden {
+    transition: width .2s ease-in .2s, opacity .3s ease-out;
+  }
+
+  .logo-transition-show {
+    transition: width .3s ease-out, opacity .2s ease-in .2s;
+  }
+}

@@ -8,10 +8,6 @@ module.exports = {
   ],
   plugins: [],
   theme: {
-    backgroundImage: {
-      'icon-address':  "url('/img/address.svg')",
-      'icon-phone':  "url('/img/phone.svg')",
-    },
     colors: {
       white: '#fff',
       dark: '#444',
@@ -24,6 +20,11 @@ module.exports = {
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
+    },
+    extend: {
+      boxShadow: {
+        'sm': '0 5px 20px rgba(105, 105, 105, 0.1)',
+      },
     },
   },
 };
