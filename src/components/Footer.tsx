@@ -6,38 +6,47 @@ import Contacts from './Contacts';
 
 const menu = [
   {
+    id: 0,
     title: 'Клиенту',
     links: [
       {
+        id: 0,
         title: 'Каталог продукции',
         link: '/catalog',
       },
       {
+        id: 1,
         title: 'О компании',
         link: '/about',
       },
       {
+        id: 2,
         title: 'Доставка и оплата',
         link: '/shipping-payment',
       },
       {
+        id: 3,
         title: 'Контакты',
         link: '/contacts',
       },
     ],
   },
   {
+    id: 1,
     title: 'Информация',
     links: [
       {
+        id: 0,
         title: 'Пользовательское соглашение',
         link: '/terms-of-use',
       },
       {
+        id: 1,
         title: 'Политика конфиденциальности',
         link: '/privacy-policy',
       },
       {
+        id: 2,
         title: 'Карта сайта',
         link: '/sitemap.xml',
       },
@@ -56,13 +65,13 @@ export default function Footer() {
           <small className="w-36 block mt-4 text-sm text-dark_gray">© 2021 Истра Лес. Все права защищены.</small>
         </div>
         {menu.map((cols) => (
-          <div>
+          <div key={cols.id}>
             <b className="block font-medium mb-4 text-dark">{cols.title}</b>
             <ul>
               {cols.links.map((item) => (
-                <li className="block mb-2 last:mb-0">
+                <li key={item.id} className="block mb-2 last:mb-0">
                   <Link className="block text-dark_gray hover:text-green_hover hover:underline"
-                    href={item.title}>{item.title}</Link>
+                    href={item.link}>{item.title}</Link>
                 </li>
               ))}
             </ul>

@@ -19,7 +19,7 @@ body:after {
 }
 
 .overlay-show:after {
-  @apply opacity-100
+  @apply opacity-100 pointer-events-auto
 }
 
 .icon-address {
@@ -40,6 +40,10 @@ body:after {
 
 .icon-whatsapp {
   mask: url('/img/whatsapp.svg') no-repeat 50% 50%;
+}
+
+.icon-arrowhead {
+  mask: url('/img/arrowhead.svg') no-repeat 50% 50%;
 }
 
 @layer components {

@@ -16,6 +16,7 @@ module.exports = {
       green_hover: '#51a335',
       gray: '#ddd',
       dark_gray: '#8c8c8c',
+      transparent: 'transparent',
     },
     screens: {
       'sm': '640px',
