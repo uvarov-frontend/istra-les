@@ -22,9 +22,12 @@ module.exports = {
       'sm': '640px',
       'md': '768px',
       'lg': '1024px',
-      'xl': '1280px',
+      'xl': '1220px',
     },
     extend: {
+      fontSize: {
+        none: '0',
+      },
       boxShadow: {
         'sm': '0 5px 20px rgba(105, 105, 105, 0.1)',
       },
