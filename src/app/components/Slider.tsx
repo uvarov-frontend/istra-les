@@ -4,7 +4,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const slides = [
   {
@@ -29,6 +29,9 @@ const slides = [
 
 export default function Slider() {
   const [activeIDSlide, setActiveIDSlide] = useState(slides[0].id);
+  const [handlerAutoplay, setHandlerAutoplay] = useState<undefined | ReturnType<typeof setTimeout>>(undefined);
+  const [autoplay, setAutoplay] = useState(false);
+  const timeout = 15;
 
   const prevSlide = () => {
     if (activeIDSlide === slides[0].id) {
@@ -45,6 +48,15 @@ export default function Slider() {
       setActiveIDSlide(activeIDSlide + 1);
     }
   };
+
+  useEffect(() => {
+    if (!autoplay && handlerAutoplay) {
+      clearTimeout(handlerAutoplay);
+    } else if (autoplay) {
+      setHandlerAutoplay(setTimeout(nextSlide, timeout * 1000));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoplay, activeIDSlide]);
 
   return (
     <div className="relative w-full bg-lite h-[300px] rounded-xl overflow-hidden">
@@ -66,18 +78,27 @@ export default function Slider() {
           <button key={slide.id}
             className={`pointer-events-auto w-3 h-3 rounded-full border-white border-2 ${slide.id === activeIDSlide ? 'bg-green' : 'bg-white'}`}
             type="button"
-            onClick={() => setActiveIDSlide(slide.id)}>{slide.id}</button>
+            onClick={() => {
+              setActiveIDSlide(slide.id);
+              setAutoplay(false);
+            }}>{slide.id}</button>
         ))}
       </div>
       <div className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none">
         <button className="absolute pointer-events-auto right-[70px] bottom-8 rotate-180 w-8 h-8 rounded-full bg-green hover:bg-green_hover"
           type="button"
-          onClick={prevSlide}>
+          onClick={() => {
+            prevSlide();
+            setAutoplay(false);
+          }}>
           <span className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Назад</span>
         </button>
         <button className="absolute pointer-events-auto text-none right-[30px] bottom-8 w-8 h-8 rounded-full bg-green hover:bg-green_hover"
           type="button"
-          onClick={nextSlide}>
+          onClick={() => {
+            nextSlide();
+            setAutoplay(false);
+          }}>
           <span className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Вперед</span>
         </button>
       </div>

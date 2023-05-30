@@ -1,4 +1,4 @@
-import Slider from '@/components/Slider';
+import Slider from './components/Slider';
 
 export const metadata = {
   title: 'Истра Лес - Качественные пиломатериалы по доступным ценам!',
