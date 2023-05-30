@@ -1,3 +1,4 @@
+import Advantages from './components/Advantages';
 import Slider from './components/Slider';
 
 export const metadata = {
@@ -8,6 +9,7 @@ export default function Home() {
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
       <Slider />
+      <Advantages />
     </main>
   );
 }

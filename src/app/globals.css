@@ -46,6 +46,22 @@ body:after {
   mask: url('/img/arrowhead.svg') no-repeat 50% 50%;
 }
 
+.icon-shield {
+  mask: url('/img/shield.svg') no-repeat 50% 50%;
+}
+
+.icon-star {
+  mask: url('/img/star.svg') no-repeat 50% 50%;
+}
+
+.icon-truck {
+  mask: url('/img/truck.svg') no-repeat 50% 50%;
+}
+
+.icon-discount {
+  mask: url('/img/discount.svg') no-repeat 50% 50%;
+}
+
 @layer components {
   .btn {
     @apply w-max flex font-medium text-white justify-center items-center rounded-full py-3 px-9 bg-green hover:bg-green_hover
