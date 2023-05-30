@@ -91,7 +91,7 @@ export default function Slider() {
             prevSlide();
             setAutoplay(false);
           }}>
-          <span className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Назад</span>
+          <i className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Назад</i>
         </button>
         <button className="absolute pointer-events-auto text-none right-[30px] bottom-8 w-8 h-8 rounded-full bg-green hover:bg-green_hover"
           type="button"
@@ -99,7 +99,7 @@ export default function Slider() {
             nextSlide();
             setAutoplay(false);
           }}>
-          <span className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Вперед</span>
+          <i className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Вперед</i>
         </button>
       </div>
     </div>
