@@ -23,7 +23,12 @@ export default function Contacts() {
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
       <BreadCrumbs links={links} />
-      <h1 className="text-3xl font-bold">Контакты</h1>
+      <h1 className="text-3xl font-bold mb-8">Контакты</h1>
+      <div className="grid grid-cols-[2fr_3fr] gap-14">
+        <div>
+          <div className=""></div>
+        </div>
+      </div>
     </main>
   );
 }

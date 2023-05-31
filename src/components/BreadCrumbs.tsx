@@ -6,7 +6,7 @@ export default function BreadCrumbs({ links } : { links: ILink[] }) {
   if (!links?.[0]) return <></>;
 
   return (
-    <ul className="block mb-5">
+    <ul className="block mb-4">
       {links.map((link) => (
         <li key={link.id}
           className="relative inline-block align-bottom pr-4 mr-2 last:text-dark_gray last:hover:text-dark_gray

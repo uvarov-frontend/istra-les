@@ -76,10 +76,18 @@ body:after {
   }
 }
 
+.content h2 {
+  @apply text-xl font-bold mb-3
+}
+
 .content p {
   @apply mb-3
 }
 
 .content strong {
   @apply font-bold
+}
+
+.content li {
+  @apply relative pl-5 mb-2 before:absolute before:w-[5px] before:h-[5px] before:left-0 before:top-1/2 before:-translate-y-1/2 before:bg-green before:rounded-full
 }

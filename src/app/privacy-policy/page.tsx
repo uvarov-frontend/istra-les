@@ -23,7 +23,7 @@ export default function Contacts() {
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
       <BreadCrumbs links={links} />
-      <h1 className="text-3xl font-bold">Политика конфиденциальности</h1>
+      <h1 className="text-3xl font-bold mb-8">Политика конфиденциальности</h1>
     </main>
   );
 }
