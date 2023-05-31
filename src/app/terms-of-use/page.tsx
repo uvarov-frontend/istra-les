@@ -9,21 +9,21 @@ const links: ILink[] = [
   },
   {
     id: 1,
-    title: 'Контакты',
+    title: 'Пользовательское соглашение',
     href: false,
   },
 ];
 
 export const metadata = {
   description: 'Истра Лес изготавливает и продает пиломатериалы в розницу и опт. В Москве и Московской области, розничные точки находятся в Истре и Истринском районе.',
-  title: 'Контакты | Истра Лес',
+  title: 'Пользовательское соглашение | Истра Лес',
 };
 
 export default function Contacts() {
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
       <BreadCrumbs links={links} />
-      <h1 className="text-3xl font-bold">Контакты</h1>
+      <h1 className="text-3xl font-bold">Пользовательское соглашение</h1>
     </main>
   );
 }
