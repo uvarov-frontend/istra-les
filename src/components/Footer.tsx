@@ -11,21 +11,16 @@ const menu = [
     links: [
       {
         id: 0,
-        title: 'Каталог продукции',
-        link: '/catalog',
-      },
-      {
-        id: 1,
         title: 'О компании',
         link: '/about',
       },
       {
-        id: 2,
+        id: 1,
         title: 'Доставка и оплата',
         link: '/shipping-payment',
       },
       {
-        id: 3,
+        id: 2,
         title: 'Контакты',
         link: '/contacts',
       },
@@ -44,11 +39,6 @@ const menu = [
         id: 1,
         title: 'Политика конфиденциальности',
         link: '/privacy-policy',
-      },
-      {
-        id: 2,
-        title: 'Карта сайта',
-        link: '/sitemap.xml',
       },
     ],
   },
