@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import translation from '@/translation.yaml';
+
 import Contacts from './Contacts';
 
 const menu = [
@@ -45,14 +47,16 @@ const menu = [
 ];
 
 export default function Footer() {
+  const { contacts } = translation;
+
   return (
     <footer className="relative z-10 bg-lite py-7">
       <div className="container mx-auto grid grid-cols-[repeat(4,auto)] gap-16 ">
         <div>
           <Link className="block" href="/">
-            <Image alt="Истра лес" className="block" height={67} src="/img/logo.svg" width={125} />
+            <Image alt={contacts.title} className="block" height={67} src="/img/logo.svg" width={125} />
           </Link>
-          <small className="w-36 block mt-4 text-sm text-dark_gray">© 2021 Истра Лес. Все права защищены.</small>
+          <small className="w-36 block mt-4 text-sm text-dark_gray">{contacts.copyright}</small>
         </div>
         {menu.map((cols) => (
           <div key={cols.id}>
