@@ -19,7 +19,7 @@ export default function YandexMap() {
   return (
     <div className="bg-lite rounded-xl overflow-hidden">
       <YMaps query={{ load: 'package.full' }}>
-        <Map defaultState={{ center: [55.883, 37.075], zoom: 13, controls: ['zoomControl'] }}
+        <Map defaultState={{ center: [55.883, 37.075], zoom: 13, controls: ['zoomControl'], behaviors: ['drag'] }}
           height="100%"
           width="100%">
           <Placemark geometry={[55.881710, 37.067858]}
