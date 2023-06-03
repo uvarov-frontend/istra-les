@@ -30,6 +30,10 @@ body:after {
   mask: url('/img/phone.svg') no-repeat 50% 50%;
 }
 
+.icon-clock {
+  mask: url('/img/clock.svg') no-repeat 50% 50%;
+}
+
 .icon-mail {
   mask: url('/img/mail.svg') no-repeat 50% 50%;
 }
