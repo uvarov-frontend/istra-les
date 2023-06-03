@@ -29,6 +29,7 @@ export default function Header() {
       <header className="sticky z-30 top-0 bg-white py-5 border-gray shadow-sm after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white after:z-10">
         <div className="container mx-auto flex">
           <Logo />
+          {/* @ts-expect-error Server Component */}
           <Catalog />
           <Navigation />
         </div>
