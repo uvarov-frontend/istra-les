@@ -33,9 +33,21 @@ export default async function About() {
           <MDXRemote source={page.attributes.content} />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Image alt="about" className="rounded-xl" height={250} src="/img/about/1.jpg" width={275} />
-          <Image alt="about" className="rounded-xl" height={250} src="/img/about/2.jpg" width={275} />
-          <Image alt="about" className="rounded-xl col-span-2" height={180} src="/img/about/3.jpg" width={580} />
+          <Image alt="about"
+            className="rounded-xl"
+            height={250}
+            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`}
+            width={275} />
+          <Image alt="about"
+            className="rounded-xl"
+            height={250}
+            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`}
+            width={275} />
+          <Image alt="about"
+            className="rounded-xl col-span-2"
+            height={180}
+            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[2].attributes.url}`}
+            width={580} />
         </div>
       </section>
       <section className="mt-6">

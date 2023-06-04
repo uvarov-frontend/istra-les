@@ -14,16 +14,14 @@ export interface ILink {
 }
 
 export interface IImage {
-  data: {
-    id: 1;
-    attributes: {
-      name: string;
-      width: number;
-      height: number;
-      formats: null;
-      size: number;
-      url: string;
-    }
+  id: 1;
+  attributes: {
+    name: string;
+    width: number;
+    height: number;
+    formats: null;
+    size: number;
+    url: string;
   }
 }
 
@@ -33,7 +31,9 @@ export interface IPromo {
     sortID: string;
     title: string;
     link: string;
-    img: IImage;
+    img: {
+      data: IImage;
+    };
   };
 }
 
@@ -43,7 +43,9 @@ export interface IAdditional {
     sortID: string;
     title: string;
     content: string;
-    img: IImage;
+    img: {
+      data: IImage;
+    };
   };
 }
 
@@ -54,7 +56,9 @@ export interface IPopular {
     title: string;
     content: string;
     link: string;
-    img: IImage;
+    img: {
+      data: IImage;
+    };
   };
 }
 
@@ -64,7 +68,9 @@ export interface IAdvantage {
     sortID: string;
     title: string;
     content: string;
-    icon: IImage;
+    icon: {
+      data: IImage;
+    };
   };
 }
 
@@ -76,6 +82,9 @@ export interface IPage {
     slug: string;
     content: string;
     contentAdditional: string;
+    imgs: {
+      data: IImage[];
+    };
   };
 }
 

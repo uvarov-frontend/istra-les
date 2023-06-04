@@ -4,7 +4,7 @@ import { IPage } from '@/types';
 
 export default async function getPage(slug: string) {
   try {
-    const res = await fetch(`${process.env.STRAPI_API_URL}/api/pages?pagination[pageSize]=100&filters[slug][$eq]=${slug}`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/api/pages?pagination[pageSize]=100&populate=imgs&filters[slug][$eq]=${slug}`, {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',

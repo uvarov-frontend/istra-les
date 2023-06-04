@@ -27,7 +27,11 @@ export default async function ShippingPayment() {
       <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
       <div className="grid grid-cols-2 gap-7">
         <div className="grid grid-cols-2 gap-7">
-          <Image alt="shipping" className="rounded-xl" height={283} src="/img/shipping-payment/shipping.jpg" width={283} />
+          <Image alt="shipping"
+            className="rounded-xl"
+            height={283}
+            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`}
+            width={283} />
           <div className="content">
             {/* @ts-expect-error Server Component */}
             <MDXRemote source={page.attributes.content} />
@@ -38,7 +42,11 @@ export default async function ShippingPayment() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-7">
-          <Image alt="shipping" className="rounded-xl" height={283} src="/img/shipping-payment/payment.jpg" width={283} />
+          <Image alt="shipping"
+            className="rounded-xl"
+            height={283}
+            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`}
+            width={283} />
           <div className="content">
             {/* @ts-expect-error Server Component */}
             <MDXRemote source={page.attributes.contentAdditional} />
