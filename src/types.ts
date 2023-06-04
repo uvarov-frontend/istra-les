@@ -102,6 +102,9 @@ export interface IProduct {
     sorts: {
       data: ISort[];
     }
+    img: {
+      data: IImage;
+    }
   };
 }
 
