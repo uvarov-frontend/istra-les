@@ -95,6 +95,7 @@ export interface IProduct {
     description: string;
     slug: string;
     sortID: number;
+    tableID: string;
     categories: {
       data: ICategory[];
     };
