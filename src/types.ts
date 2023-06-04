@@ -13,6 +13,61 @@ export interface ILink {
   href: false | string;
 }
 
+export interface IImage {
+  data: {
+    id: 1;
+    attributes: {
+      name: string;
+      width: number;
+      height: number;
+      formats: null;
+      size: number;
+      url: string;
+    }
+  }
+}
+
+export interface IPromo {
+  id: number;
+  attributes: {
+    sortID: string;
+    title: string;
+    link: string;
+    img: IImage;
+  };
+}
+
+export interface IAdditional {
+  id: number;
+  attributes: {
+    sortID: string;
+    title: string;
+    content: string;
+    img: IImage;
+  };
+}
+
+export interface IPopular {
+  id: number;
+  attributes: {
+    sortID: string;
+    title: string;
+    content: string;
+    link: string;
+    img: IImage;
+  };
+}
+
+export interface IAdvantage {
+  id: number;
+  attributes: {
+    sortID: string;
+    title: string;
+    content: string;
+    icon: IImage;
+  };
+}
+
 export interface IPage {
   id: number;
   attributes: {

@@ -40,6 +40,7 @@ export default async function About() {
       </section>
       <section className="mt-6">
         <h2 className="text-2xl font-bold">Наши преимущества</h2>
+        {/* @ts-expect-error Server Component */}
         <Advantages />
       </section>
     </main>

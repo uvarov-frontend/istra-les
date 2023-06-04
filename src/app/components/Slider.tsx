@@ -1,49 +1,29 @@
-/* eslint-disable sort-keys */
-
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const slides = [
-  {
-    id: 0,
-    title: 'Рейка, брусок',
-    src: '/img/slider/13.jpg',
-    link: '#',
-  },
-  {
-    id: 1,
-    title: 'Брусок обрезной',
-    src: '/img/slider/14.jpg',
-    link: '#',
-  },
-  {
-    id: 2,
-    title: 'Половая доска',
-    src: '/img/slider/15.jpg',
-    link: '#',
-  },
-];
+import { IPromo } from '@/types';
 
-export default function Slider() {
-  const [activeIDSlide, setActiveIDSlide] = useState(slides[0].id);
+export default function Slider({ host, promos }: { host: string, promos: IPromo[] }) {
+
+  const [activeIDSlide, setActiveIDSlide] = useState(promos[0].id);
   const [handlerAutoplay, setHandlerAutoplay] = useState<undefined | ReturnType<typeof setTimeout>>(undefined);
-  const [autoplay, setAutoplay] = useState(false);
+  const [autoplay, setAutoplay] = useState(true);
   const timeout = 15;
 
   const prevSlide = () => {
-    if (activeIDSlide === slides[0].id) {
-      setActiveIDSlide(slides[slides.length - 1].id);
+    if (activeIDSlide === promos[0].id) {
+      setActiveIDSlide(promos[promos.length - 1].id);
     } else {
       setActiveIDSlide(activeIDSlide - 1);
     }
   };
 
   const nextSlide = () => {
-    if (activeIDSlide === (slides.length - 1)) {
-      setActiveIDSlide(slides[0].id);
+    if (activeIDSlide === (promos[promos.length - 1].id)) {
+      setActiveIDSlide(promos[0].id);
     } else {
       setActiveIDSlide(activeIDSlide + 1);
     }
@@ -61,27 +41,27 @@ export default function Slider() {
   return (
     <div className="relative w-full bg-lite h-[300px] rounded-xl overflow-hidden">
       <div className="slides">
-        {slides.map((slide) => (
-          <Link key={slide.id}
+        {promos.map((promo) => (
+          <Link key={promo.id}
             className="block"
-            href={slide.link}>
-            <Image alt={slide.title}
-              className={`transition-opacity ${slide.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
+            href={promo.attributes.link}>
+            <Image alt={promo.attributes.title}
+              className={`transition-opacity ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
               height={300}
-              src={slide.src}
+              src={`${host}${promo.attributes.img.data.attributes.url}`}
               width={1220} />
           </Link>
         ))}
       </div>
       <div className="text-none absolute right-8 top-8 pointer-events-none grid grid-flow-col gap-2">
-        {slides.map((slide) => (
-          <button key={slide.id}
-            className={`pointer-events-auto w-3 h-3 rounded-full border-white border-2 ${slide.id === activeIDSlide ? 'bg-green' : 'bg-white'}`}
+        {promos.map((promo) => (
+          <button key={promo.id}
+            className={`pointer-events-auto w-3 h-3 rounded-full border-white border-2 ${promo.id === activeIDSlide ? 'bg-green' : 'bg-white'}`}
             type="button"
             onClick={() => {
-              setActiveIDSlide(slide.id);
+              setActiveIDSlide(promo.id);
               setAutoplay(false);
-            }}>{slide.id}</button>
+            }}>{promo.id}</button>
         ))}
       </div>
       <div className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none">

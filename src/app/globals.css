@@ -50,22 +50,6 @@ body:after {
   mask: url('/img/arrowhead.svg') no-repeat 50% 50%;
 }
 
-.icon-shield {
-  mask: url('/img/shield.svg') no-repeat 50% 50%;
-}
-
-.icon-star {
-  mask: url('/img/star.svg') no-repeat 50% 50%;
-}
-
-.icon-truck {
-  mask: url('/img/truck.svg') no-repeat 50% 50%;
-}
-
-.icon-discount {
-  mask: url('/img/discount.svg') no-repeat 50% 50%;
-}
-
 @layer components {
   .btn {
     @apply w-max flex font-medium text-white justify-center items-center rounded-full py-3 px-9 bg-green hover:bg-green_hover
@@ -81,7 +65,7 @@ body:after {
 }
 
 .content h2 {
-  @apply text-xl font-bold mb-3
+  @apply text-2xl font-bold my-4
 }
 
 .content p {
@@ -92,6 +76,14 @@ body:after {
   @apply font-bold
 }
 
+.content ul {
+  @apply mb-4
+}
+
 .content li {
   @apply relative pl-5 mb-2 before:absolute before:w-[5px] before:h-[5px] before:left-0 before:top-1/2 before:-translate-y-1/2 before:bg-green before:rounded-full
+}
+
+.content a {
+  @apply text-green hover:text-green_hover
 }
