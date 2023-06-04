@@ -1,34 +1,31 @@
+import { notFound } from 'next/navigation';
+
 import BreadCrumbs from '@/components/BreadCrumbs';
+import getPage from '@/fetching/getPage';
 import translation from '@/translation.yaml';
-import { ILink } from '@/types';
 
 import YandexMap from './components/YandexMap';
 
-const links: ILink[] = [
-  {
-    id: 0,
-    title: 'Главная',
-    href: '/',
-  },
-  {
-    id: 1,
-    title: 'Контакты',
-    href: false,
-  },
-];
+export async function generateMetadata() {
+  const { contacts } = translation;
+  const page = await getPage('contacts');
+  if (!page) return notFound();
 
-export const metadata = {
-  description: 'Истра Лес изготавливает и продает пиломатериалы в розницу и опт. В Москве и Московской области, розничные точки находятся в Истре и Истринском районе.',
-  title: 'Контакты | Истра Лес',
-};
+  return {
+    description: page.attributes.description,
+    title: `${page.attributes.title}  | ${contacts.title}`,
+  };
+}
 
-export default function Contacts() {
+export default async function Contacts() {
+  const page = await getPage('contacts');
+  if (!page) return notFound();
   const { contacts } = translation;
 
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
-      <BreadCrumbs links={links} />
-      <h1 className="text-3xl font-bold mb-8">Контакты</h1>
+      <BreadCrumbs title="Контакты" />
+      <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
       <div className="grid grid-cols-[3fr_4fr] gap-14">
         <div>
           <div className="relative pl-10 mb-6">

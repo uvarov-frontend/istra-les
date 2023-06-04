@@ -1,37 +1,36 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import BreadCrumbs from '@/components/BreadCrumbs';
-import { ILink } from '@/types';
+import getPage from '@/fetching/getPage';
+import translation from '@/translation.yaml';
 
-const links: ILink[] = [
-  {
-    id: 0,
-    title: 'Главная',
-    href: '/',
-  },
-  {
-    id: 1,
-    title: 'Доставка и оплата',
-    href: false,
-  },
-];
+export async function generateMetadata() {
+  const { contacts } = translation;
+  const page = await getPage('shipping-payment');
+  if (!page) return notFound();
 
-export const metadata = {
-  description: 'Истра Лес изготавливает и продает пиломатериалы в розницу и опт. В Москве и Московской области, розничные точки находятся в Истре и Истринском районе.',
-  title: 'Доставка и оплата | Истра Лес',
-};
+  return {
+    description: page.attributes.description,
+    title: `${page.attributes.title}  | ${contacts.title}`,
+  };
+}
 
-export default function ShippingPayment() {
+export default async function ShippingPayment() {
+  const page = await getPage('shipping-payment');
+  if (!page) return notFound();
+
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
-      <BreadCrumbs links={links} />
-      <h1 className="text-3xl font-bold mb-8">Доставка и оплата</h1>
+      <BreadCrumbs title="Доставка и оплата" />
+      <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
       <div className="grid grid-cols-2 gap-7">
         <div className="grid grid-cols-2 gap-7">
           <Image alt="shipping" className="rounded-xl" height={283} src="/img/shipping-payment/shipping.jpg" width={283} />
           <div className="content">
-            <h2>Доставка</h2>
-            <p>Мы осуществляем доставку пиломатериалов своим транспортом по Москве и Московской области. Вам достаточно просто позвонить и мы обязательно привезем Ваш заказ на указанный адрес.</p>
+            {/* @ts-expect-error Server Component */}
+            <MDXRemote source={page.attributes.content} />
             <button className="flex items-center text-green hover:text-green_hover group" type="button">
               Узнать стоимость
               <i className="block min-w-[1.25rem] min-h-[1.25rem] w-5 h-5 ml-2 icon-arrowhead bg-green group-hover:text-green_hover" />
@@ -41,13 +40,8 @@ export default function ShippingPayment() {
         <div className="grid grid-cols-2 gap-7">
           <Image alt="shipping" className="rounded-xl" height={283} src="/img/shipping-payment/payment.jpg" width={283} />
           <div className="content">
-            <h2>Оплата</h2>
-            <p>Произвести оплату можно любым удобным для Вас способом:</p>
-            <ul>
-              <li>Наличный расчет при получении продукции;</li>
-              <li>На расчетный счет компании;</li>
-              <li>Банковской картой;</li>
-            </ul>
+            {/* @ts-expect-error Server Component */}
+            <MDXRemote source={page.attributes.contentAdditional} />
           </div>
         </div>
       </div>

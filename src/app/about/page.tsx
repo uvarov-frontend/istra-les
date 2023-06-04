@@ -1,38 +1,36 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import BreadCrumbs from '@/components/BreadCrumbs';
-import { ILink } from '@/types';
+import getPage from '@/fetching/getPage';
+import translation from '@/translation.yaml';
 
 import Advantages from '../components/Advantages';
 
-const links: ILink[] = [
-  {
-    id: 0,
-    title: 'Главная',
-    href: '/',
-  },
-  {
-    id: 1,
-    title: 'О компании',
-    href: false,
-  },
-];
+export async function generateMetadata() {
+  const { contacts } = translation;
+  const page = await getPage('about');
+  if (!page) return notFound();
 
-export const metadata = {
-  description: 'Истра Лес изготавливает и продает пиломатериалы в розницу и опт. В Москве и Московской области, розничные точки находятся в Истре и Истринском районе.',
-  title: 'О компании | Истра Лес',
-};
+  return {
+    description: page.attributes.description,
+    title: `${page.attributes.title}  | ${contacts.title}`,
+  };
+}
 
-export default function About() {
+export default async function About() {
+  const page = await getPage('about');
+  if (!page) return notFound();
+
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
-      <BreadCrumbs links={links} />
+      <BreadCrumbs title={page.attributes.title} />
       <section className="grid grid-cols-2 gap-14">
         <div className="content">
-          <h1 className="text-3xl font-bold mb-8">О компании</h1>
-          <p><strong>Мы изготавливаем и продаем высококачественные пиломатериалы из хвойных пород дерева.</strong> У нас в каталоге Вы найдете все для строительства и отделки домов, бань и саун — вагонку, блок-хаус, доски для пола, имитацию бруса и другое.</p>
-          <p>Наши возможности позволяют доставлять в срок все необходимые пиломатериалы не только зимой, но и в период летнего строительного сезона. Многие заказчики, среди которых строительные компании, а так же частные лица, оценили преимущества работы с нами. Благодаря оптимальной системе поставок, полноценной информационной поддержке, конкурентоспособным ценам, высококвалифицированной и доброжелательной работы наших сотрудников.</p>
-          <p>Одно из главных преимуществ и методов работы — идти навстречу своим постоянным и потенциальным клиентам! Если Вы станете нашим постоянным клиентом, <strong>Вы сможете рассчитывать на выгодные условия</strong> приобретения нашего продукта, <strong>получив дополнительные скидки</strong> либо льготные условия платежа.</p>
+          <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
+          {/* @ts-expect-error Server Component */}
+          <MDXRemote source={page.attributes.content} />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <Image alt="about" className="rounded-xl" height={250} src="/img/about/1.jpg" width={275} />

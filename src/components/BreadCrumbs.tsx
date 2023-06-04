@@ -1,9 +1,21 @@
+/* eslint-disable sort-keys */
 import Link from 'next/link';
 
 import { ILink } from '@/types';
 
-export default function BreadCrumbs({ links } : { links: ILink[] }) {
-  if (!links?.[0]) return <></>;
+export default function BreadCrumbs({ title = '' } : { title: string }) {
+  const links: ILink[] = [
+    {
+      id: 0,
+      title: 'Главная',
+      href: '/',
+    },
+    {
+      id: 1,
+      title,
+      href: false,
+    },
+  ];
 
   return (
     <ul className="block mb-4">

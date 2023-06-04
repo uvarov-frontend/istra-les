@@ -13,6 +13,17 @@ export interface ILink {
   href: false | string;
 }
 
+export interface IPage {
+  id: number;
+  attributes: {
+    title: string;
+    description: string;
+    slug: string;
+    content: string;
+    contentAdditional: string;
+  };
+}
+
 export interface IProduct {
   id: number;
   attributes: {
@@ -27,8 +38,8 @@ export interface IProduct {
       data: ISort[];
     }
   };
-
 }
+
 export interface ISort {
   id: number;
   attributes: {

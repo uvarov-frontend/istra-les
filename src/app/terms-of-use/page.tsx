@@ -1,29 +1,33 @@
+import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+
 import BreadCrumbs from '@/components/BreadCrumbs';
-import { ILink } from '@/types';
+import getPage from '@/fetching/getPage';
+import translation from '@/translation.yaml';
 
-const links: ILink[] = [
-  {
-    id: 0,
-    title: 'Главная',
-    href: '/',
-  },
-  {
-    id: 1,
-    title: 'Пользовательское соглашение',
-    href: false,
-  },
-];
+export async function generateMetadata() {
+  const { contacts } = translation;
+  const page = await getPage('terms-of-use');
+  if (!page) return notFound();
 
-export const metadata = {
-  description: 'Истра Лес изготавливает и продает пиломатериалы в розницу и опт. В Москве и Московской области, розничные точки находятся в Истре и Истринском районе.',
-  title: 'Пользовательское соглашение | Истра Лес',
-};
+  return {
+    description: page.attributes.description,
+    title: `${page.attributes.title}  | ${contacts.title}`,
+  };
+}
 
-export default function Contacts() {
+export default async function termsOfUse() {
+  const page = await getPage('terms-of-use');
+  if (!page) return notFound();
+
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
-      <BreadCrumbs links={links} />
-      <h1 className="text-3xl font-bold mb-8">Пользовательское соглашение</h1>
+      <BreadCrumbs title={page.attributes.title} />
+      <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
+      <div className="content">
+        {/* @ts-expect-error Server Component */}
+        <MDXRemote source={page.attributes.content} />
+      </div>
     </main>
   );
 }
