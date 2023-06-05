@@ -1,7 +1,7 @@
 import { fetchGoogleSheetsData } from 'google-sheets-mapper';
 import { notFound } from 'next/navigation';
 
-export default async function getTables( tableID: string) {
+export default async function getData( tableID: string) {
   try {
     return await fetchGoogleSheetsData({
       apiKey: process.env.GOOGLE_API_KEY as string,

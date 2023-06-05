@@ -55,6 +55,10 @@ body:after {
     @apply w-max flex font-medium text-white justify-center items-center rounded-full py-3 px-9 bg-green hover:bg-green_hover
   }
 
+  .tab {
+    @apply block cursor-pointer py-1 px-3 text-sm rounded-md bg-white border border-gray hover:border-green
+  }
+
   .logo-transition-hidden {
     transition: width .2s ease-in .2s, opacity .3s ease-out;
   }

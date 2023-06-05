@@ -7,6 +7,18 @@ export interface IParams {
   params: IProps;
 }
 
+export interface IData {
+  id: string,
+  data: {
+    [key: string]: string,
+  }[]
+}
+
+export interface IValue {
+  label: string,
+  value: string,
+}
+
 export interface ILink {
   id: number;
   title: string;
@@ -103,7 +115,7 @@ export interface IProduct {
       data: ISort[];
     }
     img: {
-      data: IImage;
+      data: IImage[];
     }
   };
 }

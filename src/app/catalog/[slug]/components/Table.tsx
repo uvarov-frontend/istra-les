@@ -1,9 +1,8 @@
-import getTables from '@/fetching/getTables';
+import { IData } from '@/types';
 
-export default async function Table({ tableID }: { tableID: string }) {
-  const tables = await getTables(tableID);
+export default function Table({ data }: { data: IData[] }) {
 
   return (
-    <div className="font-bold">{tables[0].id}</div>
+    <div className="font-bold">{data[0].id}</div>
   );
 }
