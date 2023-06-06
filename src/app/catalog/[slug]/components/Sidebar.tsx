@@ -7,13 +7,13 @@ export default function Sidebar() {
         <b className="block text-xl mb-4">Вагонка</b>
         <ul>
           <li>
-            <Link className="block py-3 px-4 w-full hover:bg-lite border-l-2 border-green text-green" href="/">Евровагонка</Link>
+            <Link className="block py-2 px-4 w-full hover:bg-lite border-l-2 border-green text-green" href="/">Евровагонка</Link>
           </li>
           <li>
-            <Link className="block py-3 px-4 w-full hover:bg-lite border-l-2 border-transparent hover:border-x-dark_gray" href="/">Вагонка штиль</Link>
+            <Link className="block py-2 px-4 w-full hover:bg-lite border-l-2 border-transparent hover:border-x-dark_gray" href="/">Вагонка штиль</Link>
           </li>
           <li>
-            <Link className="block py-3 px-4 w-full hover:bg-lite border-l-2 border-transparent hover:border-x-dark_gray" href="/">Вагонка для бани</Link>
+            <Link className="block py-2 px-4 w-full hover:bg-lite border-l-2 border-transparent hover:border-x-dark_gray" href="/">Вагонка для бани</Link>
           </li>
         </ul>
       </div>

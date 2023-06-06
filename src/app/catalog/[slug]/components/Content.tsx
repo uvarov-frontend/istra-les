@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { getUnit } from '@/helper';
 import { IData, IProduct } from '@/types';
 
 import Select from './Select';
@@ -10,11 +11,13 @@ export default function Content({ data, product }: { data: IData[], product: IPr
   const [sortID, setSortID] = useState(0);
   const [optionsID, setOptionsID] = useState(0);
   const [selectProduct, setSelectProduct] = useState<{ [key: string]: string }>(data[sortID].data[optionsID]);
+  const relevantDate = data[data.length - 1].id;
+  const price = Object.values(selectProduct)[Object.values(selectProduct).length - 1];
+  const {currency, thing} = getUnit(Object.keys(data[0].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
 
   useEffect(() => {
     setSelectProduct(data[sortID].data[optionsID]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortID, optionsID]);
+  }, [data, sortID, optionsID]);
 
   return (
     <>
@@ -23,14 +26,17 @@ export default function Content({ data, product }: { data: IData[], product: IPr
         <div className="mb-3">
           <span className="block text-sm text-dark_gray mb-2">Сорт</span>
           <div className="block">
-            {data.map((title, id) => (
-              <button key={id} className={`inline-block align-bottom mr-2 mb-2 tab ${sortID === id ? 'bg-green border-green text-white' : '' }`}
-                type="button"
-                onClick={() => {
-                  setSortID(id);
-                  setOptionsID(0);
-                }}>{title.id}</button>
-            ))}
+            {data.map((title, index) => {
+              if (index === (data.length - 1)) return null;
+              return (
+                <button key={index} className={`inline-block align-bottom mr-2 mb-2 tab ${sortID === index ? 'bg-green border-green text-white' : '' }`}
+                  type="button"
+                  onClick={() => {
+                    setSortID(index);
+                    setOptionsID(0);
+                  }}>{title.id}</button>
+              );
+            })}
           </div>
         </div>
         <div className="grid grid-cols-[auto_auto] gap-x-2 gap-y-4 justify-start">
@@ -52,8 +58,8 @@ export default function Content({ data, product }: { data: IData[], product: IPr
           })}
         </div>
       </div>
-      <div className="w-full">
-        <h2>Цена: {Object.values(selectProduct)[Object.values(selectProduct).length - 1]}</h2>
+      <div className="bg-lite rounded-lg h-full py-3 px-4">
+        <b>Цена {relevantDate}: {price} {currency}/{thing}</b>
       </div>
     </>
   );
