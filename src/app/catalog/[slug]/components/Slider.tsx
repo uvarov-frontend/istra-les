@@ -21,7 +21,7 @@ export default function Slider({ url, product }: { url: string, product: IProduc
       <div className="grid grid-cols-3 gap-[9px]">
         {product.attributes.img.data?.map((img, index) => (
           <div key={img.id}
-            className={`cursor-pointer w-[94px] h-[73px] rounded-lg bg-lite overflow-hidden border ${activeSlideID === index ? 'border-green' : 'border-transparent'}`}>
+            className={`cursor-pointer w-[94px] h-[70px] rounded-lg bg-lite overflow-hidden border ${activeSlideID === index ? 'border-green' : 'border-transparent'}`}>
             <Image alt={product.attributes.title}
               height={73}
               src={`${url}${img.attributes.url}`}
