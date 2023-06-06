@@ -8,18 +8,27 @@ import { IData, IProduct } from '@/types';
 import Select from './Select';
 
 export default function Content({ data, contacts, info, product }: { data: IData[], contacts: {[key: string]: string}, info: {[key: string]: string}, product: IProduct }) {
+  const [sale, setSale] = useState(false);
   const [countProduct, setCountProduct] = useState(1);
   const [sortID, setSortID] = useState(0);
   const [optionsID, setOptionsID] = useState(0);
   const [selectProduct, setSelectProduct] = useState<{ [key: string]: string }>(data[sortID].data[optionsID]);
   const relevantDate = data[data.length - 1].id;
-  const price = Number(Object.values(selectProduct)[Object.values(selectProduct).length - 1]);
+  const price = Number(Object.values(selectProduct)[Object.values(selectProduct).length - 1].replace(/\*/g, ''));
   const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
   const formatterRUB = new Intl.NumberFormat('ru-RU');
 
   useEffect(() => {
     setSelectProduct(data[sortID].data[optionsID]);
   }, [data, sortID, optionsID]);
+
+  useEffect(() => {
+    if (Object.values(selectProduct)[Object.values(selectProduct).length - 1].includes('*')){
+      setSale(true);
+    } else {
+      setSale(false);
+    }
+  }, [selectProduct]);
 
   const handlerDis = () => {
     if (countProduct <= 1) return;
@@ -83,7 +92,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
       <div className="bg-gray/30 rounded-r-lg h-full py-6 px-7 overflow-hidden flex flex-col">
         <div className="pb-3 mb-3 border-b border-gray">
           <span className="block text-sm text-dark_gray mb-2">{title}:</span>
-          <b className="block text-lg">{formatterRUB.format(price)} {currency}/{thing}</b>
+          <b className={`block text-lg ${sale ? 'text-red' : ''}`}>{formatterRUB.format(price)} {currency}/{thing}{sale ? '*' : ''}</b>
         </div>
         <div className="mb-4">
           <span className="block text-sm mb-2">{info.ordering}:</span>
@@ -98,11 +107,12 @@ export default function Content({ data, contacts, info, product }: { data: IData
           </div>
           <div className="grid grid-cols-[auto_1fr] gap-3 items-center mb-3">
             <span className="block text-sm text-dark_gray whitespace-nowrap">{info.total}:</span>
-            <b className="block text-lg whitespace-nowrap">{formatterRUB.format(price * countProduct)} {currency}</b>
+            <b className={`block text-lg whitespace-nowrap ${sale ? 'text-red' : ''}`}>{formatterRUB.format(price * countProduct)} {currency}{sale ? '*' : ''}</b>
           </div>
           <span className="block text-xs mb-3 text-green_hover">{info.relevance} {relevantDate.replace(/^\[(.+)\]$/, (_, g1) => g1)}</span>
           <span className="block text-xs text-dark_gray mb-1">{info.difference}</span>
           <span className="block text-xs text-dark_gray">{info.save}</span>
+          {sale ? <span className="block text-xs text-red mt-2">{info.sale}</span> : <></> }
         </div>
       </div>
     </div>
