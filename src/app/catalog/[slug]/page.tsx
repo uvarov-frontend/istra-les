@@ -33,7 +33,7 @@ export default async function Product({ params }: IParams) {
       <div className="h-[800px]">
         <BreadCrumbs title={product.attributes.title} />
         <div className="grid grid-cols-[300px_1fr_1fr] gap-7 items-start mt-8">
-          <Slider product={product} />
+          <Slider product={product} url={process.env.STRAPI_API_URL as string} />
           <Content data={data} product={product} />
         </div>
         {/* <Table data={data} /> */}
