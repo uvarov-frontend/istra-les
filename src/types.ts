@@ -106,6 +106,7 @@ export interface IProduct {
     title: string;
     type: string;
     description: string;
+    content: string;
     slug: string;
     sortID: number;
     tableID: string;

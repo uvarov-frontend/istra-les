@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import BreadCrumbs from '@/components/BreadCrumbs';
 import getData from '@/fetching/getData';
@@ -30,14 +31,18 @@ export default async function Product({ params }: IParams) {
   const data = await getData(product.attributes.tableID) as unknown as IData[];
 
   return (
-    <main className="container mx-auto my-10 min-h-[350px] grid grid-cols-[1fr_210px] gap-9 items-start">
-      <div className="h-[800px]">
+    <main className="container mx-auto my-10 min-h-[350px] grid grid-cols-[auto_210px] gap-9 items-start">
+      <div className="overflow-hidden">
         <BreadCrumbs title={product.attributes.title} />
         <div className="grid grid-cols-[332px_1fr] items-start mt-8 bg-white_dark border border-lite rounded-lg">
           <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
           <Content contacts={contacts} data={data} info={info} product={product} />
         </div>
         {/* <Table data={data} /> */}
+        <div className="content mt-6">
+          {/* @ts-expect-error Server Component */}
+          <MDXRemote source={product.attributes.content || ''} />
+        </div>
       </div>
       <Sidebar />
   </main>
