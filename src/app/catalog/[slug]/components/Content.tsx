@@ -87,7 +87,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
         </div>
         <div className="mb-4">
           <span className="block text-sm mb-2">{info.ordering}:</span>
-          <b className="block text-sm">{contacts.mainPhone}</b>
+          <b className="block">{contacts.mainPhone}</b>
         </div>
         <div className="grow flex flex-col justify-end">
           <span className="block text-sm text-dark_gray mb-3">{info.count} ({thing}):</span>

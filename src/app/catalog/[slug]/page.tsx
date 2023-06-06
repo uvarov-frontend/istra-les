@@ -44,7 +44,8 @@ export default async function Product({ params }: IParams) {
           <MDXRemote source={product.attributes.content || ''} />
         </div>
       </div>
-      <Sidebar />
+      {/* @ts-expect-error Server Component */}
+      <Sidebar contacts={contacts} info={info} product={product} />
   </main>
   );
 }

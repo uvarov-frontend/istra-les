@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 
-import { IProduct } from '@/types';
+import { ICategory } from '@/types';
 
-export default async function getProducts(category: string) {
+export default async function getCategory(id: number) {
   try {
-    const res = await fetch(`${process.env.STRAPI_API_URL}/api/products?pagination[pageSize]=100&populate=sorts&filters['category'][slug][$eq]=${category}&sort[0]=sortID`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/api/categories?pagination[pageSize]=100&populate=products&filters[id][$eq]=${id}`, {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
@@ -14,9 +14,9 @@ export default async function getProducts(category: string) {
       },
     });
 
-    const data: { data: IProduct[] } = await res.json();
+    const data: { data: ICategory[] } = await res.json();
     if (!data.data) throw new Error('Data is empty, check request URL.');
-    return data.data;
+    return data.data[0];
   } catch (err) {
   // eslint-disable-next-line no-console
     console.error(err);

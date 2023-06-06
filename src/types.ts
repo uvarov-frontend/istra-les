@@ -138,7 +138,6 @@ export interface ICategory {
   id: number;
   attributes: {
     title: string;
-    slug: string;
     sortID: number;
     products: {
       data: IProduct[];
