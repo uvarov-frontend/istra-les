@@ -5,13 +5,13 @@ import { useState } from 'react';
 
 import { IProduct } from '@/types';
 
-export default function Slider({ url, product }: { url: string, product: IProduct }) {
+export default function Slider({ info, url, product }: { info: {[key: string]: {[key: string]: string}}, url: string, product: IProduct }) {
   const [activeSlideID, setActiveSlideID] = useState(0);
 
   if (!product.attributes.img.data?.[0]) return <></>;
 
   return (
-    <div className="grid gap-2">
+    <div className="grid gap-2 py-6 px-4">
       <div className="flex item-center w-[300px] h-[220px] rounded-lg bg-lite overflow-hidden">
         <Image alt={product.attributes.title}
           height={220}
@@ -29,6 +29,13 @@ export default function Slider({ url, product }: { url: string, product: IProduc
               onClick={() => setActiveSlideID(index)}/>
           </div>
         ))}
+      </div>
+      <div className="mt-2 px-3 py-2">
+        <div className="relative text-sm font-medium text-dark flex items-center">
+          <i className="block w-4 h-4 mr-2 icon-address bg-green" />
+          {info.delivery.title}
+        </div>
+        <span className="block mt-1 text-xs text-dark_gray pl-6">{info.delivery.text}</span>
       </div>
     </div>
   );

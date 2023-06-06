@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: IParams) {
 }
 
 export default async function Product({ params }: IParams) {
+  const { contacts, info } = translation;
   const product = await getProduct(params.slug);
   if (!product) return notFound();
 
@@ -32,9 +33,9 @@ export default async function Product({ params }: IParams) {
     <main className="container mx-auto my-10 min-h-[350px] grid grid-cols-[1fr_210px] gap-9 items-start">
       <div className="h-[800px]">
         <BreadCrumbs title={product.attributes.title} />
-        <div className="grid grid-cols-[300px_1fr_1fr] gap-7 items-start mt-8">
-          <Slider product={product} url={process.env.STRAPI_API_URL as string} />
-          <Content data={data} product={product} />
+        <div className="grid grid-cols-[332px_1fr] items-start mt-8 bg-white_dark border border-lite rounded-lg">
+          <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
+          <Content contacts={contacts} data={data} info={info} product={product} />
         </div>
         {/* <Table data={data} /> */}
       </div>

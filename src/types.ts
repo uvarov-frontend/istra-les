@@ -104,6 +104,7 @@ export interface IProduct {
   id: number;
   attributes: {
     title: string;
+    type: string;
     description: string;
     slug: string;
     sortID: number;
