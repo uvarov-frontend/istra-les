@@ -10,7 +10,7 @@ import { IData, IParams } from '@/types';
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
 import Slider from './components/Slider';
-// import Table from './components/Table';
+import Tables from './components/Tables';
 
 export async function generateMetadata({ params }: IParams) {
   const { contacts } = translation;
@@ -38,11 +38,14 @@ export default async function Product({ params }: IParams) {
           <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
           <Content contacts={contacts} data={data} info={info} product={product} />
         </div>
-        {/* <Table data={data} /> */}
-        <div className="content mt-6">
-          {/* @ts-expect-error Server Component */}
-          <MDXRemote source={product.attributes.content || ''} />
-        </div>
+        <Tables data={data} info={info} />
+        {product.attributes.content ?
+          <div className="content mt-6">
+            <h2 className="font-bold text-2xl mb-5">{info.description}</h2>
+            {/* @ts-expect-error Server Component */}
+            <MDXRemote source={product.attributes.content} />
+          </div>
+        : <></>}
       </div>
       {/* @ts-expect-error Server Component */}
       <Sidebar contacts={contacts} info={info} product={product} />

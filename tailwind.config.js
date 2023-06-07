@@ -18,6 +18,8 @@ module.exports = {
       gray: '#ddd',
       dark_gray: '#8c8c8c',
       red: '#f44336',
+      yellow: '#f8df5e',
+      yellow_dark: '#e1c94a',
       transparent: 'transparent',
     },
     screens: {
