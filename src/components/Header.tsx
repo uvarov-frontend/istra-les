@@ -14,11 +14,11 @@ export default function Header() {
 
   return (
     <>
-      <header className="relative z-40 bg-white py-5 border-b border-gray h-[118px]">
-        <div className="container mx-auto grid gap-9 grid-flow-col justify-between">
-          <div className="flex">
+      <header className="relative z-40 flex items-center bg-white py-4 border-b border-gray h-[90px]">
+        <div className="container mx-auto grid gap-9 grid-flow-col justify-between items-center">
+          <div className="flex items-center">
             <Link className="block" href="/">
-              <Image alt={contacts.title} className="block" height={67} src="/img/logo.svg" width={125} />
+              <Image alt={contacts.title} className="block" height={55} src="/img/logo.svg" width={100} />
             </Link>
           </div>
           <Address address={contacts.address1.address} />
@@ -26,8 +26,8 @@ export default function Header() {
           <Callback phone={contacts.mainPhone} />
         </div>
       </header>
-      <header className="sticky z-30 top-0 bg-white py-5 border-gray shadow-sm after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white after:z-10">
-        <div className="container mx-auto flex">
+      <header className="sticky z-30 top-0 bg-white py-4 h-[84px] flex items-center border-gray shadow-sm after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white after:z-10">
+        <div className="container mx-auto flex items-center">
           <Logo />
           {/* @ts-expect-error Server Component */}
           <Catalog />

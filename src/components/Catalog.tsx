@@ -8,9 +8,5 @@ export default async function Catalog() {
   const categories = await getCategories();
   if (!categories) return notFound();
 
-  return (
-    <div>
-      <CatalogList categories={categories} />
-    </div>
-  );
+  return <CatalogList categories={categories} />;
 }

@@ -35,10 +35,10 @@ export default async function ShippingPayment() {
           <div className="content">
             {/* @ts-expect-error Server Component */}
             <MDXRemote source={page.attributes.content} />
-            <button className="flex items-center text-green hover:text-green_hover group" type="button">
+            {/* <button className="flex items-center text-green hover:text-green_hover group" type="button">
               Узнать стоимость
               <i className="block min-w-[1.25rem] min-h-[1.25rem] w-5 h-5 ml-2 icon-arrowhead bg-green group-hover:text-green_hover" />
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-7">

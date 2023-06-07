@@ -27,10 +27,6 @@ export default async function Additional() {
                   <MDXRemote source={additional.attributes.content} />
                 </span>
               </div>
-              <button className="relative flex items-center font-medium text-green hover:text-green_hover group" type="button">
-                Заказать
-                <i className="block ml-2 text-none w-5 h-5 bg-green icon-arrowhead group-hover:bg-green_hover" />
-              </button>
             </div>
           </li>
         ))}

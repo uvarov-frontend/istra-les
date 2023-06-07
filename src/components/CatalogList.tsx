@@ -37,7 +37,7 @@ export default function CatalogList({ categories }: {categories: ICategory[]} ) 
   };
 
   return (
-    <>
+    <div>
       <button className={`relative z-20 pl-16 py-[0.85rem] btn group ${open ? 'bg-green_hover' : ''}`}
         type="button"
         onClick={handlerClick}>
@@ -48,7 +48,7 @@ export default function CatalogList({ categories }: {categories: ICategory[]} ) 
         {catalog.title}
       </button>
       <div className={`pointer-events-none absolute left-0 right-0 container mx-auto pr-64 transition-all ${open ? 'translate-y-0 z-10' : '-translate-y-full -z-10'}`}>
-        <div className="grid grid-cols-[auto_1fr] pt-5 bg-white rounded-bl-xl rounded-br-xl overflow-hidden shadow-sm pointer-events-auto">
+        <div className="grid grid-cols-[auto_1fr] pt-4 bg-white rounded-bl-xl rounded-br-xl overflow-hidden shadow-sm pointer-events-auto">
           <div className="flex flex-col justify-start w-56 p-2 border-t border-gray">
             {categories.map((category) => (
               <div key={category.id}>
@@ -84,6 +84,6 @@ export default function CatalogList({ categories }: {categories: ICategory[]} ) 
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
