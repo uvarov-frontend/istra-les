@@ -50,7 +50,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
 
   return (
     <div className="grid grid-cols-[1fr_340px] items-start justify-items-start h-full">
-      <div className="px-4 py-6">
+      <div className="pl-6 pr-4 py-6">
         <h1 className="text-3xl font-bold mb-6 -ml-[2px]">
           {product.attributes.title}
           {product.attributes.type ? <span className="block w-max mt-[6px] ml-[2px] text-dark_gray text-sm font-normal border-b border-dark_gray border-dashed">{product.attributes.type}</span> : ''}

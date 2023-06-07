@@ -9,7 +9,7 @@ export default function Slider({ info, url, product }: { info: {[key: string]: {
   const [activeSlideID, setActiveSlideID] = useState(0);
 
   return (
-    <div className="grid grid-rows-[auto_auto_1fr] gap-2 p-6">
+    <div className="grid grid-rows-[auto_auto_1fr] gap-2 pl-6 pr-4 py-6">
       <div className="flex item-center w-[300px] h-[220px] rounded-lg bg-lite overflow-hidden">
         <Image alt={product.attributes.title}
           height={220}

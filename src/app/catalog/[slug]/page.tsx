@@ -31,7 +31,7 @@ export default async function Product({ params }: IParams) {
   const data = await getData(product.attributes.tableID) as unknown as IData[];
 
   return (
-    <main className="container mx-auto my-10 min-h-[350px]">
+    <main className="container mx-auto my-10 min-h-[340px]">
       <BreadCrumbs title={product.attributes.title} />
       <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-[350px_1fr]' : 'grid-cols-[1fr]'} mt-8 bg-white_dark border border-lite rounded-lg`}>
         {product.attributes.img.data?.[0] ?
