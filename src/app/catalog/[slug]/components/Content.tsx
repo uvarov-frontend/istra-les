@@ -66,7 +66,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
                   onClick={() => {
                     setSortID(index);
                     setOptionsID(0);
-                  }}>{sort.id.replace(/\[(.*)\]/g, '').trimStart()}</button>
+                  }}>{sort.id.replace(/\[(.*)\]/g, '').trim()}</button>
               );
             })}
           </div>

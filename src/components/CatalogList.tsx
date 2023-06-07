@@ -73,9 +73,8 @@ export default function CatalogList({ categories }: {categories: ICategory[]} ) 
                     <ul>
                       {product.attributes.sorts?.data?.map((sort, index) => (
                         <li key={index}
-                        className="relative text-sm leading-6 group max-w-max before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-[1px] before:pointer-events-none before:bg-dark_gray hover:before:bg-green_hover">
-                          <Link className="block pl-4 text-dark_gray group-hover:text-green_hover"
-                            href={`/catalog/${product.attributes.slug}#${sort.attributes.anchor}`}>{sort.attributes.title}</Link>
+                        className="relative text-sm leading-6 max-w-max before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-[1px] before:pointer-events-none before:bg-dark_gray">
+                          <span className="block pl-4 text-dark_gray">{sort.attributes.title}</span>
                         </li>
                       ))}
                     </ul>
