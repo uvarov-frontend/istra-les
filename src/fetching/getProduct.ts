@@ -4,7 +4,7 @@ import { IProduct } from '@/types';
 
 export default async function getProduct(slug: string) {
   try {
-    const res = await fetch(`${process.env.STRAPI_API_URL}/api/products?pagination[pageSize]=100&populate=img,categories&filters[slug][$eq]=${slug}`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/api/products?pagination[pageSize]=100&populate=img,profile,categories&filters[slug][$eq]=${slug}`, {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',

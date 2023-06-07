@@ -38,7 +38,7 @@ export default async function Product({ params }: IParams) {
           <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
           <Content contacts={contacts} data={data} info={info} product={product} />
         </div>
-        <Tables data={data} info={info} />
+        <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
         {product.attributes.content ?
           <div className="content mt-6">
             <h2 className="font-bold text-2xl mb-5">{info.description}</h2>

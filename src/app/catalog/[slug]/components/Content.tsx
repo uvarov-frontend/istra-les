@@ -92,7 +92,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
       <div className="bg-gray/30 rounded-r-lg h-full py-6 px-7 overflow-hidden flex flex-col">
         <div className="pb-3 mb-3 border-b border-gray">
           <span className="block text-sm text-dark_gray mb-2">{title}:</span>
-          <b className={`block text-lg ${sale ? 'text-red' : ''}`}>{formatterRUB.format(price)} {currency}/{thing}{sale ? '*' : ''}</b>
+          <b className={`block text-lg max-w-max rounded ${sale ? 'bg-yellow px-2' : ''}`}>{formatterRUB.format(price)} {currency}/{thing}{sale ? '*' : ''}</b>
         </div>
         <div className="mb-4">
           <span className="block text-sm mb-2">{info.ordering}:</span>
@@ -105,14 +105,14 @@ export default function Content({ data, contacts, info, product }: { data: IData
             <input className="h-full flex grow overflow-hidden justify-center text-center outline-none" type="text" value={countProduct} onChange={handlerChange} />
             <button className="w-10 h-full bg-green font-medium text-lg text-white rounded-r-lg hover:bg-green_hover" type="button" onClick={handlerInc}>+</button>
           </div>
-          <div className="grid grid-cols-[auto_1fr] gap-3 items-center mb-3">
+          <div className="grid grid-cols-[auto_1fr] gap-2 items-center mb-3">
             <span className="block text-sm text-dark_gray whitespace-nowrap">{info.total}:</span>
-            <b className={`block text-lg whitespace-nowrap ${sale ? 'text-red' : ''}`}>{formatterRUB.format(price * countProduct)} {currency}{sale ? '*' : ''}</b>
+            <b className={`block text-lg whitespace-nowrap max-w-max rounded ${sale ? 'bg-yellow px-2' : ''}`}>{formatterRUB.format(price * countProduct)} {currency}{sale ? '*' : ''}</b>
           </div>
-          <span className="block text-xs mb-3 text-green_hover">{info.relevance} {relevantDate.replace(/^\[(.+)\]$/, (_, g1) => g1)}</span>
+          <span className="block text-xs mb-3 font-medium text-green_hover">{info.relevance} {relevantDate.replace(/^\[(.+)\]$/, (_, g1) => g1)}</span>
           <span className="block text-xs text-dark_gray mb-1">{info.difference}</span>
           <span className="block text-xs text-dark_gray">{info.save}</span>
-          {sale ? <span className="block text-xs text-red mt-2">{info.sale}</span> : <></> }
+          {sale ? <span className="block text-xs mt-1 text-dark_gray">{info.sale}</span> : <></> }
         </div>
       </div>
     </div>

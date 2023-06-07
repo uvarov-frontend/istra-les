@@ -1,16 +1,22 @@
 import Image from 'next/image';
 
-import { IData } from '@/types';
+import { IData, IProduct } from '@/types';
 
-export default function Tables({ data, info }: { data: IData[], info: {[key: string]: string} }) {
+export default function Tables({ data, info, product, url }: { data: IData[], info: {[key: string]: string}, product: IProduct, url: string }) {
 
   return (
     <div className="my-10 pt-8 border-t border-gray/50">
-      <h2 className="font-bold text-2xl mb-5">Евровагонка ель, сосна — цены</h2>
-      <div className="flex mb-4 items-end">
-        <span className="block text-sm text-dark_gray mr-4">Профиль:</span>
-        <Image alt="title" className="inline-block align-middle" height={21} src="//istra-les.ru/img/profiles/evrovagonka.svg" width={100} />
-      </div>
+      <h2 className="font-bold text-2xl mb-5">{product.attributes.title} { product.attributes.type ? <span className="lowercase text-dark_gray font-medium">{product.attributes.type}</span> : <></> } — цены</h2>
+      {product.attributes.profile.data?.attributes?.url ?
+        <div className="flex mb-4 items-end">
+          <span className="block text-sm text-dark_gray mr-4">{info.profile}:</span>
+          <Image alt={product.attributes.title}
+            className="inline-block align-middle"
+            height={21}
+            src={`${url}${product.attributes.profile.data.attributes.url}`}
+            width={100} />
+        </div>
+      : <></>}
       <div className="my-7">
         <h3 className="text-lg font-bold mb-2">Экстра</h3>
         <div className="border border-gray/70 rounded-lg overflow-hidden">

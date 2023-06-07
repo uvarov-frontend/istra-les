@@ -119,6 +119,9 @@ export interface IProduct {
     img: {
       data: IImage[];
     }
+    profile: {
+      data: IImage;
+    }
   };
 }
 
