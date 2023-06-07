@@ -37,7 +37,7 @@ export default async function Product({ params }: IParams) {
         <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
         <Content contacts={contacts} data={data} info={info} product={product} />
       </div>
-      <div className="grid grid-cols-[auto_280px] gap-9 items-start my-10 pt-8 border-t border-gray/50">
+      <div className="grid grid-cols-[auto_300px] gap-9 items-start my-10 pt-8 border-t border-gray/50">
         <div className="">
           <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
           {product.attributes.content ?
