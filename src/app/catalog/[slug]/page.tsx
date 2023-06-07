@@ -31,24 +31,26 @@ export default async function Product({ params }: IParams) {
   const data = await getData(product.attributes.tableID) as unknown as IData[];
 
   return (
-    <main className="container mx-auto my-10 min-h-[350px] grid grid-cols-[auto_210px] gap-9 items-start">
-      <div className="overflow-hidden">
-        <BreadCrumbs title={product.attributes.title} />
-        <div className="grid grid-cols-[332px_1fr] items-start mt-8 bg-white_dark border border-lite rounded-lg">
-          <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
-          <Content contacts={contacts} data={data} info={info} product={product} />
-        </div>
-        <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
-        {product.attributes.content ?
-          <div className="content mt-6">
-            <h2 className="font-bold text-2xl mb-5">{info.description}</h2>
-            {/* @ts-expect-error Server Component */}
-            <MDXRemote source={product.attributes.content} />
-          </div>
-        : <></>}
+    <main className="container mx-auto my-10 min-h-[350px]">
+      <BreadCrumbs title={product.attributes.title} />
+      <div className="grid grid-cols-[350px_1fr] mt-8 bg-white_dark border border-lite rounded-lg">
+        <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
+        <Content contacts={contacts} data={data} info={info} product={product} />
       </div>
-      {/* @ts-expect-error Server Component */}
-      <Sidebar contacts={contacts} info={info} product={product} />
+      <div className="grid grid-cols-[auto_280px] gap-9 items-start my-10 pt-8 border-t border-gray/50">
+        <div className="">
+          <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
+          {product.attributes.content ?
+            <div className="content mt-10">
+              <h2 className="font-bold text-2xl mb-5">{info.description}</h2>
+              {/* @ts-expect-error Server Component */}
+              <MDXRemote source={product.attributes.content} />
+            </div>
+          : <></>}
+        </div>
+        {/* @ts-expect-error Server Component */}
+        <Sidebar contacts={contacts} info={info} product={product} />
+      </div>
   </main>
   );
 }

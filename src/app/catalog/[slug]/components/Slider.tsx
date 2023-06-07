@@ -11,7 +11,7 @@ export default function Slider({ info, url, product }: { info: {[key: string]: {
   if (!product.attributes.img.data?.[0]) return <></>;
 
   return (
-    <div className="grid gap-2 py-6 px-4">
+    <div className="grid grid-rows-[auto_auto_1fr] gap-2 p-6">
       <div className="flex item-center w-[300px] h-[220px] rounded-lg bg-lite overflow-hidden">
         <Image alt={product.attributes.title}
           height={220}
@@ -30,7 +30,7 @@ export default function Slider({ info, url, product }: { info: {[key: string]: {
           </div>
         ))}
       </div>
-      <div className="mt-2 px-3 py-2">
+      <div className="flex flex-col justify-end mt-4 px-1 py-2">
         <div className="relative text-sm font-medium text-dark flex items-center">
           <i className="block w-4 h-4 mr-2 icon-address bg-green" />
           {info.delivery.title}

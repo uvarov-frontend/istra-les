@@ -5,16 +5,16 @@ import { IData, IProduct } from '@/types';
 export default function Tables({ data, info, product, url }: { data: IData[], info: {[key: string]: string}, product: IProduct, url: string }) {
 
   return (
-    <div className="my-10 pt-8 border-t border-gray/50">
+    <div>
       <h2 className="font-bold text-2xl mb-5">{product.attributes.title} { product.attributes.type ? <span className="lowercase text-dark_gray font-medium">{product.attributes.type}</span> : <></> } — цены</h2>
       {product.attributes.profile.data?.attributes?.url ?
         <div className="flex mb-4 items-end">
           <span className="block text-sm text-dark_gray mr-4">{info.profile}:</span>
           <Image alt={product.attributes.title}
             className="inline-block align-middle"
-            height={21}
+            height={24}
             src={`${url}${product.attributes.profile.data.attributes.url}`}
-            width={100} />
+            width={110} />
         </div>
       : <></>}
       <div className="my-7">

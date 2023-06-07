@@ -49,13 +49,13 @@ export default function Content({ data, contacts, info, product }: { data: IData
   };
 
   return (
-    <div className="grid grid-cols-[350px_auto] items-start h-full">
-      <div className="py-6 px-4">
-        <h1 className="text-3xl font-bold mb-5 -ml-[2px]">
+    <div className="grid grid-cols-[1fr_340px] items-start h-full">
+      <div className="px-4 py-6">
+        <h1 className="text-3xl font-bold mb-6 -ml-[2px]">
           {product.attributes.title}
           {product.attributes.type ? <span className="block w-max mt-[6px] ml-[2px] text-dark_gray text-sm font-normal border-b border-dark_gray border-dashed">{product.attributes.type}</span> : ''}
         </h1>
-        <div className="mb-3">
+        <div className="mb-6">
           <span className="block text-sm text-dark_gray mb-2">{data[0].id.replace(/\[(.*)\]+.*/g, (_, g1) => g1)}</span>
           <div className="block">
             {data.map((sort, index) => {
@@ -71,7 +71,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
             })}
           </div>
         </div>
-        <div className="grid grid-cols-[auto_auto] gap-x-2 gap-y-4 justify-start">
+        <div className="grid grid-cols-2 gap-x-2 gap-y-4 justify-start">
           {Object.keys(data[sortID].data[0]).map((option, id) => {
             if (id === (Object.keys(data[sortID].data[0]).length - 1)) return null;
             const options: string[] = [];
@@ -95,20 +95,20 @@ export default function Content({ data, contacts, info, product }: { data: IData
           <b className={`block text-lg max-w-max rounded ${sale ? 'bg-yellow px-2' : ''}`}>{formatterRUB.format(price)} {currency}/{thing}{sale ? '*' : ''}</b>
         </div>
         <div className="mb-4">
-          <span className="block text-sm mb-2">{info.ordering}:</span>
-          <b className="block">{contacts.mainPhone}</b>
+          <span className="block text-sm mb-3">{info.ordering}:</span>
+          <b className="block text-lg">{contacts.mainPhone}</b>
+        </div>
+        <span className="block text-sm text-dark_gray mb-3">{info.count} ({thing}):</span>
+        <div className="flex items-center h-9 w-full bg-white rounded-lg mb-4">
+          <button className="w-10 h-full bg-green font-medium text-lg text-white rounded-l-lg hover:bg-green_hover" type="button" onClick={handlerDis}>-</button>
+          <input className="h-full w-[calc(100%_-_80px)] flex grow overflow-hidden justify-center text-center outline-none" type="text" value={countProduct} onChange={handlerChange} />
+          <button className="w-10 h-full bg-green font-medium text-lg text-white rounded-r-lg hover:bg-green_hover" type="button" onClick={handlerInc}>+</button>
+        </div>
+        <div className="grid grid-cols-[auto_1fr] gap-2 items-center mb-3">
+          <span className="block text-sm text-dark_gray whitespace-nowrap">{info.total}:</span>
+          <b className={`block text-xl whitespace-nowrap max-w-max rounded ${sale ? 'bg-yellow px-2' : ''}`}>{formatterRUB.format(price * countProduct)} {currency}{sale ? '*' : ''}</b>
         </div>
         <div className="grow flex flex-col justify-end">
-          <span className="block text-sm text-dark_gray mb-3">{info.count} ({thing}):</span>
-          <div className="flex items-center h-9 w-full bg-white rounded-lg mb-4">
-            <button className="w-10 h-full bg-green font-medium text-lg text-white rounded-l-lg hover:bg-green_hover" type="button" onClick={handlerDis}>-</button>
-            <input className="h-full flex grow overflow-hidden justify-center text-center outline-none" type="text" value={countProduct} onChange={handlerChange} />
-            <button className="w-10 h-full bg-green font-medium text-lg text-white rounded-r-lg hover:bg-green_hover" type="button" onClick={handlerInc}>+</button>
-          </div>
-          <div className="grid grid-cols-[auto_1fr] gap-2 items-center mb-3">
-            <span className="block text-sm text-dark_gray whitespace-nowrap">{info.total}:</span>
-            <b className={`block text-lg whitespace-nowrap max-w-max rounded ${sale ? 'bg-yellow px-2' : ''}`}>{formatterRUB.format(price * countProduct)} {currency}{sale ? '*' : ''}</b>
-          </div>
           <span className="block text-xs mb-3 font-medium text-green_hover">{info.relevance} {relevantDate.replace(/^\[(.+)\]$/, (_, g1) => g1)}</span>
           <span className="block text-xs text-dark_gray mb-1">{info.difference}</span>
           <span className="block text-xs text-dark_gray">{info.save}</span>

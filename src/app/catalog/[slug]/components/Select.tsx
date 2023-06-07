@@ -31,7 +31,7 @@ export default function CustomSelect({ name, options, optionsID, setOptionsID } 
 
   return (
     <Select
-      className="w-[150px]"
+      className="w-[220px]"
       instanceId={correctName}
       isClearable={false}
       isSearchable={false}
