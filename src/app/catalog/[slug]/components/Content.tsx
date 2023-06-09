@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useEffect, useState } from 'react';
 
+import Callback from '@/components/Callback';
 import { getUnit } from '@/helper';
 import { IData, IProduct } from '@/types';
 
@@ -96,7 +97,11 @@ export default function Content({ data, contacts, info, product }: { data: IData
         </div>
         <div className="mb-4">
           <span className="block text-sm mb-3">{info.ordering}:</span>
-          <b className="block text-lg">{contacts.mainPhone}</b>
+          <div>
+            <b className="block font-bold text-lg">{contacts.mainPhone}</b>
+            <span className="text-sm mr-1">{info.or}</span>
+            <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" />
+          </div>
         </div>
         <span className="block text-sm text-dark_gray mb-3">{info.count} ({thing}):</span>
         <div className="flex items-center h-9 w-full bg-white rounded-lg mb-4">

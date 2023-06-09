@@ -29,3 +29,17 @@ info:
     <strong>Для крупных заказов</strong> мы предоставляем персональную <strong>скидку</strong>, детали уточняйте по телефону:
   description: Описание
   profile: Профиль
+  or: или
+  callback:
+    title: Обратный звонок
+    titleForm: Заказать обратный звонок
+    descriptionForm: Оставьте номер телефона, и наш специалист свяжется с вами в ближайшее время.
+  callbackMail:
+    title: Запрос обратного звонка с сайта istra-les.ru
+    from: istra.les.ru@gmail.com
+    to:
+      - fergussawyer@gmail.com
+    name: |
+      Имя:
+    phone: |
+      Телефон:

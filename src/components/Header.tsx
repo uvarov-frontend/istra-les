@@ -4,13 +4,13 @@ import Link from 'next/link';
 import translation from '@/translation.yaml';
 
 import Address from './Address';
-import Callback from './Callback';
 import Catalog from './Catalog';
 import Logo from './Logo';
 import Navigation from './Navigation';
+import Phone from './Phone';
 
 export default function Header() {
-  const { contacts } = translation;
+  const { contacts, info } = translation;
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function Header() {
           </div>
           <Address address={contacts.address1.address} />
           <Address address={contacts.address2.address} />
-          <Callback phone={contacts.mainPhone} />
+          <Phone callback={info.callback} phone={contacts.mainPhone} />
         </div>
       </header>
       <header className="sticky z-30 top-0 bg-white py-4 h-[84px] flex items-center border-gray shadow-sm after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white after:z-10">

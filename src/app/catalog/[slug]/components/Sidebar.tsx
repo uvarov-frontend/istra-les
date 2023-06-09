@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import Callback from '@/components/Callback';
 import getCategory from '@/fetching/getCategory';
 import { IProduct } from '@/types';
 
@@ -20,7 +21,9 @@ export default async function Sidebar({ contacts, info, product }: { contacts: {
       </div>
       <div className=" bg-green_hover/10 border border-green rounded-xl py-5 px-6">
         <p className="text-sm mb-3" dangerouslySetInnerHTML={{ __html: info.bigDelivery}} />
-        <b className="text-dark">{contacts.mainPhone}</b>
+        <b className="block text-dark text-lg">{contacts.mainPhone}</b>
+        <span className="text-sm mr-1">{info.or}</span>
+        <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" />
       </div>
     </div>
   );
