@@ -12,6 +12,8 @@ import Sidebar from './components/Sidebar';
 import Slider from './components/Slider';
 import Tables from './components/Tables';
 
+export const revalidate = 120;
+
 export async function generateMetadata({ params }: IParams) {
   const { contacts } = translation;
   const product = await getProduct(params.slug);

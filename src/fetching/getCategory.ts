@@ -10,7 +10,7 @@ export default async function getCategory(id: number) {
         'Content-Type': 'application/json',
       },
       next: {
-        revalidate: 10,
+        revalidate: 120,
       },
     });
 

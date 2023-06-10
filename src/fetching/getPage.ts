@@ -10,7 +10,7 @@ export default async function getPage(slug: string) {
         'Content-Type': 'application/json',
       },
       next: {
-        revalidate: 10,
+        revalidate: 120,
       },
     });
 
