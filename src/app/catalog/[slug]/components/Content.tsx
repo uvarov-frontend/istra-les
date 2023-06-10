@@ -112,7 +112,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
           <div>
             <b className="block text-lg font-bold">{contacts.mainPhone}</b>
             <span className="mr-1 text-sm">{info.or}</span>
-            <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" />
+            {/* <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" /> */}
           </div>
         </div>
         <span className="mb-3 block text-sm text-dark_gray">

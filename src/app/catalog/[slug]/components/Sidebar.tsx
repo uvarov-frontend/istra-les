@@ -27,7 +27,7 @@ export default async function Sidebar({ contacts, info, product }: { contacts: I
         <p className="mb-3 text-sm" dangerouslySetInnerHTML={{ __html: info.bigDelivery }} />
         <b className="block text-lg text-dark">{contacts.mainPhone}</b>
         <span className="mr-1 text-sm">{info.or}</span>
-        <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" />
+        {/* <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" /> */}
       </div>
     </div>
   );
