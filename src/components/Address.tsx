@@ -1,8 +1,8 @@
-export default function Address({ address }: { address: string; }) {
+export default function Address({ address }: { address: string }) {
   return (
-    <div className="w-80 relative pl-9">
-      <i className="block absolute top-1/2 left-0 w-5 h-5 icon-address bg-green -translate-y-1/2" />
-      <span className="block text-sm">{ address }</span>
+    <div className="relative w-80 pl-9">
+      <i className="icon-address absolute left-0 top-1/2 block h-5 w-5 -translate-y-1/2 bg-green" />
+      <span className="block text-sm">{address}</span>
     </div>
   );
 }

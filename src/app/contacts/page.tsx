@@ -25,30 +25,30 @@ export default async function Contacts() {
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
       <BreadCrumbs title="Контакты" />
-      <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
+      <h1 className="mb-8 text-3xl font-bold">{page.attributes.title}</h1>
       <div className="grid grid-cols-[3fr_4fr] gap-14">
         <div>
-          <div className="relative pl-10 mb-6">
-            <i className="block absolute top-1 left-0 w-6 h-6 icon-address bg-green" />
-            <b className="font-bold text-lg">Адреса</b>
+          <div className="relative mb-6 pl-10">
+            <i className="icon-address absolute left-0 top-1 block h-6 w-6 bg-green" />
+            <b className="text-lg font-bold">Адреса</b>
             <ul>
               <li className="my-2">{contacts.address1.address}</li>
               <li className="my-2">{contacts.address2.address}</li>
             </ul>
           </div>
-          <div className="relative pl-10 mb-6">
-            <i className="block absolute top-1 left-0 w-6 h-6 icon-phone bg-green" />
-            <b className="font-bold text-lg">Телефоны</b>
+          <div className="relative mb-6 pl-10">
+            <i className="icon-phone absolute left-0 top-1 block h-6 w-6 bg-green" />
+            <b className="text-lg font-bold">Телефоны</b>
             <p className="my-2">{contacts.phones}</p>
           </div>
-          <div className="relative pl-10 mb-6">
-            <i className="block absolute top-1 left-0 w-6 h-6 icon-clock bg-green" />
-            <b className="font-bold text-lg">График работы</b>
-            <p className="my-2" dangerouslySetInnerHTML={{__html: contacts.schedule }} />
+          <div className="relative mb-6 pl-10">
+            <i className="icon-clock absolute left-0 top-1 block h-6 w-6 bg-green" />
+            <b className="text-lg font-bold">График работы</b>
+            <p className="my-2" dangerouslySetInnerHTML={{ __html: contacts.schedule }} />
           </div>
-          <div className="relative pl-10 mb-6">
-            <i className="block absolute top-1 left-0 w-6 h-6 icon-mail bg-green" />
-            <b className="font-bold text-lg">E-Mail</b>
+          <div className="relative mb-6 pl-10">
+            <i className="icon-mail absolute left-0 top-1 block h-6 w-6 bg-green" />
+            <b className="text-lg font-bold">E-Mail</b>
             <p className="my-2">{contacts.mail}</p>
           </div>
         </div>

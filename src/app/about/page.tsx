@@ -28,26 +28,14 @@ export default async function About() {
       <BreadCrumbs title={page.attributes.title} />
       <section className="grid grid-cols-2 gap-14">
         <div className="content">
-          <h1 className="text-3xl font-bold mb-8">{page.attributes.title}</h1>
+          <h1 className="mb-8 text-3xl font-bold">{page.attributes.title}</h1>
           {/* @ts-expect-error Server Component */}
           <MDXRemote source={page.attributes.content} />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Image alt="about"
-            className="rounded-xl"
-            height={250}
-            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`}
-            width={275} />
-          <Image alt="about"
-            className="rounded-xl"
-            height={250}
-            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`}
-            width={275} />
-          <Image alt="about"
-            className="rounded-xl col-span-2"
-            height={180}
-            src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[2].attributes.url}`}
-            width={580} />
+          <Image alt="about" className="rounded-xl" height={250} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`} width={275} />
+          <Image alt="about" className="rounded-xl" height={250} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`} width={275} />
+          <Image alt="about" className="col-span-2 rounded-xl" height={180} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[2].attributes.url}`} width={580} />
         </div>
       </section>
       <section className="mt-6">

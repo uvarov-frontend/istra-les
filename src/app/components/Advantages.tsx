@@ -13,16 +13,20 @@ export default async function Advantages() {
       <h2 className="sr-only">Преимущества</h2>
       <ul className="grid grid-flow-col gap-8">
         {advantages?.map((advantage) => (
-          <li key={advantage.id} className="relative bg-white rounded-2xl shadow-sm py-6 px-5 pl-[100px] hover:shadow-md transition-all
-            before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2 before:w-[60px] before:h-[60px] before:rounded-full before:bg-green before:opacity-30">
+          <li
+            key={advantage.id}
+            className="relative rounded-2xl bg-white px-5 py-6 pl-[100px] shadow-sm transition-all before:absolute
+            before:left-5 before:top-1/2 before:h-[60px] before:w-[60px] before:-translate-y-1/2 before:rounded-full before:bg-green before:opacity-30 hover:shadow-md"
+          >
             <Image
               alt={advantage.attributes.icon.data.attributes.name}
-              className="block absolute top-1/2 left-[38px] w-6 h-6 -translate-y-1/2"
+              className="absolute left-[38px] top-1/2 block h-6 w-6 -translate-y-1/2"
               height={24}
               src={`${process.env.STRAPI_API_URL}${advantage.attributes.icon.data.attributes.url}`}
-              width={24} />
-            <b className="block font-medium mb-1">{advantage.attributes.title}</b>
-            <span className="block text-dark_gray text-sm">
+              width={24}
+            />
+            <b className="mb-1 block font-medium">{advantage.attributes.title}</b>
+            <span className="block text-sm text-dark_gray">
               {/* @ts-expect-error Server Component */}
               <MDXRemote source={advantage.attributes.content} />
             </span>

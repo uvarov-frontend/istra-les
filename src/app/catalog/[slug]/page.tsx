@@ -28,31 +28,31 @@ export default async function Product({ params }: IParams) {
   const product = await getProduct(params.slug);
   if (!product) return notFound();
 
-  const data = await getData(product.attributes.tableID) as unknown as IData[];
+  const data = (await getData(product.attributes.tableID)) as unknown as IData[];
 
   return (
     <main className="container mx-auto my-10 min-h-[340px]">
       <BreadCrumbs title={product.attributes.title} />
-      <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-[350px_1fr]' : 'grid-cols-[1fr]'} mt-8 bg-white_dark border border-lite rounded-lg`}>
-        {product.attributes.img.data?.[0] ?
-          <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} />
-        : <></>}
+      <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-[350px_1fr]' : 'grid-cols-[1fr]'} mt-8 rounded-lg border border-lite bg-white_dark`}>
+        {product.attributes.img.data?.[0] ? <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} /> : <></>}
         <Content contacts={contacts} data={data} info={info} product={product} />
       </div>
-      <div className="grid grid-cols-[auto_300px] gap-9 items-start my-10 pt-8 border-t border-gray/50">
+      <div className="my-10 grid grid-cols-[auto_300px] items-start gap-9 border-t border-gray/50 pt-8">
         <div className="">
           <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
-          {product.attributes.content ?
+          {product.attributes.content ? (
             <div className="content mt-10">
-              <h2 className="font-bold text-2xl mb-5">{info.description}</h2>
+              <h2 className="mb-5 text-2xl font-bold">{info.description}</h2>
               {/* @ts-expect-error Server Component */}
               <MDXRemote source={product.attributes.content} />
             </div>
-          : <></>}
+          ) : (
+            <></>
+          )}
         </div>
         {/* @ts-expect-error Server Component */}
         <Sidebar contacts={contacts} info={info} product={product} />
       </div>
-  </main>
+    </main>
   );
 }

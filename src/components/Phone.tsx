@@ -2,11 +2,11 @@ import { ITranslate } from '@/types';
 
 import Callback from './Callback';
 
-export default function Phone({ phone, callback }: { phone: string, callback: ITranslate }) {
+export default function Phone({ phone, callback }: { phone: string; callback: ITranslate }) {
   return (
-    <div className="w-full relative pl-9 flex flex-col justify-center">
-      <i className="block absolute top-1/2 left-0 w-5 h-5 icon-phone bg-green -translate-y-1/2" />
-      <b className="block">{ phone }</b>
+    <div className="relative flex w-full flex-col justify-center pl-9">
+      <i className="icon-phone absolute left-0 top-1/2 block h-5 w-5 -translate-y-1/2 bg-green" />
+      <b className="block">{phone}</b>
       <Callback callback={callback} className="text-left text-sm text-green hover:text-green_hover" />
     </div>
   );

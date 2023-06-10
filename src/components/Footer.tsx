@@ -56,16 +56,17 @@ export default function Footer() {
           <Link className="block" href="/">
             <Image alt={contacts.title} className="block" height={67} src="/img/logo.svg" width={125} />
           </Link>
-          <small className="w-36 block mt-4 text-sm text-dark_gray">{contacts.copyright}</small>
+          <small className="mt-4 block w-36 text-sm text-dark_gray">{contacts.copyright}</small>
         </div>
         {menu.map((cols) => (
           <div key={cols.id}>
-            <b className="block font-medium mb-4 text-dark">{cols.title}</b>
+            <b className="mb-4 block font-medium text-dark">{cols.title}</b>
             <ul>
               {cols.links.map((item) => (
-                <li key={item.id} className="block mb-2 last:mb-0">
-                  <Link className="block text-dark_gray hover:text-green_hover hover:underline"
-                    href={item.link}>{item.title}</Link>
+                <li key={item.id} className="mb-2 block last:mb-0">
+                  <Link className="block text-dark_gray hover:text-green_hover hover:underline" href={item.link}>
+                    {item.title}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -73,7 +74,7 @@ export default function Footer() {
         ))}
         <Contacts />
       </div>
-      <small className="absolute right-2 bottom-2 text-xs text-dark_gray/60">{contacts.recaptcha}</small>
+      <small className="absolute bottom-2 right-2 text-xs text-dark_gray/60">{contacts.recaptcha}</small>
     </footer>
   );
 }

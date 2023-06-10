@@ -6,28 +6,35 @@ import Select from 'react-select';
 
 import { IValue } from '@/types';
 
-export default function CustomSelect({ name, options, optionsID, setOptionsID } : {
-  name: string,
-  options: string[],
-  optionsID: number,
-  setOptionsID: Dispatch<SetStateAction<number>>
+export default function CustomSelect({
+  name,
+  options,
+  optionsID,
+  setOptionsID,
+}: {
+  name: string;
+  options: string[];
+  optionsID: number;
+  setOptionsID: Dispatch<SetStateAction<number>>;
 }) {
   const optionSelect: IValue[] = [];
 
   const cyrillicToTranslit = CyrillicToTranslit();
   const correctName = cyrillicToTranslit.transform(name, '_').toLowerCase();
 
-  options.forEach((opt) => optionSelect.push({
-    label: opt,
-    value: opt,
-  }));
+  options.forEach((opt) =>
+    optionSelect.push({
+      label: opt,
+      value: opt,
+    }),
+  );
 
   const [currentValue, setCurrentValue] = useState(optionSelect[optionsID]);
 
   useEffect(() => {
-    if(optionSelect[optionsID]) setCurrentValue(optionSelect[optionsID]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[optionsID]);
+    if (optionSelect[optionsID]) setCurrentValue(optionSelect[optionsID]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [optionsID]);
 
   return (
     <Select
@@ -50,7 +57,7 @@ export default function CustomSelect({ name, options, optionsID, setOptionsID } 
           boxShadow: 'none',
           cursor: 'pointer',
           fontSize: '14px',
-          minHeight:  '34px',
+          minHeight: '34px',
         }),
         dropdownIndicator: (baseStyles) => ({
           ...baseStyles,
@@ -64,7 +71,7 @@ export default function CustomSelect({ name, options, optionsID, setOptionsID } 
           ...baseStyles,
           border: '1px solid #ddd',
           boxShadow: '0 5px 20px rgba(105, 105, 105, 0.1)',
-          margin:  '3px 0',
+          margin: '3px 0',
           overflow: 'hidden',
           padding: '0px',
         }),
@@ -84,7 +91,7 @@ export default function CustomSelect({ name, options, optionsID, setOptionsID } 
         }),
       }}
       onChange={(newValue) => {
-        if (currentValue.value === newValue?.value as string) return;
+        if (currentValue.value === (newValue?.value as string)) return;
         setOptionsID(options.indexOf(newValue?.value as string));
       }}
     />

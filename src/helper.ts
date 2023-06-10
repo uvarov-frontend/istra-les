@@ -16,5 +16,5 @@ export const getUnit = (str: string) => {
     return math;
   });
 
-  return {  currency, thing, title };
+  return { currency, thing, title };
 };

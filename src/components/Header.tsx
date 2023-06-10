@@ -14,8 +14,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="relative z-40 flex items-center bg-white py-4 border-b border-gray h-[90px]">
-        <div className="container mx-auto grid gap-9 grid-flow-col justify-between items-center">
+      <header className="relative z-40 flex h-[90px] items-center border-b border-gray bg-white py-4">
+        <div className="container mx-auto grid grid-flow-col items-center justify-between gap-9">
           <div className="flex items-center">
             <Link className="block" href="/">
               <Image alt={contacts.title} className="block" height={55} src="/img/logo.svg" width={100} />
@@ -26,7 +26,7 @@ export default function Header() {
           <Phone callback={info.callback} phone={contacts.mainPhone} />
         </div>
       </header>
-      <header className="sticky z-30 top-0 bg-white py-4 h-[84px] flex items-center border-gray shadow-sm after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white after:z-10">
+      <header className="sticky top-0 z-30 flex h-[84px] items-center border-gray bg-white py-4 shadow-sm after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:bg-white">
         <div className="container mx-auto flex items-center">
           <Logo />
           {/* @ts-expect-error Server Component */}

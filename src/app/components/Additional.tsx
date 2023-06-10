@@ -10,19 +10,21 @@ export default async function Additional() {
 
   return (
     <section className="py-8">
-      <h2 className="text-3xl font-bold mb-10">Дополнительные услуги</h2>
+      <h2 className="mb-10 text-3xl font-bold">Дополнительные услуги</h2>
       <ul className="grid grid-flow-col gap-8">
         {additionals?.map((additional) => (
-          <li key={additional.id} className="relative flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all">
-            <Image alt={additional.attributes.img.data.attributes.name}
+          <li key={additional.id} className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md">
+            <Image
+              alt={additional.attributes.img.data.attributes.name}
               className=""
               height={210}
               src={`${process.env.STRAPI_API_URL}${additional.attributes.img.data.attributes.url}`}
-              width={385} />
-            <div className="flex flex-col p-7 pt-5 grow">
+              width={385}
+            />
+            <div className="flex grow flex-col p-7 pt-5">
               <div className="grow">
-                <b className="block text-xl font-medium mb-2">{additional.attributes.title}</b>
-                <span className="block text-dark_gray mb-2">
+                <b className="mb-2 block text-xl font-medium">{additional.attributes.title}</b>
+                <span className="mb-2 block text-dark_gray">
                   {/* @ts-expect-error Server Component */}
                   <MDXRemote source={additional.attributes.content} />
                 </span>

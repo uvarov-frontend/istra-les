@@ -17,12 +17,11 @@ export default function YandexMap() {
   const { contacts } = translation;
 
   return (
-    <div className="bg-lite rounded-xl overflow-hidden">
+    <div className="overflow-hidden rounded-xl bg-lite">
       <YMaps query={{ load: 'package.full' }}>
-        <Map defaultState={{ center: [55.883, 37.075], zoom: 13, controls: ['zoomControl'], behaviors: ['drag'] }}
-          height="100%"
-          width="100%">
-          <Placemark geometry={[55.881710, 37.067858]}
+        <Map defaultState={{ center: [55.883, 37.075], zoom: 13, controls: ['zoomControl'], behaviors: ['drag'] }} height="100%" width="100%">
+          <Placemark
+            geometry={[55.88171, 37.067858]}
             options={placemarkOptions}
             properties={{
               hintContent: contacts.address1.title,
@@ -31,7 +30,8 @@ export default function YandexMap() {
               balloonContentFooter: contacts.phones,
             }}
           />
-          <Placemark geometry={[55.879547, 37.095367]}
+          <Placemark
+            geometry={[55.879547, 37.095367]}
             options={placemarkOptions}
             properties={{
               hintContent: contacts.address2.title,

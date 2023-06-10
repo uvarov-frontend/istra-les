@@ -23,7 +23,7 @@ export default async function privacyPolicy() {
   return (
     <main className="container mx-auto my-10 min-h-[350px]">
       <BreadCrumbs title={page.attributes.title} />
-      <h1 className="text-3xl font-bold mb-8">Политика конфиденциальности</h1>
+      <h1 className="mb-8 text-3xl font-bold">Политика конфиденциальности</h1>
       <div className="content">
         {/* @ts-expect-error Server Component */}
         <MDXRemote source={page.attributes.content} />

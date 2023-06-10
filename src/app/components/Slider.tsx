@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { IPromo } from '@/types';
 
-export default function Slider({ host, promos }: { host: string, promos: IPromo[] }) {
-
+export default function Slider({ host, promos }: { host: string; promos: IPromo[] }) {
   const [activeIDSlide, setActiveIDSlide] = useState(promos[0].id);
   const [handlerAutoplay, setHandlerAutoplay] = useState<undefined | ReturnType<typeof setTimeout>>(undefined);
   const [autoplay, setAutoplay] = useState(true);
@@ -22,7 +21,7 @@ export default function Slider({ host, promos }: { host: string, promos: IPromo[
   };
 
   const nextSlide = () => {
-    if (activeIDSlide === (promos[promos.length - 1].id)) {
+    if (activeIDSlide === promos[promos.length - 1].id) {
       setActiveIDSlide(promos[0].id);
     } else {
       setActiveIDSlide(activeIDSlide + 1);
@@ -35,51 +34,59 @@ export default function Slider({ host, promos }: { host: string, promos: IPromo[
     } else if (autoplay) {
       setHandlerAutoplay(setTimeout(nextSlide, timeout * 1000));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoplay, activeIDSlide]);
 
   return (
-    <div className="relative w-full bg-lite h-[300px] rounded-xl overflow-hidden">
+    <div className="relative h-[300px] w-full overflow-hidden rounded-xl bg-lite">
       <div className="slides">
         {promos.map((promo) => (
-          <Link key={promo.id}
-            className="block"
-            href={promo.attributes.link}>
-            <Image alt={promo.attributes.title}
+          <Link key={promo.id} className="block" href={promo.attributes.link}>
+            <Image
+              alt={promo.attributes.title}
               className={`transition-opacity ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
               height={300}
               src={`${host}${promo.attributes.img.data.attributes.url}`}
-              width={1220} />
+              width={1220}
+            />
           </Link>
         ))}
       </div>
-      <div className="text-none absolute right-8 top-8 pointer-events-none grid grid-flow-col gap-2">
+      <div className="pointer-events-none absolute right-8 top-8 grid grid-flow-col gap-2 text-none">
         {promos.map((promo) => (
-          <button key={promo.id}
-            className={`pointer-events-auto w-3 h-3 rounded-full border-white border-2 ${promo.id === activeIDSlide ? 'bg-green' : 'bg-white'}`}
+          <button
+            key={promo.id}
+            className={`pointer-events-auto h-3 w-3 rounded-full border-2 border-white ${promo.id === activeIDSlide ? 'bg-green' : 'bg-white'}`}
             type="button"
             onClick={() => {
               setActiveIDSlide(promo.id);
               setAutoplay(false);
-            }}>{promo.id}</button>
+            }}
+          >
+            {promo.id}
+          </button>
         ))}
       </div>
-      <div className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none">
-        <button className="absolute pointer-events-auto right-[70px] bottom-8 rotate-180 w-8 h-8 rounded-full bg-green hover:bg-green_hover"
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-0">
+        <button
+          className="pointer-events-auto absolute bottom-8 right-[70px] h-8 w-8 rotate-180 rounded-full bg-green hover:bg-green_hover"
           type="button"
           onClick={() => {
             prevSlide();
             setAutoplay(false);
-          }}>
-          <i className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Назад</i>
+          }}
+        >
+          <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">Назад</i>
         </button>
-        <button className="absolute pointer-events-auto text-none right-[30px] bottom-8 w-8 h-8 rounded-full bg-green hover:bg-green_hover"
+        <button
+          className="pointer-events-auto absolute bottom-8 right-[30px] h-8 w-8 rounded-full bg-green text-none hover:bg-green_hover"
           type="button"
           onClick={() => {
             nextSlide();
             setAutoplay(false);
-          }}>
-          <i className="absolute text-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white icon-arrowhead">Вперед</i>
+          }}
+        >
+          <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">Вперед</i>
         </button>
       </div>
     </div>

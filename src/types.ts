@@ -8,15 +8,15 @@ export interface IParams {
 }
 
 export interface IData {
-  id: string,
+  id: string;
   data: {
-    [key: string]: string,
-  }[]
+    [key: string]: string;
+  }[];
 }
 
 export interface IValue {
-  label: string,
-  value: string,
+  label: string;
+  value: string;
 }
 
 export interface ILink {
@@ -34,7 +34,7 @@ export interface IImage {
     formats: null;
     size: number;
     url: string;
-  }
+  };
 }
 
 export interface IPromo {
@@ -115,13 +115,13 @@ export interface IProduct {
     };
     sorts: {
       data: ISort[];
-    }
+    };
     img: {
       data: IImage[];
-    }
+    };
     profile: {
       data: IImage;
-    }
+    };
   };
 }
 
@@ -133,7 +133,7 @@ export interface ISort {
     sortID: number;
     products: {
       data: IProduct[];
-    }
+    };
   };
 }
 
@@ -144,7 +144,7 @@ export interface ICategory {
     sortID: number;
     products: {
       data: IProduct[];
-    }
+    };
   };
 }
 
