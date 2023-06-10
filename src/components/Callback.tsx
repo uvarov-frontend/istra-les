@@ -5,7 +5,7 @@
 
 import { useReCaptcha } from 'next-recaptcha-v3';
 import { ChangeEventHandler, FormEvent, useCallback, useState } from 'react';
-import { withMask } from 'use-mask-input';
+// import { withMask } from 'use-mask-input';
 
 import { ITranslate } from '@/types';
 
@@ -111,10 +111,10 @@ export default function Callback({ callback, className }: { callback: ITranslate
           <form className="grid grid-flow-row gap-3" onSubmit={onSubmitCallback}>
             <input required className="input" name="name" placeholder={callback.name} type="text" value={inputs.name} onChange={handlerInput} />
             <input
-              ref={withMask('+7 (999) 999-99-99')}
+              // ref={withMask('+7 (999) 999-99-99')}
               required
               className="input"
-              minLength={18}
+              // minLength={18}
               name="phone"
               placeholder={callback.phone}
               type="text"
