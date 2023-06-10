@@ -22,7 +22,7 @@ export default function Logo() {
   }, []);
 
   return (
-    <Link className={`relative z-20 ${scrollTop > 118 ? 'logo-transition-show w-32 opacity-100' : 'logo-transition-hidden w-0 opacity-0'}`} href="/">
+    <Link className={`relative z-20 hidden lg:block ${scrollTop > 118 ? 'logo-transition-show w-32 opacity-100' : 'logo-transition-hidden w-0 opacity-0'}`} href="/">
       <Image alt="Истра лес" className="block" height={50} src="/img/logo.svg" width={92} />
     </Link>
   );

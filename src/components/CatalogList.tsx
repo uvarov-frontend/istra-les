@@ -51,9 +51,9 @@ export default function CatalogList({ categories }: { categories: ICategory[] })
         />
         {catalog.title}
       </button>
-      <div className={`container pointer-events-none absolute left-0 right-0 mx-auto pr-64 transition-transform ${open ? 'z-10 translate-y-0 visible' : '-z-10 -translate-y-full invisible'}`}>
+      <div className={`container pointer-events-none absolute left-0 right-0 mx-auto pr-0 xl:pr-64 transition-transform ${open ? 'z-10 translate-y-0 visible' : '-z-10 -translate-y-full invisible'}`}>
         <div className="pointer-events-auto grid grid-cols-[auto_1fr] overflow-hidden rounded-bl-xl rounded-br-xl bg-white pt-4 shadow-sm">
-          <div className="flex w-56 flex-col justify-start border-t border-gray p-2">
+          <div className="flex w-56 flex-col overflow-x-hidden max-h-[calc(100vh_-_174px)] overflow-y-auto justify-start border-t border-gray p-2">
             {categories.map((category) => (
               <div key={category.id}>
                 <div
@@ -70,7 +70,7 @@ export default function CatalogList({ categories }: { categories: ICategory[] })
           {categories.map((category) => (
             <div
               key={category.id}
-              className={`grid-cols-3 content-start gap-7 border-t border-gray bg-lite px-8 py-6 ${activeID === category.id ? 'grid' : 'hidden'}`}
+              className={`grid-cols-3 content-start overflow-x-hidden max-h-[calc(100vh_-_174px)] overflow-y-auto gap-7 border-t border-gray bg-lite px-8 py-6 ${activeID === category.id ? 'grid' : 'hidden'}`}
               data-catalog-item-id={category.id}
             >
               {category.attributes.products?.data?.map((product) => (

@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ReCaptchaProviders>
       <html lang="ru">
-        <body className={`${ttnorms.className} grid min-h-screen grid-rows-[auto_auto_1fr_auto] text-dark`}>
+        <body className={`${ttnorms.className} grid min-h-screen grid-rows-[auto_auto_1fr_auto] text-dark pt-[70px] md:pt-0`}>
           <Header />
           {children}
           <Footer />

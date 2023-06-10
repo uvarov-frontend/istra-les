@@ -51,8 +51,8 @@ export default function Footer() {
 
   return (
     <footer className="relative z-10 bg-lite py-7">
-      <div className="container mx-auto grid grid-cols-[repeat(4,auto)] gap-16 ">
-        <div>
+      <div className="container mx-auto grid grid-flow-row auto-cols-auto gap-8 grid-cols-1 sm:grid-cols-2 lg:gap-16 md:grid-flow-col md:grid-cols-[1fr_1fr_auto] md:gap-6 lg:grid-cols-[auto_1fr_1fr_auto] xl:grid-cols-[auto_auto_auto_auto]">
+        <div className="hidden lg:block">
           <Link className="block" href="/">
             <Image alt={contacts.title} className="block" height={67} src="/img/logo.svg" width={125} />
           </Link>
