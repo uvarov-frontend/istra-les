@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import { IData, IProduct, ITranslate } from '@/types';
 
+export const revalidate = 120;
+
 export default function Tables({ data, info, product, url }: { data: IData[]; info: ITranslate; product: IProduct; url: string }) {
   return (
     <div>

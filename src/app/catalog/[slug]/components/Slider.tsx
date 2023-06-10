@@ -17,7 +17,7 @@ export default function Slider({ info, url, product }: { info: { [key: string]: 
         {product.attributes.img.data?.map((img, index) => (
           <div
             key={img.id}
-            className={`h-[70px] w-[94px] cursor-pointer overflow-hidden rounded-lg border bg-lite ${activeSlideID === index ? 'border-green' : 'border-transparent'}`}
+            className={`h-[69px] w-[94px] cursor-pointer overflow-hidden rounded-lg border bg-lite ${activeSlideID === index ? 'border-green' : 'border-transparent'}`}
           >
             <Image alt={product.attributes.title} height={73} src={`${url}${img.attributes.url}`} width={94} onClick={() => setActiveSlideID(index)} />
           </div>

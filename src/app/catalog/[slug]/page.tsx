@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import getData from '@/fetching/getData';
 import getProduct from '@/fetching/getProduct';
+import getProducts from '@/fetching/getProducts';
 import translation from '@/translation.yaml';
 import { IData, IParams } from '@/types';
 
@@ -12,7 +13,13 @@ import Sidebar from './components/Sidebar';
 import Slider from './components/Slider';
 import Tables from './components/Tables';
 
-export const revalidate = 120;
+export async function generateStaticParams() {
+  const products = await getProducts();
+
+  return products.map((product) => ({
+    slug: product.attributes.slug,
+  }));
+}
 
 export async function generateMetadata({ params }: IParams) {
   const { contacts } = translation;
