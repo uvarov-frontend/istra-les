@@ -2,6 +2,8 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { ttnorms } from '@/fonts';
 
+import ReCaptchaProviders from './ReCaptchaProviders';
+
 import './globals.css';
 
 export const metadata = {
@@ -15,12 +17,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru">
-      <body className={`${ttnorms.className} text-dark min-h-screen grid grid-rows-[auto_auto_1fr_auto]`}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <ReCaptchaProviders>
+      <html lang="ru">
+        <body className={`${ttnorms.className} text-dark min-h-screen grid grid-rows-[auto_auto_1fr_auto]`}>
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </ReCaptchaProviders>
   );
 }

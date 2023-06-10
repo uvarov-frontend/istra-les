@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 import Callback from '@/components/Callback';
 import getCategory from '@/fetching/getCategory';
-import { IProduct } from '@/types';
+import { IProduct, ITranslate } from '@/types';
 
-export default async function Sidebar({ contacts, info, product }: { contacts: {[key: string]: string}, info: {[key: string]: string}, product: IProduct }) {
+export default async function Sidebar({ contacts, info, product }: { contacts: ITranslate, info: ITranslate, product: IProduct }) {
   const categories = await getCategory(product.attributes.categories.data[0].id);
   return (
     <div className="sticky top-32 grid grid-flow-row gap-5 items-start">

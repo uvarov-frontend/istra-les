@@ -4,11 +4,11 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import Callback from '@/components/Callback';
 import { getUnit } from '@/helper';
-import { IData, IProduct } from '@/types';
+import { IData, IProduct, ITranslate } from '@/types';
 
 import Select from './Select';
 
-export default function Content({ data, contacts, info, product }: { data: IData[], contacts: {[key: string]: string}, info: {[key: string]: string}, product: IProduct }) {
+export default function Content({ data, contacts, info, product }: { data: IData[], contacts: ITranslate, info: ITranslate, product: IProduct }) {
   const [sale, setSale] = useState(false);
   const [countProduct, setCountProduct] = useState(1);
   const [sortID, setSortID] = useState(0);

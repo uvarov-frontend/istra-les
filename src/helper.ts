@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys */
 export const getUnit = (str: string) => {
   let title = '';
   let currency = '';
@@ -18,27 +17,4 @@ export const getUnit = (str: string) => {
   });
 
   return {  currency, thing, title };
-};
-
-export const onSubmitCallback = async (body: {[key: string]: string}) => {
-  try {
-    const res = await fetch('api/callback', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
-
-    const { error } = await res.json();
-
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-      return;
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
-  }
 };

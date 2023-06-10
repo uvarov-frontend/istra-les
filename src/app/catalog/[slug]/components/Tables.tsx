@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import { IData, IProduct } from '@/types';
+import { IData, IProduct, ITranslate } from '@/types';
 
-export default function Tables({ data, info, product, url }: { data: IData[], info: {[key: string]: string}, product: IProduct, url: string }) {
+export default function Tables({ data, info, product, url }: { data: IData[], info: ITranslate, product: IProduct, url: string }) {
   return (
     <div>
       <h2 className="font-bold text-2xl mb-5">{product.attributes.title} { product.attributes.type ? <span className="lowercase text-dark_gray font-medium">{product.attributes.type}</span> : <></> } — цены</h2>

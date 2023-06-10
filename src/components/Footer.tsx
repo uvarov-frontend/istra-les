@@ -73,6 +73,7 @@ export default function Footer() {
         ))}
         <Contacts />
       </div>
+      <small className="absolute right-2 bottom-2 text-xs text-dark_gray/60">{contacts.recaptcha}</small>
     </footer>
   );
 }

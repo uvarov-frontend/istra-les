@@ -18,6 +18,10 @@ body:after {
   @apply bg-[rgba(140,_140,_140,_0.6)] fixed left-0 right-0 top-0 bottom-0 z-10 opacity-0 pointer-events-none transition-all
 }
 
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 .overlay-show:after {
   @apply opacity-100 pointer-events-auto
 }
@@ -57,6 +61,10 @@ body:after {
 
   .tab {
     @apply block cursor-pointer py-1 px-3 text-sm rounded-md bg-white border border-gray hover:border-green
+  }
+
+  .input {
+    @apply block py-3 px-5 bg-lite rounded-lg text-base
   }
 
   .logo-transition-hidden {
