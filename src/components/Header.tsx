@@ -15,14 +15,16 @@ export default function Header() {
   return (
     <>
       <header className="relative z-40 flex h-[90px] items-center border-b border-gray bg-white py-4">
-        <div className="container mx-auto grid grid-flow-col items-center justify-between gap-9">
+        <div className="container mx-auto grid grid-cols-[auto_1fr_auto] items-center justify-between gap-16">
           <div className="flex items-center">
             <Link className="block" href="/">
               <Image alt={contacts.title} className="block" height={55} src="/img/logo.svg" width={100} />
             </Link>
           </div>
-          <Address address={contacts.address1.address} />
-          <Address address={contacts.address2.address} />
+          <div className="grid grid-flow-col justify-start items-center gap-16">
+            <Address address={contacts.address1.address} />
+            <Address address={contacts.address2.address} />
+          </div>
           <Phone callback={info.callback} phone={contacts.mainPhone} />
         </div>
       </header>

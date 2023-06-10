@@ -51,7 +51,7 @@ export default function CatalogList({ categories }: { categories: ICategory[] })
         />
         {catalog.title}
       </button>
-      <div className={`container pointer-events-none absolute left-0 right-0 mx-auto pr-64 transition-all ${open ? 'z-10 translate-y-0' : '-z-10 -translate-y-full'}`}>
+      <div className={`container pointer-events-none absolute left-0 right-0 mx-auto pr-64 transition-transform ${open ? 'z-10 translate-y-0 visible' : '-z-10 -translate-y-full invisible'}`}>
         <div className="pointer-events-auto grid grid-cols-[auto_1fr] overflow-hidden rounded-bl-xl rounded-br-xl bg-white pt-4 shadow-sm">
           <div className="flex w-56 flex-col justify-start border-t border-gray p-2">
             {categories.map((category) => (

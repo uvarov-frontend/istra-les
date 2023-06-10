@@ -99,7 +99,7 @@ export default function Callback({ callback, className }: { callback: ITranslate
       <button className={className} type="button" onClick={handlerOpen}>
         {callback.title}
       </button>
-      <div className={`fixed bottom-0 left-0 right-0 top-0 z-40 bg-dark/50 ${open ? 'block' : 'hidden'}`}>
+      <div className={`fixed bottom-0 left-0 right-0 top-0 z-50 bg-dark/50 ${open ? 'block' : 'hidden'}`}>
         <div data-modal-content className="absolute left-1/2 top-1/2 z-10 min-h-[100px] w-[395px] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-8 shadow-sm">
           <button data-modal-close className="absolute right-3 top-3 text-[0] hover:text-red" type="button">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
