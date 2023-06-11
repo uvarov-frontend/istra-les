@@ -1,13 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function NavigationMobile() {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add('overlay-show');
+    } else {
+      document.body.classList.remove('overlay-show');
+    }
+  }, [open]);
+
   return (
     <div className="relative md:hidden">
-      <button className="text-[0] w-10 h-9 bg-green rounded p-2"
+      <button className="relative z-20 text-[0] w-10 h-9 bg-green rounded p-2"
         type="button"
         onClick={() => setOpen(!open)}>
           <span
@@ -18,6 +26,7 @@ export default function NavigationMobile() {
               : 'bg-white before:top-[-8px] after:bottom-[-8px]'
           }`}
         />Меню</button>
+        <div className={`fixed z-10 top-[70px] rounded-b-xl left-0 h-[calc(100%_+_48px)] pb-12 bottom-0 right-0 bg-white transition-all duration-300 ease-out ${open ? 'translate-x-0 translate-y-0' : '-translate-y-full'}`}> </div>
     </div>
   );
 }
