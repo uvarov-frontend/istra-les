@@ -12,7 +12,7 @@ export default async function Advantages() {
     <section className="py-5 lg:py-8">
       <h2 className="sr-only">Преимущества</h2>
       <div className="scroll-hidden">
-        <ul className="grid grid-flow-row gap-5 xl:gap-7 grid-cols-[repeat(4,_284px)] w-max xl:grid-cols-4 xl:w-full">
+        <ul className="grid grid-flow-row gap-5 xl:gap-7 grid-cols-[repeat(4,_284px)] xl:grid-cols-4">
           {advantages?.map((advantage) => (
             <li
               key={advantage.id}
