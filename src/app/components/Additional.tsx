@@ -11,7 +11,7 @@ export default async function Additional() {
   return (
     <section className="py-8">
       <h2 className="mb-10 text-3xl font-bold">Дополнительные услуги</h2>
-      <ul className="grid grid-flow-col gap-8">
+      <ul className="grid grid-flow-col gap-7">
         {additionals?.map((additional) => (
           <li key={additional.id} className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md">
             <Image

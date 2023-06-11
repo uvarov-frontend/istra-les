@@ -23,7 +23,7 @@ body:after {
 }
 
 .grecaptcha-badge {
-  visibility: hidden;
+  @apply invisible
 }
 
 .overlay-show:after {

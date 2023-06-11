@@ -47,7 +47,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
               className={`transition-opacity ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
               height={300}
               src={`${host}${promo.attributes.img.data.attributes.url}`}
-              width={1220}
+              width={1196}
             />
           </Link>
         ))}

@@ -11,7 +11,7 @@ export default async function Advantages() {
   return (
     <section className="py-8">
       <h2 className="sr-only">Преимущества</h2>
-      <ul className="grid grid-flow-col gap-8">
+      <ul className="grid grid-flow-col gap-7">
         {advantages?.map((advantage) => (
           <li
             key={advantage.id}
