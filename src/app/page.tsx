@@ -25,15 +25,15 @@ export default async function Home() {
   const promos = await getPromos();
 
   return (
-    <main className="container mx-auto my-10 min-h-[350px] hidden md:block">
+    <main className="container mx-auto my-10 min-h-[350px]">
       <h1 className="sr-only">{page.attributes.title}</h1>
       {promos?.[0] ? <Slider host={process.env.STRAPI_API_URL ?? ''} promos={promos} /> : <></>}
       {/* @ts-expect-error Server Component */}
-      <Advantages />
+      {/* <Advantages /> */}
       {/* @ts-expect-error Server Component */}
-      <Popular />
+      {/* <Popular /> */}
       {/* @ts-expect-error Server Component */}
-      <Additional />
+      {/* <Additional /> */}
     </main>
   );
 }

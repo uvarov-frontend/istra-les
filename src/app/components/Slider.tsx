@@ -38,13 +38,13 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
   }, [autoplay, activeIDSlide]);
 
   return (
-    <div className="relative h-[300px] w-full overflow-hidden rounded-xl bg-lite">
-      <div className="slides">
+    <div className="relative h-[200px] lg:h-[300px] w-full overflow-hidden rounded-xl bg-lite">
+      <div className="slides h-full w-full">
         {promos.map((promo) => (
-          <Link key={promo.id} className="block" href={promo.attributes.link}>
+          <Link key={promo.id} className="block h-full w-full" href={promo.attributes.link}>
             <Image
               alt={promo.attributes.title}
-              className={`transition-opacity ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
+              className={`h-full transition-opacity object-cover object-[-15px_0] xl:object-left ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
               height={300}
               src={`${host}${promo.attributes.img.data.attributes.url}`}
               width={1196}
@@ -52,7 +52,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
           </Link>
         ))}
       </div>
-      <div className="pointer-events-none absolute right-8 top-8 grid grid-flow-col gap-2 text-none">
+      <div className="pointer-events-none absolute right-4 top-4 lg:right-8 lg:top-8 grid grid-flow-col gap-2 text-none">
         {promos.map((promo) => (
           <button
             key={promo.id}
@@ -69,7 +69,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
       </div>
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-0">
         <button
-          className="pointer-events-auto absolute bottom-8 right-[70px] h-8 w-8 rotate-180 rounded-full bg-green hover:bg-green_hover"
+          className="pointer-events-auto absolute bottom-3 right-[55px] lg:bottom-8 lg:right-[70px] h-8 w-8 rotate-180 rounded-full bg-green hover:bg-green_hover"
           type="button"
           onClick={() => {
             prevSlide();
@@ -79,7 +79,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
           <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">Назад</i>
         </button>
         <button
-          className="pointer-events-auto absolute bottom-8 right-[30px] h-8 w-8 rounded-full bg-green text-none hover:bg-green_hover"
+          className="pointer-events-auto absolute bottom-3 right-[15px] lg:bottom-8 lg:right-[30px] h-8 w-8 rounded-full bg-green text-none hover:bg-green_hover"
           type="button"
           onClick={() => {
             nextSlide();
