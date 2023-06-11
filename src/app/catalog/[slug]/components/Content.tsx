@@ -13,10 +13,11 @@ export default function Content({ data, contacts, info, product }: { data: IData
   const [countProduct, setCountProduct] = useState(1);
   const [sortID, setSortID] = useState(0);
   const [optionsID, setOptionsID] = useState(0);
-  const [selectProduct, setSelectProduct] = useState<{ [key: string]: string }>(data[sortID].data[optionsID]);
+  const [selectProduct, setSelectProduct] = useState<{ [key: string]: string }>(data[0].data[0]);
+
   const relevantDate = data[data.length - 1].id;
   const price = Number(Object.values(selectProduct)[Object.values(selectProduct).length - 1].replace(/\*/g, ''));
-  const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
+  const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[optionsID])[Object.keys(data[sortID].data[optionsID]).length - 1]);
   const formatterRUB = new Intl.NumberFormat('ru-RU');
 
   useEffect(() => {

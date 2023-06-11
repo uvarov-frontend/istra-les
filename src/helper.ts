@@ -7,13 +7,13 @@ export const getUnit = (str: string) => {
     title = g1;
     return _;
   });
-  str.replace(/(?<=\().+?(?=\))/g, (math) => {
-    currency = math;
-    return math;
+  str.replace(/(?:\()(.+?)(?=\))/g, (_, g1) => {
+    currency = g1;
+    return _;
   });
-  str.replace(/(?<=\[).+?(?=\])/g, (math) => {
-    thing = math;
-    return math;
+  str.replace(/(?:\[)(.+?)(?=\])/g, (_, g1) => {
+    thing = g1;
+    return _;
   });
 
   return { currency, thing, title };
