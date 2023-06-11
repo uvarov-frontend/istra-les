@@ -19,7 +19,7 @@ body:after {
 }
 
 .container {
-  @apply px-3 min-w-[350px]
+  @apply px-[15px] min-w-[355px]
 }
 
 .grecaptcha-badge {

@@ -9,7 +9,7 @@ export default function Slider({ info, url, product }: { info: { [key: string]: 
   const [activeSlideID, setActiveSlideID] = useState(0);
 
   return (
-    <div className="grid grid-rows-[auto_auto_1fr] gap-2 py-6 px-3 lg:pl-6 lg:pr-4">
+    <div className="grid grid-rows-[auto_auto_1fr] gap-2 pt-3 lg:py-6 px-3 lg:px-6">
       <div className="item-center flex h-[220px] w-full lg:w-[300px] overflow-hidden rounded-lg bg-lite">
         <Image alt={product.attributes.title} className="object-cover object-center w-full" height={220} src={`${url}${product.attributes.img.data[activeSlideID].attributes.url}`} width={300} />
       </div>

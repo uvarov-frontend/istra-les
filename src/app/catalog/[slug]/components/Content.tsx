@@ -52,7 +52,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
 
   return (
     <div className="grid h-full grid-cols-1 lg:grid-cols-[1fr_340px] items-start justify-items-start">
-      <div className="pb-6 lg:py-6 pl-6 pr-4 w-full">
+      <div className="py-6 px-6 lg:pl-0 pr-6 w-full">
         <h1 className="-ml-[2px] mb-6 text-3xl font-bold">
           {product.attributes.title}
           {product.attributes.type ? (
