@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import ModalCallback from '@/components/ModalCallback';
 import { ttnorms } from '@/fonts';
+import translation from '@/translation.yaml';
 
 import ReCaptchaProviders from './ReCaptchaProviders';
 
@@ -13,6 +15,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const { info } = translation;
+
   return (
     <ReCaptchaProviders>
       <html lang="ru">
@@ -20,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           {children}
           <Footer />
+          <ModalCallback callback={info.callback} />
         </body>
       </html>
     </ReCaptchaProviders>
