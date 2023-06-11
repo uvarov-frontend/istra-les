@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 md:relative z-40 flex h-[70px] md:h-[90px] items-center border-b border-gray bg-white py-3 md:py-4">
+      <header className="fixed top-0 left-0 right-0 md:relative z-40 flex h-[70px] md:h-[90px] items-center border-b shadow-sm border-white md:shadow-none md:border-gray bg-white py-3 md:py-4">
         <div className="container mx-auto grid grid-cols-[1fr_auto_auto] md:grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center justify-between gap-4 lg:gap-16">
           <div className="flex items-center">
             <Link className="block" href="/">

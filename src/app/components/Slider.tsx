@@ -38,7 +38,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
   }, [autoplay, activeIDSlide]);
 
   return (
-    <div className="relative h-[200px] lg:h-[300px] w-full overflow-hidden rounded-xl bg-lite">
+    <div className="relative h-[260px] lg:h-[300px] w-full overflow-hidden rounded-xl bg-lite">
       <div className="slides h-full w-full">
         {promos.map((promo) => (
           <Link key={promo.id} className={`block h-full w-full transition-opacity top-0 left-0 ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`} href={promo.attributes.link}>
