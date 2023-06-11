@@ -41,10 +41,10 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
     <div className="relative h-[200px] lg:h-[300px] w-full overflow-hidden rounded-xl bg-lite">
       <div className="slides h-full w-full">
         {promos.map((promo) => (
-          <Link key={promo.id} className="block h-full w-full" href={promo.attributes.link}>
+          <Link key={promo.id} className={`block h-full w-full transition-opacity top-0 left-0 ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`} href={promo.attributes.link}>
             <Image
               alt={promo.attributes.title}
-              className={`h-full transition-opacity object-cover object-[-15px_0] xl:object-left ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
+              className="h-full object-cover object-[-15px_0] xl:object-left"
               height={300}
               src={`${host}${promo.attributes.img.data.attributes.url}`}
               width={1196}
