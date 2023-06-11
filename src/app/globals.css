@@ -30,6 +30,10 @@ body:after {
   @apply pointer-events-auto opacity-100;
 }
 
+.scroll-off {
+  overflow: hidden;
+}
+
 .scroll-hidden {
   scrollbar-width: none;
   -ms-overflow-style: none;

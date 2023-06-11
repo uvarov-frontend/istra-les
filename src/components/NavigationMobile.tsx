@@ -8,8 +8,10 @@ export default function NavigationMobile() {
   useEffect(() => {
     if (open) {
       document.body.classList.add('overlay-show');
+      document.body.classList.add('scroll-off');
     } else {
       document.body.classList.remove('overlay-show');
+      document.body.classList.remove('scroll-off');
     }
   }, [open]);
 
