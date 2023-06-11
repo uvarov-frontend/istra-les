@@ -102,14 +102,14 @@ export default function Content({ data, contacts, info, product }: { data: IData
       </div>
       <div className="flex h-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6">
         <div className="mb-3 border-b border-gray pb-3">
-          <span className="mb-2 block text-sm text-dark_gray">{title}:</span>
+          <span className="mb-1 block text-sm text-dark_gray">{title}:</span>
           <b className={`block max-w-max rounded text-lg ${sale ? 'bg-yellow px-2' : ''}`}>
             {formatterRUB.format(price)} {currency}/{thing}
             {sale ? '*' : ''}
           </b>
         </div>
-        <div className="mb-4">
-          <span className="mb-3 block text-sm">{info.ordering}:</span>
+        <div className="mb-3">
+          <span className="mb-2 block text-sm">{info.ordering}:</span>
           <div>
             <b className="block text-lg font-bold">{contacts.mainPhone}</b>
             <span className="mr-1 text-sm">{info.or}</span>
