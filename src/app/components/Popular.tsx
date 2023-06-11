@@ -10,9 +10,9 @@ export default async function Popular() {
   if (!populars) return notFound();
 
   return (
-    <section className="py-8">
-      <h2 className="mb-10 text-3xl font-bold">Популярные товары</h2>
-      <ul className="grid grid-flow-col gap-7">
+    <section className="py-4 lg:py-8">
+      <h2 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">Популярные товары</h2>
+      <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:gap-7 xl:grid-cols-3">
         {populars?.map((popular) => (
           <li
             key={popular.id}

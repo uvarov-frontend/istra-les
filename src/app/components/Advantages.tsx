@@ -9,9 +9,9 @@ export default async function Advantages() {
   if (!advantages) return notFound();
 
   return (
-    <section className="py-8">
+    <section className="py-5 lg:py-8">
       <h2 className="sr-only">Преимущества</h2>
-      <ul className="grid grid-flow-col gap-7">
+      <ul className="grid grid-flow-row gap-5 sm:grid-cols-2 xl:gap-7 xl:grid-cols-4">
         {advantages?.map((advantage) => (
           <li
             key={advantage.id}

@@ -9,9 +9,9 @@ export default async function Additional() {
   if (!additionals) return notFound();
 
   return (
-    <section className="py-8">
-      <h2 className="mb-10 text-3xl font-bold">Дополнительные услуги</h2>
-      <ul className="grid grid-flow-col gap-7">
+    <section className="py-5 lg:py-8">
+      <h2 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">Дополнительные услуги</h2>
+      <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:gap-7 xl:grid-cols-3">
         {additionals?.map((additional) => (
           <li key={additional.id} className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md">
             <Image
