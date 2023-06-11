@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
 
 import { IPromo } from '@/types';
 
@@ -28,6 +29,11 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
     }
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => nextSlide(),
+    onSwipedRight: () => prevSlide(),
+  });
+
   useEffect(() => {
     if (!autoplay && handlerAutoplay) {
       clearTimeout(handlerAutoplay);
@@ -38,7 +44,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
   }, [autoplay, activeIDSlide]);
 
   return (
-    <div className="relative h-[260px] lg:h-[300px] w-full overflow-hidden rounded-xl bg-lite">
+    <div className="relative h-[260px] lg:h-[300px] w-full overflow-hidden rounded-xl bg-lite" {...handlers}>
       <div className="slides h-full w-full">
         {promos.map((promo) => (
           <Link key={promo.id} className={`block h-full w-full transition-opacity top-0 left-0 ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`} href={promo.attributes.link}>
@@ -67,7 +73,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
           </button>
         ))}
       </div>
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-0">
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 hidden md:block">
         <button
           className="pointer-events-auto absolute bottom-3 right-[55px] lg:bottom-8 lg:right-[70px] h-8 w-8 rotate-180 rounded-full bg-green hover:bg-green_hover"
           type="button"
