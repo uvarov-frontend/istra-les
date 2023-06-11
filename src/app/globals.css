@@ -81,7 +81,7 @@ body:after {
 }
 
 .content h2 {
-  @apply my-4 text-2xl font-bold;
+  @apply my-4 text-xl lg:text-2xl font-bold;
 }
 
 .content p {

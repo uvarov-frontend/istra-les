@@ -40,7 +40,7 @@ export default async function Product({ params }: IParams) {
   const data = (await getData(product.attributes.tableID)) as unknown as IData[];
 
   return (
-    <main className="container mx-auto my-10 min-h-[340px]">
+    <main className="container mx-auto my-5 lg:my-10 min-h-[340px]">
       <BreadCrumbs title={product.attributes.title} />
       <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-[350px_1fr]' : 'grid-cols-[1fr]'} mt-8 rounded-lg border border-lite bg-white_dark`}>
         {product.attributes.img.data?.[0] ? <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} /> : <></>}

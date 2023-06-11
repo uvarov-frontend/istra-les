@@ -23,10 +23,10 @@ export default async function Contacts() {
   const { contacts } = translation;
 
   return (
-    <main className="container mx-auto my-10 min-h-[350px]">
+    <main className="container mx-auto my-5 lg:my-10 min-h-[350px]">
       <BreadCrumbs title="Контакты" />
-      <h1 className="mb-8 text-3xl font-bold">{page.attributes.title}</h1>
-      <div className="grid grid-cols-[3fr_4fr] gap-14">
+      <h1 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{page.attributes.title}</h1>
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[3fr_4fr] lg:gap-14">
         <div>
           <div className="relative mb-6 pl-10">
             <i className="icon-address absolute left-0 top-1 block h-6 w-6 bg-green" />

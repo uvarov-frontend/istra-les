@@ -22,23 +22,19 @@ export default async function ShippingPayment() {
   if (!page) return notFound();
 
   return (
-    <main className="container mx-auto my-10 min-h-[350px]">
+    <main className="container mx-auto my-5 lg:my-10 min-h-[350px]">
       <BreadCrumbs title="Доставка и оплата" />
-      <h1 className="mb-8 text-3xl font-bold">{page.attributes.title}</h1>
-      <div className="grid grid-cols-2 gap-7">
-        <div className="grid grid-cols-2 gap-7">
-          <Image alt="shipping" className="rounded-xl" height={283} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`} width={283} />
+      <h1 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{page.attributes.title}</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-7">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+          <Image alt="shipping" className="rounded-xl hidden lg:block" height={283} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`} width={283} />
           <div className="content">
             {/* @ts-expect-error Server Component */}
             <MDXRemote source={page.attributes.content} />
-            {/* <button className="flex items-center text-green hover:text-green_hover group" type="button">
-              Узнать стоимость
-              <i className="block min-w-[1.25rem] min-h-[1.25rem] w-5 h-5 ml-2 icon-arrowhead bg-green group-hover:text-green_hover" />
-            </button> */}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-7">
-          <Image alt="shipping" className="rounded-xl" height={283} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`} width={283} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+          <Image alt="shipping" className="rounded-xl hidden lg:block" height={283} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`} width={283} />
           <div className="content">
             {/* @ts-expect-error Server Component */}
             <MDXRemote source={page.attributes.contentAdditional} />
