@@ -30,6 +30,17 @@ body:after {
   @apply pointer-events-auto opacity-100;
 }
 
+.scroll-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  @apply relative top-[-24px] overflow-scroll px-[15px] py-[24px] ml-[-15px] mb-[-48px] w-[calc(100%_+_30px)]
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .icon-address {
   mask: url('/img/address.svg') no-repeat 50% 50%;
 }
