@@ -16,7 +16,7 @@ export default async function Additional() {
           <li key={additional.id} className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md">
             <Image
               alt={additional.attributes.img.data.attributes.name}
-              className=""
+              className="w-full h-[210px] object-cover"
               height={210}
               src={`${process.env.STRAPI_API_URL}${additional.attributes.img.data.attributes.url}`}
               width={385}
