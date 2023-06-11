@@ -30,8 +30,14 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
   };
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => nextSlide(),
-    onSwipedRight: () => prevSlide(),
+    onSwipedLeft: () => {
+      setAutoplay(false);
+      nextSlide();
+    },
+    onSwipedRight: () => {
+      setAutoplay(false);
+      prevSlide();
+    },
   });
 
   useEffect(() => {
