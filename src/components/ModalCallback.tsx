@@ -38,7 +38,7 @@ export default function ModalCallback({ callback }: { callback: ITranslate; }) {
         const token = await executeRecaptcha('form_submit');
         if (!token) return;
 
-        const res = await fetch('api/callback', {
+        const res = await fetch('/api/callback', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
