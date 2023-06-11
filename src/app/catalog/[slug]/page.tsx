@@ -42,11 +42,11 @@ export default async function Product({ params }: IParams) {
   return (
     <main className="container mx-auto my-5 lg:my-10 min-h-[340px]">
       <BreadCrumbs title={product.attributes.title} />
-      <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-[350px_1fr]' : 'grid-cols-[1fr]'} mt-8 rounded-lg border border-lite bg-white_dark`}>
+      <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-1 lg:grid-cols-[350px_1fr]' : 'grid-cols-1'} mt-8 rounded-lg border border-lite bg-white_dark`}>
         {product.attributes.img.data?.[0] ? <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} /> : <></>}
         <Content contacts={contacts} data={data} info={info} product={product} />
       </div>
-      <div className="my-10 grid grid-cols-[auto_300px] items-start gap-9 border-t border-gray/50 pt-8">
+      <div className="mt-7 mb-4 lg:my-10 grid grid-cols-1 lg:grid-cols-[auto_300px] items-start gap-9 border-t border-gray/50 lg:pt-8 pt-4">
         <div className="">
           <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
           {product.attributes.content ? (

@@ -7,7 +7,7 @@ import { IProduct, ITranslate } from '@/types';
 export default async function Sidebar({ contacts, info, product }: { contacts: ITranslate; info: ITranslate; product: IProduct }) {
   const categories = await getCategory(product.attributes.categories.data[0].id);
   return (
-    <div className="sticky top-32 grid grid-flow-row items-start gap-5">
+    <div className="sticky top-32 grid-flow-row items-start gap-5 hidden lg:grid">
       <div>
         <b className="mb-4 block text-xl">{categories.attributes.title}</b>
         <ul>

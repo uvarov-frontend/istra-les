@@ -38,7 +38,7 @@ export default function CustomSelect({
 
   return (
     <Select
-      className="w-[220px]"
+      className="xl:w-[220px]"
       instanceId={correctName}
       isClearable={false}
       isSearchable={false}
