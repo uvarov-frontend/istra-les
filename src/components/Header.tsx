@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
+import getCategories from '@/fetching/getCategories';
 import translation from '@/translation.yaml';
 
 import Address from './Address';
@@ -10,14 +12,17 @@ import Navigation from './Navigation';
 import NavigationMobile from './NavigationMobile';
 import Phone from './Phone';
 
-export default function Header() {
+export default async function Header() {
   const { contacts, info } = translation;
+
+  const categories = await getCategories();
+  if (!categories) return notFound();
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 md:relative z-40 flex h-[70px] md:h-[90px] items-center border-b shadow-sm border-white md:shadow-none md:border-gray bg-white py-3 md:py-4">
+      <header className="fixed top-0 left-0 right-0 md:relative z-40 flex h-[70px] md:h-[90px] items-center border-b shadow-sm border-white md:shadow-none md:border-gray/50 bg-white py-3 md:py-4">
         <div className="container mx-auto grid grid-cols-[1fr_auto_auto] md:grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center justify-between gap-4 lg:gap-16
-          after:absolute after:z-10 after:top-0 after:bottom-[-1px] after:left-0 after:right-0 after:bg-white after:border-b after:border-lite">
+          after:absolute after:z-10 after:top-0 after:bottom-[-1px] after:left-0 after:right-0 after:bg-white after:border-b after:border-gray/50 md:after:content-none">
           <div className="relative z-20 flex items-center">
             <Link className="block" href="/">
               <Image alt={contacts.title} className="block w-[75px] md:w-[100px]" height={55} src="/img/logo.svg" width={100} />
@@ -28,14 +33,13 @@ export default function Header() {
             <Address address={contacts.address2.address} />
           </div>
           <Phone callback={info.callback} phone={contacts.mainPhone} />
-          <NavigationMobile />
+          <NavigationMobile categories={categories}  />
         </div>
       </header>
       <header className="sticky top-0 z-30 hidden h-[84px] items-center border-gray bg-white py-4 shadow-sm after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:bg-white md:flex">
         <div className="container mx-auto flex items-center">
           <Logo />
-          {/* @ts-expect-error Server Component */}
-          <Catalog />
+          <Catalog categories={categories} />
           <Navigation />
         </div>
       </header>
