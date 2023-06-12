@@ -40,6 +40,7 @@ export default async function Header() {
         <div className="container mx-auto flex items-center">
           <Logo />
           <Catalog categories={categories} />
+          {/* @ts-expect-error Server Component */}
           <Navigation />
         </div>
       </header>

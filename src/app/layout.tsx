@@ -8,11 +8,14 @@ import ReCaptchaProviders from './ReCaptchaProviders';
 
 import './globals.css';
 
-export const metadata = {
-  icons: '/favicon.svg',
-  keywords:
-    'продажа пиломатериалов, купить пиломатериалы цена, пиломатериалы купить в москве, пиломатериалы область купить, цена куба пиломатериалов, пиломатериалы в москве и области, пиломатериалы с доставкой, пиломатериалы недорого, сайт пиломатериалов, купить пиломатериал недорого, пиломатериалы в москве и московской области, пиломатериалы от производителя в московской области, купить пиломатериал в московской области',
-};
+export async function generateMetadata() {
+  const { keywords } = translation;
+
+  return {
+    icons: '/favicon.svg',
+    keywords,
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { info } = translation;
@@ -24,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* @ts-expect-error Server Component */}
           <Header />
           {children}
+          {/* @ts-expect-error Server Component */}
           <Footer />
           <ModalCallback callback={info.callback} />
         </body>

@@ -30,7 +30,7 @@ export default async function Contacts() {
         <div>
           <div className="relative mb-6 pl-10">
             <i className="icon-address absolute left-0 top-1 block h-6 w-6 bg-green" />
-            <b className="text-lg font-bold">Адреса</b>
+            <b className="text-lg font-bold">{contacts.addressTitle}</b>
             <ul>
               <li className="my-2">{contacts.address1.address}</li>
               <li className="my-2">{contacts.address2.address}</li>
@@ -38,17 +38,17 @@ export default async function Contacts() {
           </div>
           <div className="relative mb-6 pl-10">
             <i className="icon-phone absolute left-0 top-1 block h-6 w-6 bg-green" />
-            <b className="text-lg font-bold">Телефоны</b>
+            <b className="text-lg font-bold">{contacts.phonesTitle}</b>
             <p className="my-2">{contacts.phones}</p>
           </div>
           <div className="relative mb-6 pl-10">
             <i className="icon-clock absolute left-0 top-1 block h-6 w-6 bg-green" />
-            <b className="text-lg font-bold">График работы</b>
+            <b className="text-lg font-bold">{contacts.scheduleTitle}</b>
             <p className="my-2" dangerouslySetInnerHTML={{ __html: contacts.schedule }} />
           </div>
           <div className="relative mb-6 pl-10">
             <i className="icon-mail absolute left-0 top-1 block h-6 w-6 bg-green" />
-            <b className="text-lg font-bold">E-Mail</b>
+            <b className="text-lg font-bold">{contacts.mailTitle}</b>
             <p className="my-2">{contacts.mail}</p>
           </div>
         </div>

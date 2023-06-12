@@ -1,11 +1,15 @@
+import translation from '@/translation.yaml';
+
 export default function notFound() {
+  const { info } = translation;
+
   return (
     <main className="container mx-auto my-5 lg:my-10 flex min-h-[350px] flex-col justify-center">
-      <h1 className="mb-6 text-center text-3xl font-bold">Ошибка 404</h1>
+      <h1 className="mb-6 text-center text-3xl font-bold">{info.error404.title}</h1>
       <p className="text-center">
-        Такой страницы не существует.
+        {info.error404.description}
         <br />
-        Проверьте написание адреса — может быть, вы просто ошиблись при наборе.
+        {info.error404.content}
       </p>
     </main>
   );

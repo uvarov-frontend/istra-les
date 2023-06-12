@@ -148,6 +148,15 @@ export interface ICategory {
   };
 }
 
+export interface IMenu {
+  id: number;
+  attributes: {
+    title: string;
+    link: string;
+    mainMenu: boolean;
+  };
+}
+
 export interface ITranslate {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;

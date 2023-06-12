@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-import { IPromo } from '@/types';
+import { IPromo, ITranslate } from '@/types';
 
-export default function Slider({ host, promos }: { host: string; promos: IPromo[] }) {
+export default function Slider({ info, host, promos }: { info: ITranslate, host: string; promos: IPromo[] }) {
   const [activeIDSlide, setActiveIDSlide] = useState(promos[0].id);
   const [handlerAutoplay, setHandlerAutoplay] = useState<undefined | ReturnType<typeof setTimeout>>(undefined);
   const [autoplay, setAutoplay] = useState(true);
@@ -88,7 +88,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
             setAutoplay(false);
           }}
         >
-          <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">Назад</i>
+          <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">{info.prev}</i>
         </button>
         <button
           className="pointer-events-auto absolute bottom-3 right-[15px] lg:bottom-8 lg:right-[30px] h-8 w-8 rounded-full bg-green text-none hover:bg-green_hover"
@@ -98,7 +98,7 @@ export default function Slider({ host, promos }: { host: string; promos: IPromo[
             setAutoplay(false);
           }}
         >
-          <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">Вперед</i>
+          <i className="icon-arrowhead absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 bg-white text-none">{info.next}</i>
         </button>
       </div>
     </div>

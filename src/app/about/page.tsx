@@ -20,6 +20,7 @@ export async function generateMetadata() {
 }
 
 export default async function About() {
+  const { info } = translation;
   const page = await getPage('about');
   if (!page) return notFound();
 
@@ -39,7 +40,7 @@ export default async function About() {
         </div>
       </section>
       <section className="mt-6">
-        <h2 className="text-xl lg:text-2xl font-bold">Наши преимущества</h2>
+        <h2 className="text-xl lg:text-2xl font-bold">{info.advantages}</h2>
         {/* @ts-expect-error Server Component */}
         <Advantages />
       </section>

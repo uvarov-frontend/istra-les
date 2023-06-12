@@ -3,14 +3,16 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import getAdvantages from '@/fetching/getAdvantages';
+import translation from '@/translation.yaml';
 
 export default async function Advantages() {
+  const { info } = translation;
   const advantages = await getAdvantages();
   if (!advantages) return notFound();
 
   return (
     <section className="py-5 lg:py-8">
-      <h2 className="sr-only">Преимущества</h2>
+      <h2 className="sr-only">{info.advantages}</h2>
       <div className="scroll-hidden">
         <ul className="grid grid-flow-row gap-5 xl:gap-7 grid-cols-[repeat(4,_284px)] xl:grid-cols-4">
           {advantages?.map((advantage) => (

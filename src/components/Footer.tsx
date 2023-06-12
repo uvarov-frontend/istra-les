@@ -1,53 +1,19 @@
 /* eslint-disable sort-keys */
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
+import getMenu from '@/fetching/getMenu';
 import translation from '@/translation.yaml';
 
 import Contacts from './Contacts';
 
-const menu = [
-  {
-    id: 0,
-    title: 'Клиенту',
-    links: [
-      {
-        id: 0,
-        title: 'О компании',
-        link: '/about',
-      },
-      {
-        id: 1,
-        title: 'Доставка и оплата',
-        link: '/shipping-payment',
-      },
-      {
-        id: 2,
-        title: 'Контакты',
-        link: '/contacts',
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: 'Информация',
-    links: [
-      {
-        id: 0,
-        title: 'Пользовательское соглашение',
-        link: '/terms-of-use',
-      },
-      {
-        id: 1,
-        title: 'Политика конфиденциальности',
-        link: '/privacy-policy',
-      },
-    ],
-  },
-];
-
-export default function Footer() {
+export default async function Footer() {
   const { contacts } = translation;
+
+  const mainMenu = await getMenu(true);
+  const otherMenu = await getMenu(false);
+  if (!mainMenu || !otherMenu) return notFound();
 
   return (
     <footer className="relative z-10 bg-lite py-7">
@@ -58,21 +24,31 @@ export default function Footer() {
           </Link>
           <small className="mt-4 block w-36 text-sm text-dark_gray">{contacts.copyright}</small>
         </div>
-        {menu.map((cols) => (
-          <div key={cols.id}>
-            <b className="mb-4 block font-medium text-dark">{cols.title}</b>
-            <ul>
-              {cols.links.map((item) => (
-                <li key={item.id} className="mb-2 block last:mb-0">
-                  <Link className="block text-dark_gray hover:text-green_hover hover:underline" href={item.link}>
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        <Contacts />
+        <div>
+          <b className="mb-4 block font-medium text-dark">{contacts.client}</b>
+          <ul>
+            {mainMenu.map((item) => (
+              <li key={item.id} className="mb-2 block last:mb-0">
+                <Link className="block text-dark_gray hover:text-green_hover hover:underline" href={item.attributes.link}>
+                  {item.attributes.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <b className="mb-4 block font-medium text-dark">{contacts.info}</b>
+          <ul>
+            {otherMenu.map((item) => (
+              <li key={item.id} className="mb-2 block last:mb-0">
+                <Link className="block text-dark_gray hover:text-green_hover hover:underline" href={item.attributes.link}>
+                  {item.attributes.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Contacts title={contacts.contacts} />
       </div>
       <small className="absolute bottom-2 right-2 text-xs text-dark_gray/60">{contacts.recaptcha}</small>
     </footer>

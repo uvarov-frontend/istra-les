@@ -11,10 +11,7 @@ const verifyRecaptcha = async (token: string) => {
       'Content-Type': 'application/json',
     },
   });
-
-  const body = await res.json();
-
-  return body;
+  return res.json();
 };
 
 export async function POST(req: NextRequest) {

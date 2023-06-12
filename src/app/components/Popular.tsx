@@ -4,14 +4,16 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import getPopulars from '@/fetching/getPopulars';
+import translation from '@/translation.yaml';
 
 export default async function Popular() {
+  const { info } = translation;
   const populars = await getPopulars();
   if (!populars) return notFound();
 
   return (
     <section className="py-4 lg:py-8">
-      <h2 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">Популярные товары</h2>
+      <h2 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{info.popular}</h2>
       <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:gap-7 xl:grid-cols-3">
         {populars?.map((popular) => (
           <li
@@ -26,7 +28,7 @@ export default async function Popular() {
               <MDXRemote source={popular.attributes.content} />
             </span>
             <Link className="group relative flex items-center font-medium text-green hover:text-green_hover" href={popular.attributes.link}>
-              Посмотреть
+              {info.look}
               <i className="icon-arrowhead ml-2 block h-5 w-5 bg-green text-none group-hover:bg-green_hover" />
             </Link>
             <Image
