@@ -2,9 +2,9 @@ import { notFound } from 'next/navigation';
 
 import { IProduct } from '@/types';
 
-export default async function getProducts() {
+export default async function getAllProducts() {
   try {
-    const res = await fetch(`${process.env.STRAPI_API_URL}/api/products?pagination[pageSize]=100&populate=img,profile,categories`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/api/products?pagination[pageSize]=100`, {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',

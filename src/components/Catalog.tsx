@@ -71,33 +71,35 @@ export default function Catalog({ categories }: { categories: ICategory[] }) {
               </div>
             ))}
           </div>
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              data-catalog-item-id={category.id}
-              className={`max-h-[calc(100vh_-_174px)] grid-cols-3 content-start gap-7 overflow-y-auto overflow-x-hidden border-t border-gray bg-lite px-8 py-6 ${
-                activeID === category.id ? 'grid' : 'hidden'
-              }`}
-            >
-              {category.attributes.products?.data?.map((product) => (
-                <div key={product.id}>
-                  <Link className="mb-1 block text-lg font-medium hover:text-green_hover" href={`/catalog/${product.attributes.slug}`}>
-                    {product.attributes.title}
-                  </Link>
-                  <ul>
-                    {product.attributes.sorts?.data?.map((sort, index) => (
-                      <li
-                        key={index}
-                        className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-dark_gray"
-                      >
-                        <span className="block pl-4 text-dark_gray">{sort.attributes.title}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ))}
+          {categories.map((category) => {
+            const products = category.attributes.products?.data ? category.attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID)) : [];
+            return (
+              <div
+                key={category.id}
+                data-catalog-item-id={category.id}
+                className={`max-h-[calc(100vh_-_174px)] grid-cols-3 content-start gap-7 overflow-y-auto overflow-x-hidden border-t border-gray bg-lite px-8 py-6 ${
+                  activeID === category.id ? 'grid' : 'hidden'
+                }`}
+              >
+                {products.map((product) => (
+                  <div key={product.id}>
+                    <Link className="mb-1 block text-lg font-medium hover:text-green_hover" href={`/catalog/${product.attributes.slug}`}>
+                      {product.attributes.title}
+                    </Link>
+                    <ul>
+                      {product.attributes.sorts?.data?.map((sort, index) => (
+                        <li
+                          key={index}
+                          className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-dark_gray"
+                        >
+                          <span className="block pl-4 text-dark_gray">{sort.attributes.title}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            );})}
         </div>
       </div>
     </div>

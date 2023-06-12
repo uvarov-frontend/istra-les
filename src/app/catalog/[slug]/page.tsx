@@ -2,9 +2,9 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import BreadCrumbs from '@/components/BreadCrumbs';
+import getAllProducts from '@/fetching/getAllProducts';
 import getData from '@/fetching/getData';
 import getProduct from '@/fetching/getProduct';
-import getProducts from '@/fetching/getProducts';
 import translation from '@/translation.yaml';
 import { IData, IParams } from '@/types';
 
@@ -14,7 +14,7 @@ import Slider from './components/Slider';
 import Tables from './components/Tables';
 
 export async function generateStaticParams() {
-  const products = await getProducts();
+  const products = await getAllProducts();
 
   return products.map((product) => ({
     slug: product.attributes.slug,
