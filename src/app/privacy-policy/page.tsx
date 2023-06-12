@@ -21,9 +21,9 @@ export default async function privacyPolicy() {
   if (!page) return notFound();
 
   return (
-    <main className="container mx-auto my-5 lg:my-10 min-h-[350px]">
+    <main className="container mx-auto my-5 min-h-[350px] lg:my-10">
       <BreadCrumbs title={page.attributes.title} />
-      <h1 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{page.attributes.title}</h1>
+      <h1 className="mb-5 text-2xl font-bold lg:mb-10 lg:text-3xl">{page.attributes.title}</h1>
       <div className="content">
         {/* @ts-expect-error Server Component */}
         <MDXRemote source={page.attributes.content} />

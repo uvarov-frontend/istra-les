@@ -17,7 +17,7 @@ export default function YandexMap() {
   const { contacts } = translation;
 
   return (
-    <div className="overflow-hidden rounded-xl bg-lite w-full h-[280px] lg:h-[380px]">
+    <div className="h-[280px] w-full overflow-hidden rounded-xl bg-lite lg:h-[380px]">
       <YMaps query={{ load: 'package.full' }}>
         <Map defaultState={{ center: [55.883, 37.075], zoom: 13, controls: ['zoomControl'], behaviors: ['drag'] }} height="100%" width="100%">
           <Placemark

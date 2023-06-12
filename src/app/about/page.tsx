@@ -25,22 +25,22 @@ export default async function About() {
   if (!page) return notFound();
 
   return (
-    <main className="container mx-auto my-5 lg:my-10 min-h-[350px]">
+    <main className="container mx-auto my-5 min-h-[350px] lg:my-10">
       <BreadCrumbs title={page.attributes.title} />
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-14">
+      <section className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-14">
         <div className="content">
-          <h1 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{page.attributes.title}</h1>
+          <h1 className="mb-5 text-2xl font-bold lg:mb-10 lg:text-3xl">{page.attributes.title}</h1>
           {/* @ts-expect-error Server Component */}
           <MDXRemote source={page.attributes.content} />
         </div>
-        <div className="grid grid-cols-2 gap-3 justify-items-center lg:justify-items-start content-center">
+        <div className="grid grid-cols-2 content-center justify-items-center gap-3 lg:justify-items-start">
           <Image alt="about" className="rounded-xl" height={250} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[0].attributes.url}`} width={275} />
           <Image alt="about" className="rounded-xl" height={250} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[1].attributes.url}`} width={275} />
           <Image alt="about" className="col-span-2 rounded-xl" height={180} src={`${process.env.STRAPI_API_URL}${page.attributes.imgs.data[2].attributes.url}`} width={580} />
         </div>
       </section>
       <section className="mt-6">
-        <h2 className="text-xl lg:text-2xl font-bold">{info.advantages}</h2>
+        <h2 className="text-xl font-bold lg:text-2xl">{info.advantages}</h2>
         {/* @ts-expect-error Server Component */}
         <Advantages />
       </section>

@@ -9,11 +9,17 @@ export default function Slider({ info, url, product }: { info: { [key: string]: 
   const [activeSlideID, setActiveSlideID] = useState(0);
 
   return (
-    <div className="grid grid-rows-[auto_auto_1fr] gap-2 pt-3 lg:py-6 px-3 lg:px-6">
-      <div className="item-center flex h-[220px] w-full lg:w-[300px] overflow-hidden rounded-lg bg-lite">
-        <Image alt={product.attributes.title} className="object-cover object-center w-full" height={220} src={`${url}${product.attributes.img.data[activeSlideID].attributes.url}`} width={300} />
+    <div className="grid grid-rows-[auto_auto_1fr] gap-2 px-3 pt-3 lg:px-6 lg:py-6">
+      <div className="item-center flex h-[220px] w-full overflow-hidden rounded-lg bg-lite lg:w-[300px]">
+        <Image
+          alt={product.attributes.title}
+          className="w-full object-cover object-center"
+          height={220}
+          src={`${url}${product.attributes.img.data[activeSlideID].attributes.url}`}
+          width={300}
+        />
       </div>
-      <div className="grid grid-cols-3 gap-[9px] w-[300px]">
+      <div className="grid w-[300px] grid-cols-3 gap-[9px]">
         {product.attributes.img.data?.map((img, index) => (
           <div
             key={img.id}
@@ -23,7 +29,7 @@ export default function Slider({ info, url, product }: { info: { [key: string]: 
           </div>
         ))}
       </div>
-      <div className="mt-4 hidden lg:flex flex-col justify-end py-2">
+      <div className="mt-4 hidden flex-col justify-end py-2 lg:flex">
         <div className="relative flex items-center text-sm font-medium text-dark">
           <i className="icon-address mr-2 block h-4 w-4 bg-green" />
           {info.delivery.title}

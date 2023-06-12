@@ -12,13 +12,13 @@ export default async function Additional() {
 
   return (
     <section className="py-5 lg:py-8">
-      <h2 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{info.additionally}</h2>
-      <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:gap-7 xl:grid-cols-3">
+      <h2 className="mb-5 text-2xl font-bold lg:mb-10 lg:text-3xl">{info.additionally}</h2>
+      <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-7">
         {additionals?.map((additional) => (
           <li key={additional.id} className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md">
             <Image
               alt={additional.attributes.img.data.attributes.name}
-              className="w-full h-[210px] object-cover"
+              className="h-[210px] w-full object-cover"
               height={210}
               src={`${process.env.STRAPI_API_URL}${additional.attributes.img.data.attributes.url}`}
               width={385}

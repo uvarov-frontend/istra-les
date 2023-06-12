@@ -51,8 +51,8 @@ export default function Content({ data, contacts, info, product }: { data: IData
   };
 
   return (
-    <div className="grid h-full grid-cols-1 lg:grid-cols-[1fr_340px] items-start justify-items-start">
-      <div className="py-6 px-6 lg:pl-0 pr-6 w-full">
+    <div className="grid h-full grid-cols-1 items-start justify-items-start lg:grid-cols-[1fr_340px]">
+      <div className="w-full px-6 py-6 pr-6 lg:pl-0">
         <h1 className="-ml-[2px] mb-6 text-3xl font-bold">
           {product.attributes.title}
           {product.attributes.type ? (
@@ -82,7 +82,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
             })}
           </div>
         </div>
-        <div className="grid grid-cols-2 justify-start gap-x-2 gap-y-4 w-full">
+        <div className="grid w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
           {Object.keys(data[sortID].data[0]).map((option, id) => {
             if (id === Object.keys(data[sortID].data[0]).length - 1) return null;
             const options: string[] = [];
@@ -100,7 +100,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
           })}
         </div>
       </div>
-      <div className="flex h-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6 w-full">
+      <div className="flex h-full w-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6">
         <div className="mb-3 border-b border-gray pb-3">
           <span className="mb-1 block text-sm text-dark_gray">{title}:</span>
           <b className={`block max-w-max rounded text-lg ${sale ? 'bg-yellow px-2' : ''}`}>
@@ -119,7 +119,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
         <span className="mb-3 block text-sm text-dark_gray">
           {info.count} ({thing}):
         </span>
-        <div className="mb-4 flex h-9 w-full items-center rounded-lg bg-white max-w-[285px]">
+        <div className="mb-4 flex h-9 w-full max-w-[285px] items-center rounded-lg bg-white">
           <button className="h-full w-10 rounded-l-lg bg-green text-lg font-medium text-white hover:bg-green_hover" type="button" onClick={handlerDis}>
             -
           </button>

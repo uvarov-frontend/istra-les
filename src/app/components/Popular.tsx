@@ -13,8 +13,8 @@ export default async function Popular() {
 
   return (
     <section className="py-4 lg:py-8">
-      <h2 className="mb-5 lg:mb-10 text-2xl lg:text-3xl font-bold">{info.popular}</h2>
-      <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:gap-7 xl:grid-cols-3">
+      <h2 className="mb-5 text-2xl font-bold lg:mb-10 lg:text-3xl">{info.popular}</h2>
+      <ul className="grid grid-flow-row gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-7">
         {populars?.map((popular) => (
           <li
             key={popular.id}

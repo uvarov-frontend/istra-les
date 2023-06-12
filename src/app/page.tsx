@@ -27,7 +27,7 @@ export default async function Home() {
   const promos = await getPromos();
 
   return (
-    <main className="container mx-auto my-5 lg:my-10 min-h-[350px]">
+    <main className="container mx-auto my-5 min-h-[350px] lg:my-10">
       <h1 className="sr-only">{page.attributes.title}</h1>
       {promos?.[0] ? <Slider host={process.env.STRAPI_API_URL ?? ''} info={info} promos={promos} /> : <></>}
       {/* @ts-expect-error Server Component */}
