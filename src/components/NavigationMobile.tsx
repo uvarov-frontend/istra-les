@@ -66,7 +66,7 @@ export default function NavigationMobile({ categories }: { categories: ICategory
           }`}
         />{info.menu}</button>
         <div className={`fixed z-10 top-[70px] left-0 bottom-0 right-0 bg-white transition-transform duration-300 ${open ? 'translate-0' : '-translate-y-full'}`}>
-          <div className={`absolute z-20 left-0 top-0 flex items-center justify-end h-11 py-3 px-[15px] w-full bg-green/10 transition-opacity duration-300 ${level > 0 ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <div className={`absolute z-20 left-0 top-0 flex items-center justify-end h-11 py-3 px-[15px] w-full bg-green_lite duration-300 ${level > 0 ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
             <button className="flex items-center text-sm font-bold w-max"
               type="button"
               onClick={() => {
@@ -78,8 +78,8 @@ export default function NavigationMobile({ categories }: { categories: ICategory
               {info.prev}
             </button>
           </div>
-          <div ref={refContent} className="grid grid-flow-col auto-cols-[100%] transition-transform duration-300">
-            <ul className="pt-2">
+          <div ref={refContent} className="grid grid-flow-col auto-cols-[100%] transition-transform duration-300 h-full">
+            <ul className="py-2 h-full overflow-x-hidden overflow-y-auto">
               <li>
                 <button className="flex items-center py-3 px-[15px] w-max font-medium" type="button" onClick={() => selectLevel(1)}>
                   {catalog.title}
@@ -94,7 +94,7 @@ export default function NavigationMobile({ categories }: { categories: ICategory
                 </li>
               ))}
             </ul>
-            <ul className="pt-11">
+            <ul className="pt-12 pb-2 h-full overflow-x-hidden overflow-y-auto">
               {categories.map((category) => (
                 <li key={category.id}>
                   <button className="flex items-center py-3 px-[15px] w-max text-sm font-medium" type="button" onClick={() => selectLevel(2, category.attributes.products?.data)}>
@@ -106,25 +106,27 @@ export default function NavigationMobile({ categories }: { categories: ICategory
                 </li>
               ))}
             </ul>
-            <ul className="pt-11">
-              {currentMenu?.map((product) => (
-                <li key={product.id}>
-                  <Link className="block py-2 px-[15px] font-medium w-max" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
-                    {product.attributes.title}
-                  </Link>
-                  <ul className="px-[15px]">
-                    {product.attributes.sorts?.data?.map((sort, index) => (
-                      <li
-                        key={index}
-                        className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-dark_gray"
-                      >
-                        <Link className="block pl-4 text-dark_gray" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>{sort.attributes.title}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+            <div className="pt-12 pb-4 h-full overflow-x-hidden overflow-y-auto">
+              <ul className="grid grid-cols-2 gap-x-2 gap-y-3">
+                {currentMenu?.map((product) => (
+                  <li key={product.id}>
+                    <Link className="block py-2 px-[15px] font-medium w-max" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
+                      {product.attributes.title}
+                    </Link>
+                    <ul className="px-[15px]">
+                      {product.attributes.sorts?.data?.map((sort, index) => (
+                        <li
+                          key={index}
+                          className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-dark_gray"
+                        >
+                          <Link className="block pl-4 text-dark_gray" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>{sort.attributes.title}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
     </div>
