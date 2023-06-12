@@ -27,9 +27,12 @@ const menu = [
 export default function NavigationMobile({ categories }: { categories: ICategory[] }) {
   const { info, catalog } = translation;
   const refContent = useRef<HTMLDivElement>(null);
+
+  const firstProducts = categories[0].attributes.products?.data ? categories[0].attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID)) : [];
+
   const [open, setOpen] = useState(false);
   const [level, setLevel] = useState(0);
-  const [currentMenu, setCurrentMenu] = useState<IProduct[] | null>(categories[0].attributes.products.data);
+  const [currentMenu, setCurrentMenu] = useState<IProduct[] | null>(firstProducts);
 
   useEffect(() => {
     if (open) {
@@ -100,22 +103,24 @@ export default function NavigationMobile({ categories }: { categories: ICategory
             ))}
           </ul>
           <ul className="h-full overflow-y-auto overflow-x-hidden pb-2 pt-12">
-            {categories.map((category) => (
+            {categories.map((category) => {
+              const products = category.attributes.products?.data ? category.attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID)) : [];
+              return (
               <li key={category.id}>
-                <button className="flex w-max items-center px-[15px] py-3 text-sm font-medium" type="button" onClick={() => selectLevel(2, category.attributes.products?.data)}>
+                <button className="flex w-max items-center px-[15px] py-3 font-medium" type="button" onClick={() => selectLevel(2, products)}>
                   {category.attributes.title}
                   <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                     <path d="M8.25 4.5l7.5 7.5-7.5 7.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </li>
-            ))}
+            );})}
           </ul>
           <div className="h-full overflow-y-auto overflow-x-hidden pb-4 pt-12">
             <ul className="grid grid-cols-2 gap-x-2 gap-y-3">
               {currentMenu?.map((product) => (
                 <li key={product.id}>
-                  <Link className="block w-max px-[15px] py-2 font-medium" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
+                  <Link className="block w-max px-[15px] py-2 font-medium max-w-full" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
                     {product.attributes.title}
                   </Link>
                   <ul className="px-[15px]">
