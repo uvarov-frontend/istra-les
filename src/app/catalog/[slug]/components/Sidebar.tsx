@@ -6,12 +6,14 @@ import { IProduct, ITranslate } from '@/types';
 
 export default async function Sidebar({ contacts, info, product }: { contacts: ITranslate; info: ITranslate; product: IProduct }) {
   const categories = await getCategory(product.attributes.categories.data[0].id);
+  const products = categories.attributes.products?.data ? categories.attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID)) : [];
+
   return (
     <div className="sticky top-32 hidden grid-flow-row items-start gap-5 lg:grid">
       <div>
         <b className="mb-4 block text-xl">{categories.attributes.title}</b>
         <ul>
-          {categories.attributes.products.data.map((p) => (
+          {products.map((p) => (
             <li key={p.id}>
               <Link
                 className={`block w-full border-l-2 px-4 py-2 hover:bg-lite ${product.id === p.id ? 'border-green text-green' : 'border-transparent hover:border-x-gray_dark'}`}

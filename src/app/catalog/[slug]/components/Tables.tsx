@@ -13,7 +13,9 @@ export default function Tables({ data, info, product, url }: { data: IData[]; in
       {product.attributes.profile.data?.attributes?.url ? (
         <div className="mb-4 flex items-end">
           <span className="mr-4 block text-sm text-gray_dark">{info.profile}:</span>
-          <Image alt={product.attributes.title} className="inline-block align-middle" height={24} src={`${url}${product.attributes.profile.data.attributes.url}`} width={110} />
+          <div className="inline-block align-middle h-[24px] w-[110px]">
+            <Image alt={product.attributes.title} className="block max-h-full max-w-full w-auto" height={24} src={`${url}${product.attributes.profile.data.attributes.url}`} width={110} />
+          </div>
         </div>
       ) : (
         <></>
@@ -39,7 +41,8 @@ export default function Tables({ data, info, product, url }: { data: IData[]; in
                         return (
                           <th
                             key={i}
-                            className="prerequisites-table w-[100px] border-r border-gray_lite bg-lite px-2 py-2 text-center text-sm font-medium last:sticky last:right-0 last:border-r-0 last:bg-green last:text-white last:w-[120px]"
+                            className="relative w-[100px] border-l border-gray_lite bg-lite px-2 py-2 text-center text-sm font-medium last:sticky last:right-0 first:border-l-0 last:border-l-0 last:bg-green last:text-white last:w-[120px]
+                              last:before:absolute last:before:top-0 last:before:left-0 last:before:w-[1px] last:before:h-full last:before:bg-green_hover"
                           >
                             {correctTitle}
                           </th>
@@ -55,8 +58,9 @@ export default function Tables({ data, info, product, url }: { data: IData[]; in
                           {Object.values(sort.data[i]).map((value, l) => (
                             <td
                               key={l}
-                              className={`prerequisites-table border-b border-r border-gray_lite bg-white px-2 py-2 text-center text-sm font-normal last:sticky last:right-0 last:border-r-0 last:bg-green_lite last:font-medium group-last:border-b-0 ${
-                                price.includes('*') ? 'border-r-yellow_dark bg-yellow last:bg-yellow' : ''
+                              className={`relative border-b border-l border-gray_lite bg-white px-2 py-2 text-center text-sm font-normal last:sticky last:right-0 first:border-l-0 last:border-l-0 last:bg-green_lite last:font-medium group-last:border-b-0
+                              last:before:absolute last:before:top-0 last:before:left-0 last:before:w-[1px] last:before:h-full last:before:bg-gray_lite ${
+                                price.includes('*') ? 'border-l-yellow_dark border-b-yellow_dark bg-yellow/80 last:bg-yellow last:before:bg-yellow_dark' : ''
                               }`}
                             >
                               {value.replace(/\*/, '')}

@@ -99,6 +99,10 @@ body:after {
   @apply my-4 text-xl font-bold lg:text-2xl;
 }
 
+.content h3 {
+  @apply my-4 text-lg font-bold lg:text-xl;
+}
+
 .content p {
   @apply mb-3;
 }
@@ -119,12 +123,8 @@ body:after {
   @apply text-green hover:text-green_hover;
 }
 
-.prerequisites-table:nth-last-child(2) {
-  @apply border-r-0;
-}
-
 .table-scroll {
   -webkit-overflow-scrolling: auto;
-  overscroll-behavior: none;
+  overscroll-behavior-x: none;
   @apply scrollbar-thin scrollbar-track-lite scrollbar-thumb-gray_lite scrollbar-thumb-rounded;
 }

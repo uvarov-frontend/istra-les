@@ -52,7 +52,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
 
   return (
     <div className="grid h-full grid-cols-1 items-start justify-items-start lg:grid-cols-[1fr_340px]">
-      <div className="w-full px-6 py-6 pr-6 lg:pl-0">
+      <div className="w-full px-6 py-6">
         <h1 className="-ml-[2px] mb-6 text-3xl font-bold">
           {product.attributes.title}
           {product.attributes.type ? (
@@ -82,7 +82,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
             })}
           </div>
         </div>
-        <div className="grid w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
+        <div className="grid xl:max-w-max w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
           {Object.keys(data[sortID].data[0]).map((option, id) => {
             if (id === Object.keys(data[sortID].data[0]).length - 1) return null;
             const options: string[] = [];
