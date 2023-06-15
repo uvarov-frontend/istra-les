@@ -55,7 +55,7 @@ export default function Tables({ data, info, product, url }: { data: IData[]; in
                           {Object.values(sort.data[i]).map((value, l) => (
                             <td
                               key={l}
-                              className={`prerequisites-table border-b border-r border-gray_lite bg-white px-2 py-2 text-center text-sm font-normal last:sticky last:right-0 last:border-r-0 last:bg-green_lite group-last:border-b-0 ${
+                              className={`prerequisites-table border-b border-r border-gray_lite bg-white px-2 py-2 text-center text-sm font-normal last:sticky last:right-0 last:border-r-0 last:bg-green_lite last:font-medium group-last:border-b-0 ${
                                 price.includes('*') ? 'border-r-yellow_dark bg-yellow' : ''
                               }`}
                             >
