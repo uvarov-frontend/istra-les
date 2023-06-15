@@ -39,7 +39,7 @@ export default function Tables({ data, info, product, url }: { data: IData[]; in
                         return (
                           <th
                             key={i}
-                            className="prerequisites-table w-[100px] border-r border-gray_lite bg-lite px-2 py-2 text-center text-sm font-medium last:sticky last:right-0 last:border-r-0 last:bg-green last:text-white"
+                            className="prerequisites-table w-[100px] border-r border-gray_lite bg-lite px-2 py-2 text-center text-sm font-medium last:sticky last:right-0 last:border-r-0 last:bg-green last:text-white last:w-[120px]"
                           >
                             {correctTitle}
                           </th>
