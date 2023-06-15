@@ -55,7 +55,7 @@ export default function Slider({ info, host, promos }: { info: ITranslate; host:
         {promos.map((promo) => (
           <Link
             key={promo.id}
-            className={`left-0 top-0 block h-full w-full transition-opacity ${promo.id === activeIDSlide ? 'relative opacity-100' : 'absolute opacity-0'}`}
+            className={`left-0 top-0 block h-full w-full transition-opacity ${promo.id === activeIDSlide ? 'relative opacity-100 pointer-events-auto' : 'absolute opacity-0 pointer-events-none'}`}
             href={promo.attributes.link}
           >
             <Image
