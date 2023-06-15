@@ -26,7 +26,7 @@ export default async function Additional() {
             <div className="flex grow flex-col p-7 pt-5">
               <div className="grow">
                 <b className="mb-2 block text-xl font-medium">{additional.attributes.title}</b>
-                <span className="mb-2 block text-dark_gray">
+                <span className="mb-2 block text-gray_dark">
                   {/* @ts-expect-error Server Component */}
                   <MDXRemote source={additional.attributes.content} />
                 </span>

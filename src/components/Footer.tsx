@@ -22,14 +22,14 @@ export default async function Footer() {
           <Link className="block" href="/">
             <Image alt={contacts.title} className="block" height={67} src="/img/logo.svg" width={125} />
           </Link>
-          <small className="mt-4 block w-36 text-sm text-dark_gray">{contacts.copyright}</small>
+          <small className="mt-4 block w-36 text-sm text-gray_dark">{contacts.copyright}</small>
         </div>
         <div>
           <b className="mb-4 block font-medium text-dark">{contacts.client}</b>
           <ul>
             {mainMenu.map((item) => (
               <li key={item.id} className="mb-2 block last:mb-0">
-                <Link className="block text-dark_gray hover:text-green_hover hover:underline" href={item.attributes.link}>
+                <Link className="block text-gray_dark hover:text-green_hover hover:underline" href={item.attributes.link}>
                   {item.attributes.title}
                 </Link>
               </li>
@@ -41,7 +41,7 @@ export default async function Footer() {
           <ul>
             {otherMenu.map((item) => (
               <li key={item.id} className="mb-2 block last:mb-0">
-                <Link className="block text-dark_gray hover:text-green_hover hover:underline" href={item.attributes.link}>
+                <Link className="block text-gray_dark hover:text-green_hover hover:underline" href={item.attributes.link}>
                   {item.attributes.title}
                 </Link>
               </li>
@@ -50,7 +50,7 @@ export default async function Footer() {
         </div>
         <Contacts title={contacts.contacts} />
       </div>
-      <small className="absolute bottom-2 right-2 text-xs text-dark_gray/60">{contacts.recaptcha}</small>
+      <small className="absolute bottom-2 right-2 text-xs text-gray_dark/60">{contacts.recaptcha}</small>
     </footer>
   );
 }

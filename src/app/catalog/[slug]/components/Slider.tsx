@@ -34,7 +34,7 @@ export default function Slider({ info, url, product }: { info: { [key: string]: 
           <i className="icon-address mr-2 block h-4 w-4 bg-green" />
           {info.delivery.title}
         </div>
-        <span className="mt-1 block pl-6 text-xs text-dark_gray">{info.delivery.text}</span>
+        <span className="mt-1 block pl-6 text-xs text-gray_dark">{info.delivery.text}</span>
       </div>
     </div>
   );

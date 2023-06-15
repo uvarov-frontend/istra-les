@@ -6,7 +6,9 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
   theme: {
     colors: {
       white: '#fff',
@@ -17,7 +19,8 @@ module.exports = {
       green_hover: '#51a335',
       green_lite: '#eef7ea',
       gray: '#ddd',
-      dark_gray: '#8c8c8c',
+      gray_dark: '#8c8c8c',
+      gray_lite: '#e5e5e5',
       red: '#f44336',
       yellow: '#f8df5e',
       yellow_dark: '#e1c94a',

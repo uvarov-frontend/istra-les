@@ -56,13 +56,13 @@ export default function Content({ data, contacts, info, product }: { data: IData
         <h1 className="-ml-[2px] mb-6 text-3xl font-bold">
           {product.attributes.title}
           {product.attributes.type ? (
-            <span className="ml-[2px] mt-[6px] block w-max border-b border-dashed border-dark_gray text-sm font-normal text-dark_gray">{product.attributes.type}</span>
+            <span className="ml-[2px] mt-[6px] block w-max border-b border-dashed border-gray_dark text-sm font-normal text-gray_dark">{product.attributes.type}</span>
           ) : (
             ''
           )}
         </h1>
         <div className="mb-6">
-          <span className="mb-2 block text-sm text-dark_gray">{data[0].id.replace(/\[(.*)\]+.*/g, (_, g1) => g1)}</span>
+          <span className="mb-2 block text-sm text-gray_dark">{data[0].id.replace(/\[(.*)\]+.*/g, (_, g1) => g1)}</span>
           <div className="block">
             {data.map((sort, index) => {
               if (index === data.length - 1) return null;
@@ -91,7 +91,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
             });
             return (
               <div key={id}>
-                <span className="mb-2 block text-sm text-dark_gray">{option}</span>
+                <span className="mb-2 block text-sm text-gray_dark">{option}</span>
                 <div className="block">
                   <Select key={sortID} name={option} options={options} optionsID={optionsID} setOptionsID={setOptionsID} />
                 </div>
@@ -102,7 +102,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
       </div>
       <div className="flex h-full w-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6">
         <div className="mb-3 border-b border-gray pb-3">
-          <span className="mb-1 block text-sm text-dark_gray">{title}:</span>
+          <span className="mb-1 block text-sm text-gray_dark">{title}:</span>
           <b className={`block max-w-max rounded text-lg ${sale ? 'bg-yellow px-2' : ''}`}>
             {formatterRUB.format(price)} {currency}/{thing}
             {sale ? '*' : ''}
@@ -116,7 +116,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
             <Callback callback={info.callback} className="text-sm lowercase text-green hover:text-green_hover" />
           </div>
         </div>
-        <span className="mb-3 block text-sm text-dark_gray">
+        <span className="mb-3 block text-sm text-gray_dark">
           {info.count} ({thing}):
         </span>
         <div className="mb-4 flex h-9 w-full max-w-[285px] items-center rounded-lg bg-white">
@@ -134,7 +134,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
           </button>
         </div>
         <div className="mb-3 grid grid-cols-[auto_1fr] items-center gap-2">
-          <span className="block whitespace-nowrap text-sm text-dark_gray">{info.total}:</span>
+          <span className="block whitespace-nowrap text-sm text-gray_dark">{info.total}:</span>
           <b className={`block max-w-max whitespace-nowrap rounded text-xl ${sale ? 'bg-yellow px-2' : ''}`}>
             {formatterRUB.format(price * countProduct)} {currency}
             {sale ? '*' : ''}
@@ -144,9 +144,9 @@ export default function Content({ data, contacts, info, product }: { data: IData
           <span className="mb-3 block text-xs font-medium text-green_hover">
             {info.relevance} {relevantDate.replace(/^\[(.+)\]$/, (_, g1) => g1)}
           </span>
-          <span className="mb-1 block text-xs text-dark_gray">{info.difference}</span>
-          <span className="block text-xs text-dark_gray">{info.save}</span>
-          {sale ? <span className="mt-1 block text-xs text-dark_gray">{info.sale}</span> : <></>}
+          <span className="mb-1 block text-xs text-gray_dark">{info.difference}</span>
+          <span className="block text-xs text-gray_dark">{info.save}</span>
+          {sale ? <span className="mt-1 block text-xs text-gray_dark">{info.sale}</span> : <></>}
         </div>
       </div>
     </div>

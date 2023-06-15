@@ -23,7 +23,7 @@ export default function BreadCrumbs({ title = '' }: { title: string }) {
         <li
           key={link.id}
           className="relative mr-2 inline-block pr-4 align-bottom after:absolute after:right-0
-          after:top-1/2 after:-translate-y-1/2 after:text-sm after:content-['/'] last:text-dark_gray last:after:content-none last:hover:text-dark_gray"
+          after:top-1/2 after:-translate-y-1/2 after:text-sm after:content-['/'] last:text-gray_dark last:after:content-none last:hover:text-gray_dark"
         >
           {link.href ? (
             <Link className="text-dark hover:text-green_hover" href={link.href}>

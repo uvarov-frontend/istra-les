@@ -90,16 +90,17 @@ export default function Catalog({ categories }: { categories: ICategory[] }) {
                       {product.attributes.sorts?.data?.map((sort, index) => (
                         <li
                           key={index}
-                          className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-dark_gray"
+                          className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-gray_dark"
                         >
-                          <span className="block pl-4 text-dark_gray">{sort.attributes.title}</span>
+                          <span className="block pl-4 text-gray_dark">{sort.attributes.title}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 ))}
               </div>
-            );})}
+            );
+          })}
         </div>
       </div>
     </div>

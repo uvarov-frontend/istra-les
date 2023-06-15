@@ -23,7 +23,7 @@ export default async function Popular() {
             hover:before:-bottom-12 hover:before:-right-4"
           >
             <b className="mb-2 block text-xl font-medium">{popular.attributes.title}</b>
-            <span className="mb-2 block text-dark_gray">
+            <span className="mb-2 block text-gray_dark">
               {/* @ts-expect-error Server Component */}
               <MDXRemote source={popular.attributes.content} />
             </span>

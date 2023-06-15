@@ -91,7 +91,7 @@ export default function ModalCallback({ callback }: { callback: ITranslate }) {
           </svg>
         </button>
         <b className="mb-2 block text-2xl">{callback.titleForm}</b>
-        <p className="mb-6 text-base text-dark_gray">{callback.descriptionForm}</p>
+        <p className="mb-6 text-base text-gray_dark">{callback.descriptionForm}</p>
         <form className="grid grid-flow-row gap-3" onSubmit={onSubmitCallback}>
           <input required className="input" name="name" placeholder={callback.name} type="text" value={inputs.name} onChange={handlerInput} />
           <input
@@ -108,7 +108,7 @@ export default function ModalCallback({ callback }: { callback: ITranslate }) {
           <button className="btn mt-2 w-full" type="submit">
             {callback.btn}
           </button>
-          <small className="mt-2 text-xs text-dark_gray">
+          <small className="mt-2 text-xs text-gray_dark">
             Нажимая на кнопку «{callback.btn}», вы даете согласие на обработку персональных данных и соглашаетесь с условиями{' '}
             <a className="text-green hover:text-green_hover" href="/privacy-policy" target="__blank">
               политики конфиденциальности

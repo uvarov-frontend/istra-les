@@ -14,7 +14,7 @@ export default async function Sidebar({ contacts, info, product }: { contacts: I
           {categories.attributes.products.data.map((p) => (
             <li key={p.id}>
               <Link
-                className={`block w-full border-l-2 px-4 py-2 hover:bg-lite ${product.id === p.id ? 'border-green text-green' : 'border-transparent hover:border-x-dark_gray'}`}
+                className={`block w-full border-l-2 px-4 py-2 hover:bg-lite ${product.id === p.id ? 'border-green text-green' : 'border-transparent hover:border-x-gray_dark'}`}
                 href={`/catalog/${p.attributes.slug}`}
               >
                 {p.attributes.title}

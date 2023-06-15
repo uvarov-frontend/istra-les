@@ -28,7 +28,9 @@ export default function NavigationMobile({ categories }: { categories: ICategory
   const { info, catalog } = translation;
   const refContent = useRef<HTMLDivElement>(null);
 
-  const firstProducts = categories[0].attributes.products?.data ? categories[0].attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID)) : [];
+  const firstProducts = categories[0].attributes.products?.data
+    ? categories[0].attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID))
+    : [];
 
   const [open, setOpen] = useState(false);
   const [level, setLevel] = useState(0);
@@ -104,32 +106,35 @@ export default function NavigationMobile({ categories }: { categories: ICategory
           </ul>
           <ul className="h-full overflow-y-auto overflow-x-hidden pb-2 pt-12">
             {categories.map((category) => {
-              const products = category.attributes.products?.data ? category.attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID)) : [];
+              const products = category.attributes.products?.data
+                ? category.attributes.products?.data.sort((a, b) => Number(a.attributes.sortID) - Number(b.attributes.sortID))
+                : [];
               return (
-              <li key={category.id}>
-                <button className="flex w-max items-center px-[15px] py-3 font-medium" type="button" onClick={() => selectLevel(2, products)}>
-                  {category.attributes.title}
-                  <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                    <path d="M8.25 4.5l7.5 7.5-7.5 7.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </li>
-            );})}
+                <li key={category.id}>
+                  <button className="flex w-max items-center px-[15px] py-3 font-medium" type="button" onClick={() => selectLevel(2, products)}>
+                    {category.attributes.title}
+                    <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M8.25 4.5l7.5 7.5-7.5 7.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                </li>
+              );
+            })}
           </ul>
           <div className="h-full overflow-y-auto overflow-x-hidden pb-4 pt-12">
             <ul className="grid grid-cols-2 gap-x-2 gap-y-3">
               {currentMenu?.map((product) => (
                 <li key={product.id}>
-                  <Link className="block w-max px-[15px] py-2 font-medium max-w-full" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
+                  <Link className="block w-max max-w-full px-[15px] py-2 font-medium" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
                     {product.attributes.title}
                   </Link>
                   <ul className="px-[15px]">
                     {product.attributes.sorts?.data?.map((sort, index) => (
                       <li
                         key={index}
-                        className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-dark_gray"
+                        className="relative max-w-max text-sm leading-6 before:pointer-events-none before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-2 before:-translate-y-1/2 before:bg-gray_dark"
                       >
-                        <Link className="block pl-4 text-dark_gray" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
+                        <Link className="block pl-4 text-gray_dark" href={`/catalog/${product.attributes.slug}`} onClick={() => setOpen(!open)}>
                           {sort.attributes.title}
                         </Link>
                       </li>

@@ -47,7 +47,7 @@ export default async function Product({ params }: IParams) {
         <Content contacts={contacts} data={data} info={info} product={product} />
       </div>
       <div className="mb-4 mt-7 grid grid-cols-1 items-start gap-9 border-t border-gray/50 pt-4 lg:my-10 lg:grid-cols-[auto_300px] lg:pt-8">
-        <div className="">
+        <div className="overflow-hidden">
           <Tables data={data} info={info} product={product} url={process.env.STRAPI_API_URL as string} />
           {product.attributes.content ? (
             <div className="content mt-10">
