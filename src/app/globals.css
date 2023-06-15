@@ -125,5 +125,6 @@ body:after {
 
 .table-scroll {
   -webkit-overflow-scrolling: auto;
+  overscroll-behavior: none;
   @apply scrollbar-thin scrollbar-track-lite scrollbar-thumb-gray_lite scrollbar-thumb-rounded;
 }
