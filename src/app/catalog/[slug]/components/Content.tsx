@@ -1,36 +1,42 @@
 'use client';
 
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, memo, useEffect, useState } from 'react';
 
 import Callback from '@/components/Callback';
-import { getUnit } from '@/helper';
+import { getParams, getUnit, getPrice, getSale, getSelectProduct } from '@/helper';
 import { IData, IProduct, ITranslate } from '@/types';
 
 import Select from './Select';
 
-export default function Content({ data, contacts, info, product }: { data: IData[]; contacts: ITranslate; info: ITranslate; product: IProduct }) {
-  const [sale, setSale] = useState(false);
+const Content = memo(({ data, contacts, info, product }: { data: IData[]; contacts: ITranslate; info: ITranslate; product: IProduct }) => {
+  const relevantDate = data[data.length - 1].id;
   const [countProduct, setCountProduct] = useState(1);
   const [sortID, setSortID] = useState(0);
-  const [optionsID, setOptionsID] = useState(0);
-  const [selectProduct, setSelectProduct] = useState<{ [key: string]: string }>(data[0].data[0]);
+  const [params, setParams] = useState(getParams(data, sortID).objParams);
+  const [selectParams, setSelectParams] = useState(getParams(data, sortID).selectParams);
+  const [selectProduct, setSelectProduct] = useState(getSelectProduct(data, sortID, selectParams));
+  const [price, setPrice] = useState(getPrice(selectProduct));
+  const [sale, setSale] = useState(getSale(selectProduct));
 
-  const relevantDate = data[data.length - 1].id;
-  const price = Number(Object.values(selectProduct)[Object.values(selectProduct).length - 1].replace(/\*/g, ''));
-  const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[optionsID])[Object.keys(data[sortID].data[optionsID]).length - 1]);
+  const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
   const formatterRUB = new Intl.NumberFormat('ru-RU');
 
   useEffect(() => {
-    setSelectProduct(data[sortID].data[optionsID]);
-  }, [data, sortID, optionsID]);
+    setParams(getParams(data, sortID).objParams);
+    setSelectParams(getParams(data, sortID).selectParams);
+  }, [data, sortID]);
 
   useEffect(() => {
-    if (Object.values(selectProduct)[Object.values(selectProduct).length - 1].includes('*')) {
-      setSale(true);
+    const tempSelectProduct = getSelectProduct(data, sortID, selectParams);
+    if (tempSelectProduct) {
+      setSelectProduct(tempSelectProduct);
+      setPrice(getPrice(tempSelectProduct));
+      setSale(getSale(tempSelectProduct));
     } else {
+      setPrice(0);
       setSale(false);
     }
-  }, [selectProduct]);
+  }, [data, sortID, selectParams]);
 
   const handlerDis = () => {
     if (countProduct <= 1) return;
@@ -73,7 +79,6 @@ export default function Content({ data, contacts, info, product }: { data: IData
                   type="button"
                   onClick={() => {
                     setSortID(index);
-                    setOptionsID(0);
                   }}
                 >
                   {sort.id.replace(/\[(.*)\]/g, '').trim()}
@@ -85,17 +90,8 @@ export default function Content({ data, contacts, info, product }: { data: IData
         <div className="grid xl:max-w-max w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
           {Object.keys(data[sortID].data[0]).map((option, id) => {
             if (id === Object.keys(data[sortID].data[0]).length - 1) return null;
-            const options: string[] = [];
-            data[sortID].data.forEach((row) => {
-              if (!options.includes(row[option])) options.push(row[option]);
-            });
             return (
-              <div key={id}>
-                <span className="mb-2 block text-sm text-gray_dark">{option}</span>
-                <div className="block">
-                  <Select key={sortID} name={option} options={options} optionsID={optionsID} setOptionsID={setOptionsID} />
-                </div>
-              </div>
+              <Select key={id} id={id} name={option} options={params[id]} selectParams={selectParams} setSelectParams={setSelectParams} />
             );
           })}
         </div>
@@ -151,4 +147,6 @@ export default function Content({ data, contacts, info, product }: { data: IData
       </div>
     </div>
   );
-}
+});
+
+export default Content;
