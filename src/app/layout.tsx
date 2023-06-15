@@ -1,3 +1,5 @@
+import Script from 'next/script';
+
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import ModalCallback from '@/components/ModalCallback';
@@ -30,6 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* @ts-expect-error Server Component */}
           <Footer />
           <ModalCallback callback={info.callback} />
+          <Script
+            defer
+            src="//code.jivo.ru/widget/5dswZerdPY"
+            strategy="lazyOnload"
+          />
         </body>
       </html>
     </ReCaptchaProviders>
