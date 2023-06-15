@@ -110,7 +110,7 @@ export default function ModalCallback({ callback }: { callback: ITranslate }) {
           </button>
           <small className="mt-2 text-xs text-gray_dark">
             Нажимая на кнопку «{callback.btn}», вы даете согласие на обработку персональных данных и соглашаетесь с условиями{' '}
-            <a className="text-green hover:text-green_hover" href="/privacy-policy" target="__blank">
+            <a className="text-green hover:text-green_hover" href="/privacy-policy" target="_blank">
               политики конфиденциальности
             </a>
             .

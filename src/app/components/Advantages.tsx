@@ -29,10 +29,10 @@ export default async function Advantages() {
                 width={24}
               />
               <b className="mb-1 block font-medium">{advantage.attributes.title}</b>
-              <span className="block text-sm text-gray_dark">
+              <div className="block text-sm text-gray_dark">
                 {/* @ts-expect-error Server Component */}
                 <MDXRemote source={advantage.attributes.content} />
-              </span>
+              </div>
             </li>
           ))}
         </ul>
