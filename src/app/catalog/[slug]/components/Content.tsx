@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, memo, useEffect, useState } from 'react';
+import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react';
 
 import Callback from '@/components/Callback';
 import { getParams, getUnit, getPrice, getSale, getSelectProduct } from '@/helper';
@@ -28,6 +28,7 @@ const Content = memo(({ data, contacts, info, product }: { data: IData[]; contac
 
   useEffect(() => {
     const tempSelectProduct = getSelectProduct(data, sortID, selectParams);
+
     if (tempSelectProduct) {
       setSelectProduct(tempSelectProduct);
       setPrice(getPrice(tempSelectProduct));
@@ -88,21 +89,24 @@ const Content = memo(({ data, contacts, info, product }: { data: IData[]; contac
           </div>
         </div>
         <div className="grid xl:max-w-max w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
-          {Object.keys(data[sortID].data[0]).map((option, id) => {
+          {useMemo(() => Object.keys(data[sortID].data[0]).map((option, id) => {
             if (id === Object.keys(data[sortID].data[0]).length - 1) return null;
             return (
               <Select key={id} id={id} name={option} options={params[id]} selectParams={selectParams} setSelectParams={setSelectParams} />
             );
-          })}
+          }), [data, sortID, params, selectParams])}
         </div>
       </div>
       <div className="flex h-full w-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6">
         <div className="mb-3 border-b border-gray pb-3">
-          <span className="mb-1 block text-sm text-gray_dark">{title}:</span>
-          <b className={`block max-w-max rounded text-lg ${sale ? 'bg-yellow px-2' : ''}`}>
-            {formatterRUB.format(price)} {currency}/{thing}
-            {sale ? '*' : ''}
-          </b>
+          {price === 0 ? <span className="inline text-base font-medium border-b border-red">По заданным параметрам, товар не найден!</span>
+          : <>
+            <span className="mb-1 block text-sm text-gray_dark">{title}:</span>
+            <b className={`block max-w-max rounded text-lg ${sale ? 'bg-yellow px-2' : ''}`}>
+              {formatterRUB.format(price)} {currency}/{thing}
+              {sale ? '*' : ''}
+            </b>
+          </> }
         </div>
         <div className="mb-3">
           <span className="mb-2 block text-sm">{info.ordering}:</span>
