@@ -19,6 +19,16 @@ export const getUnit = (str: string) => {
   return { currency, thing, title };
 };
 
-export const getPrice = (selectProduct: { [key: string]: string }) => Number(Object.values(selectProduct)[Object.values(selectProduct).length - 1].replace(/\*/g, ''));
+export const getPrice = (selectProduct: { [key: string]: string }) => {
+  if (Object.values(selectProduct)[Object.values(selectProduct).length - 1]) {
+    return Number(Object.values(selectProduct)[Object.values(selectProduct).length - 1].replace(/\*/g, ''));
+  }
+  return 0;
+};
 
-export const getSale = (selectProduct: { [key: string]: string }) => !!Object.values(selectProduct)[Object.values(selectProduct).length - 1].includes('*');
+export const getSale = (selectProduct: { [key: string]: string }) => {
+  if (Object.values(selectProduct)[Object.values(selectProduct).length - 1]) {
+    return !!Object.values(selectProduct)[Object.values(selectProduct).length - 1].includes('*');
+  }
+  return false;
+};

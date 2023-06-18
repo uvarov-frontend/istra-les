@@ -8,7 +8,7 @@ import getProduct from '@/fetching/getProduct';
 import translation from '@/translation.yaml';
 import { IData, IParams } from '@/types';
 
-import Content from './components/Content';
+import Calculator from './components/Calculator';
 import Sidebar from './components/Sidebar';
 import Slider from './components/Slider';
 import Tables from './components/Tables';
@@ -44,7 +44,7 @@ export default async function Product({ params }: IParams) {
       <BreadCrumbs title={product.attributes.title} />
       <div className={`grid ${product.attributes.img.data?.[0] ? 'grid-cols-1 lg:grid-cols-[325px_1fr]' : 'grid-cols-1'} mt-8 rounded-lg border border-lite bg-white_dark`}>
         {product.attributes.img.data?.[0] ? <Slider info={info} product={product} url={process.env.STRAPI_API_URL as string} /> : <></>}
-        <Content contacts={contacts} data={data} info={info} product={product} />
+        <Calculator contacts={contacts} data={data} info={info} product={product} />
       </div>
       <div className="mb-4 mt-7 grid grid-cols-1 items-start gap-9 border-t border-gray/50 pt-4 lg:my-10 lg:grid-cols-[auto_300px] lg:pt-8">
         <div className="overflow-hidden">

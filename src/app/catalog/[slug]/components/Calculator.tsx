@@ -1,26 +1,39 @@
 'use client';
 
-import { Listbox } from '@headlessui/react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 import Callback from '@/components/Callback';
-import { getUnit, getPrice, getSale } from '@/helper';
+import { getPrice, getSale, getUnit } from '@/helper';
 import { IData, IDataItem, IProduct, ITranslate } from '@/types';
 
-export default function Content({ data, contacts, info, product }: { data: IData[]; contacts: ITranslate; info: ITranslate; product: IProduct }) {
+import Select from './Select';
+
+export default function Calculator({ data, contacts, info, product }: { data: IData[]; contacts: ITranslate; info: ITranslate; product: IProduct }) {
   const relevantDate = data[data.length - 1].id;
   const [countProduct, setCountProduct] = useState(1);
   const [sortID, setSortID] = useState(0);
+  const [uniqueKeys, setUniqueKeys] = useState(Array.from(new Set(data[sortID].data.flatMap((item) => Object.keys(item)))));
   const [selectedValues, setSelectedValues] = useState<IDataItem>({});
-  // const [price, setPrice] = useState(getPrice(selectProduct));
-  // const [sale, setSale] = useState(getSale(selectProduct));
+  const [defaultValues, setDefaultValues] = useState<IDataItem>({});
+  const [price, setPrice] = useState(getPrice(data[sortID].data[0]));
+  const [sale, setSale] = useState(getSale(data[sortID].data[0]));
 
   const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
-  const price = 0;
-  const sale = false;
   const formatterRUB = new Intl.NumberFormat('ru-RU');
 
-  const uniqueKeys = Array.from(new Set(data[sortID].data.flatMap((item) => Object.keys(item))));
+  const getFilteredData = useCallback((index: number): IDataItem[] => {
+    let filteredData = [...data[sortID].data];
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < index; i++) {
+      const selectedValue = selectedValues[uniqueKeys[i]];
+      if (selectedValue) {
+        filteredData = filteredData.filter((item) => item[uniqueKeys[i]] === selectedValue);
+      }
+    }
+
+    return filteredData;
+  }, [data, selectedValues, sortID, uniqueKeys]);
 
   const handleSelectChange = (key: string, value: string) => {
     setSelectedValues((prevValues) => {
@@ -35,42 +48,42 @@ export default function Content({ data, contacts, info, product }: { data: IData
       for (let i = startIndex; i < keys.length; i++) {
         updatedValues[keys[i]] = '';
       }
-
       return updatedValues;
     });
   };
 
-  const getFilteredData = (index: number): IDataItem[] => {
-    let filteredData = [...data[sortID].data];
+  useEffect(() => {
+    setUniqueKeys(Array.from(new Set(data[sortID].data.flatMap((item) => Object.keys(item)))));
+  }, [data, sortID]);
 
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < index; i++) {
-      const selectedValue = selectedValues[uniqueKeys[i]];
-      if (selectedValue) {
-        filteredData = filteredData.filter((item) => item[uniqueKeys[i]] === selectedValue);
-      }
-    }
+  useEffect(() => {
+    // console.log(uniqueKeys);
+    uniqueKeys.forEach((key, index) => {
+      const filteredData = getFilteredData(index);
+      const values = Array.from(new Set(filteredData.map((item) => item[key])));
+      handleSelectChange(key, values[0]);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uniqueKeys]);
 
-    return filteredData;
-  };
+  useEffect(() => {
+    const tempDefaultValue: IDataItem = {};
+    uniqueKeys.forEach((key, index) => {
+      const filteredData = getFilteredData(index);
+      const values = Array.from(new Set(filteredData.map((item) => item[key])));
 
-  // useEffect(() => {
-  //   setParams(getParams(data, sortID).objParams);
-  //   setSelectParams(getParams(data, sortID).selectParams);
-  // }, [data, sortID]);
+      tempDefaultValue[key] = selectedValues[key] || values[0];
+      setDefaultValues(tempDefaultValue);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedValues]);
 
-  // useEffect(() => {
-  //   const tempSelectProduct = getSelectProduct(data, sortID, selectParams);
-
-  //   if (tempSelectProduct) {
-  //     setSelectProduct(tempSelectProduct);
-  //     setPrice(getPrice(tempSelectProduct));
-  //     setSale(getSale(tempSelectProduct));
-  //   } else {
-  //     setPrice(0);
-  //     setSale(false);
-  //   }
-  // }, [data, sortID, selectParams]);
+  useMemo(() => {
+    if(!Object.values(defaultValues)[uniqueKeys.length - 1]) return;
+    setPrice(getPrice(defaultValues));
+    setSale(getSale(defaultValues));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues]);
 
   const handlerDis = () => {
     if (countProduct <= 1) return;
@@ -113,6 +126,8 @@ export default function Content({ data, contacts, info, product }: { data: IData
                   type="button"
                   onClick={() => {
                     setSortID(index);
+                    setSelectedValues({});
+                    setDefaultValues({});
                   }}
                 >
                   {sort.id.replace(/\[(.*)\]/g, '').trim()}
@@ -121,38 +136,23 @@ export default function Content({ data, contacts, info, product }: { data: IData
             })}
           </div>
         </div>
-        <div className="grid xl:max-w-max w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
+        <div className="grid xl:w-[400px] w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
           {uniqueKeys.map((key, index) => {
             if (index === uniqueKeys.length - 1) return null;
-
             const filteredData = getFilteredData(index);
             const values = Array.from(new Set(filteredData.map((item) => item[key])));
             const defaultValue = values[0];
 
             return (
-              <div key={key}>
-                <span className="mb-2 block text-sm text-gray_dark">{key}</span>
-                <Listbox value={selectedValues[key] || defaultValue} onChange={(value) => handleSelectChange(key, value)}>
-                  <div className="relative mt-1">
-                    <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 px-5 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                      <span className="block truncate">{selectedValues[key] || defaultValue}</span>
-                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                          <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                    </Listbox.Button>
-                    <Listbox.Options className="absolute z-10 mt-1 max-h-80 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                      {values.map((value: string, i: number) => (
-                        <Listbox.Option
-                          key={i}
-                          // eslint-disable-next-line no-nested-ternary
-                          className={({ active, selected }) => `relative cursor-pointer select-none py-2 px-5 text-slate-900 ${active && selected ? 'bg-[#5ec03b] text-white' : selected ? 'bg-[#5ec03b] text-white' : active ? 'bg-gray-100' : ''}`}
-                          value={value}>{value}</Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </div>
-                </Listbox>
+              <div key={index}>
+              <span className="mb-2 block text-sm text-gray_dark">{key}</span>
+                <Select
+                  defaultValue={defaultValue}
+                  defaultValues={defaultValues}
+                  handleSelectChange={handleSelectChange}
+                  name={key}
+                  selectedValues={selectedValues}
+                  values={values} />
               </div>
             );
           })}
@@ -160,7 +160,7 @@ export default function Content({ data, contacts, info, product }: { data: IData
       </div>
       <div className="flex h-full w-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6">
         <div className="mb-3 border-b border-gray pb-3">
-          {price === 0 ? <span className="inline text-base font-medium border-b border-red">По заданным параметрам, товар не найден!</span>
+          {price === 0 ? <span className="inline text-base font-medium border-b border-red">{info.emptyPrice}</span>
           : <>
             <span className="mb-1 block text-sm text-gray_dark">{title}:</span>
             <b className={`block max-w-max rounded text-lg ${sale ? 'bg-yellow px-2' : ''}`}>
