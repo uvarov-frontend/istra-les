@@ -7,16 +7,17 @@ export interface IParams {
   params: IProps;
 }
 
-export interface IData {
-  id: string;
-  data: {
-    [key: string]: string;
-  }[];
+export interface IDataItem {
+  [key: string]: string;
 }
 
-export interface IValue {
-  label: string;
-  value: string;
+export interface IDropdownComponentProps {
+  data: IDataItem[];
+}
+
+export interface IData {
+  id: string;
+  data: IDataItem[];
 }
 
 export interface ILink {

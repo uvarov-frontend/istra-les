@@ -1,43 +1,76 @@
 'use client';
 
-import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react';
+import { Listbox } from '@headlessui/react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import Callback from '@/components/Callback';
-import { getParams, getUnit, getPrice, getSale, getSelectProduct } from '@/helper';
-import { IData, IProduct, ITranslate } from '@/types';
+import { getUnit, getPrice, getSale } from '@/helper';
+import { IData, IDataItem, IProduct, ITranslate } from '@/types';
 
-import Select from './Select';
-
-const Content = memo(({ data, contacts, info, product }: { data: IData[]; contacts: ITranslate; info: ITranslate; product: IProduct }) => {
+export default function Content({ data, contacts, info, product }: { data: IData[]; contacts: ITranslate; info: ITranslate; product: IProduct }) {
   const relevantDate = data[data.length - 1].id;
   const [countProduct, setCountProduct] = useState(1);
   const [sortID, setSortID] = useState(0);
-  const [params, setParams] = useState(getParams(data, sortID).objParams);
-  const [selectParams, setSelectParams] = useState(getParams(data, sortID).selectParams);
-  const [selectProduct, setSelectProduct] = useState(getSelectProduct(data, sortID, selectParams));
-  const [price, setPrice] = useState(getPrice(selectProduct));
-  const [sale, setSale] = useState(getSale(selectProduct));
+  const [selectedValues, setSelectedValues] = useState<IDataItem>({});
+  // const [price, setPrice] = useState(getPrice(selectProduct));
+  // const [sale, setSale] = useState(getSale(selectProduct));
 
   const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
+  const price = 0;
+  const sale = false;
   const formatterRUB = new Intl.NumberFormat('ru-RU');
 
-  useEffect(() => {
-    setParams(getParams(data, sortID).objParams);
-    setSelectParams(getParams(data, sortID).selectParams);
-  }, [data, sortID]);
+  const uniqueKeys = Array.from(new Set(data[sortID].data.flatMap((item) => Object.keys(item))));
 
-  useEffect(() => {
-    const tempSelectProduct = getSelectProduct(data, sortID, selectParams);
+  const handleSelectChange = (key: string, value: string) => {
+    setSelectedValues((prevValues) => {
+      const updatedValues = {
+        ...prevValues,
+        [key]: value,
+      };
 
-    if (tempSelectProduct) {
-      setSelectProduct(tempSelectProduct);
-      setPrice(getPrice(tempSelectProduct));
-      setSale(getSale(tempSelectProduct));
-    } else {
-      setPrice(0);
-      setSale(false);
+      const keys = Object.keys(updatedValues);
+      const startIndex = keys.indexOf(key) + 1;
+      // eslint-disable-next-line no-plusplus
+      for (let i = startIndex; i < keys.length; i++) {
+        updatedValues[keys[i]] = '';
+      }
+
+      return updatedValues;
+    });
+  };
+
+  const getFilteredData = (index: number): IDataItem[] => {
+    let filteredData = [...data[sortID].data];
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < index; i++) {
+      const selectedValue = selectedValues[uniqueKeys[i]];
+      if (selectedValue) {
+        filteredData = filteredData.filter((item) => item[uniqueKeys[i]] === selectedValue);
+      }
     }
-  }, [data, sortID, selectParams]);
+
+    return filteredData;
+  };
+
+  // useEffect(() => {
+  //   setParams(getParams(data, sortID).objParams);
+  //   setSelectParams(getParams(data, sortID).selectParams);
+  // }, [data, sortID]);
+
+  // useEffect(() => {
+  //   const tempSelectProduct = getSelectProduct(data, sortID, selectParams);
+
+  //   if (tempSelectProduct) {
+  //     setSelectProduct(tempSelectProduct);
+  //     setPrice(getPrice(tempSelectProduct));
+  //     setSale(getSale(tempSelectProduct));
+  //   } else {
+  //     setPrice(0);
+  //     setSale(false);
+  //   }
+  // }, [data, sortID, selectParams]);
 
   const handlerDis = () => {
     if (countProduct <= 1) return;
@@ -89,12 +122,40 @@ const Content = memo(({ data, contacts, info, product }: { data: IData[]; contac
           </div>
         </div>
         <div className="grid xl:max-w-max w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
-          {useMemo(() => Object.keys(data[sortID].data[0]).map((option, id) => {
-            if (id === Object.keys(data[sortID].data[0]).length - 1) return null;
+          {uniqueKeys.map((key, index) => {
+            if (index === uniqueKeys.length - 1) return null;
+
+            const filteredData = getFilteredData(index);
+            const values = Array.from(new Set(filteredData.map((item) => item[key])));
+            const defaultValue = values[0];
+
             return (
-              <Select key={id} id={id} name={option} options={params[id]} selectParams={selectParams} setSelectParams={setSelectParams} />
+              <div key={key}>
+                <span className="mb-2 block text-sm text-gray_dark">{key}</span>
+                <Listbox value={selectedValues[key] || defaultValue} onChange={(value) => handleSelectChange(key, value)}>
+                  <div className="relative mt-1">
+                    <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 px-5 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <span className="block truncate">{selectedValues[key] || defaultValue}</span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                          <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </Listbox.Button>
+                    <Listbox.Options className="absolute z-10 mt-1 max-h-80 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      {values.map((value: string, i: number) => (
+                        <Listbox.Option
+                          key={i}
+                          // eslint-disable-next-line no-nested-ternary
+                          className={({ active, selected }) => `relative cursor-pointer select-none py-2 px-5 text-slate-900 ${active && selected ? 'bg-[#5ec03b] text-white' : selected ? 'bg-[#5ec03b] text-white' : active ? 'bg-gray-100' : ''}`}
+                          value={value}>{value}</Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </div>
+                </Listbox>
+              </div>
             );
-          }), [data, sortID, params, selectParams])}
+          })}
         </div>
       </div>
       <div className="flex h-full w-full flex-col overflow-hidden rounded-r-lg bg-gray/30 px-7 py-6">
@@ -151,6 +212,4 @@ const Content = memo(({ data, contacts, info, product }: { data: IData[]; contac
       </div>
     </div>
   );
-});
-
-export default Content;
+}
