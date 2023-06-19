@@ -52,12 +52,12 @@ export default function Catalog({ categories }: { categories: ICategory[] }) {
         {catalog.title}
       </button>
       <div
-        className={`container pointer-events-none absolute left-0 right-0 mx-auto pr-0 transition-transform xl:pr-64 ${
+        className={`container pointer-events-none absolute left-0 right-0 mx-auto pr-0 transition-transform xl:pr-48 ${
           open ? 'visible z-10 translate-y-0' : 'invisible -z-10 -translate-y-full'
         }`}
       >
         <div className="pointer-events-auto grid grid-cols-[auto_1fr] overflow-hidden rounded-bl-xl rounded-br-xl bg-white pt-4 shadow-sm">
-          <div className="flex h-[550px] max-h-[calc(100vh_-_174px)] w-56 flex-col justify-start overflow-y-auto overflow-x-hidden border-t border-gray p-2">
+          <div className="flex max-h-[calc(100vh_-_174px)] w-60 flex-col justify-start overflow-y-auto overflow-x-hidden border-t border-gray p-2">
             {categories.map((category) => (
               <div key={category.id}>
                 <div
