@@ -57,7 +57,7 @@ export default function Catalog({ categories }: { categories: ICategory[] }) {
         }`}
       >
         <div className="pointer-events-auto grid grid-cols-[auto_1fr] overflow-hidden rounded-bl-xl rounded-br-xl bg-white pt-4 shadow-sm">
-          <div className="flex h-[450px] max-h-[calc(100vh_-_174px)] w-56 flex-col justify-start overflow-y-auto overflow-x-hidden border-t border-gray p-2">
+          <div className="flex h-[550px] max-h-[calc(100vh_-_174px)] w-56 flex-col justify-start overflow-y-auto overflow-x-hidden border-t border-gray p-2">
             {categories.map((category) => (
               <div key={category.id}>
                 <div
