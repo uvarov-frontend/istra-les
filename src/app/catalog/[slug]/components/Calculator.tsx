@@ -136,7 +136,9 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
             })}
           </div>
         </div>
-        <div className="grid xl:w-[400px] w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
+        <div className="relative grid xl:w-[400px] w-full grid-cols-2 justify-start gap-x-2 gap-y-4
+          after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white_dark/80 after:text-sm after:text-dark after:flex after:items-center after:justify-center
+          after:content-['Функционал_фильтра,_временно_не_доступен.']">
           {uniqueKeys.map((key, index) => {
             if (index === uniqueKeys.length - 1) return null;
             const filteredData = getFilteredData(index);
