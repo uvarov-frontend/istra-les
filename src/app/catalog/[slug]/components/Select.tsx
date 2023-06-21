@@ -4,16 +4,15 @@ import { Listbox } from '@headlessui/react';
 
 import { IDataItem } from '@/types';
 
-export default function Select({ name, defaultValues, defaultValue, selectedValues, values, handleSelectChange }: {
+export default function Select({ name, selectedValues, defaultValue, values, handleSelectChange }: {
   name: string;
-  defaultValues: IDataItem;
-  defaultValue: string;
   selectedValues: IDataItem;
+  defaultValue: string;
   values: string[];
   handleSelectChange: (key: string, value: string) => void;
 }) {
   return (
-    <Listbox value={defaultValues[name] || defaultValue} onChange={(value) => handleSelectChange(name, value)}>
+    <Listbox value={selectedValues[name] || defaultValue} onChange={(value) => handleSelectChange(name, value)}>
       <div className="relative mt-1">
         <Listbox.Button className="relative w-full block text-left cursor-pointer rounded-md border border-gray bg-white pl-4 pr-12 py-[6px] text-sm
           before:absolute before:right-[35px] before:top-2 before:bottom-2 before:w-[1px] before:bg-gray">

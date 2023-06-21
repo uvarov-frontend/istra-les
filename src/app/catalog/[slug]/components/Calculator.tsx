@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 
 import Callback from '@/components/Callback';
 import { getPrice, getSale, getUnit } from '@/helper';
@@ -14,26 +14,22 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
   const [sortID, setSortID] = useState(0);
   const [uniqueKeys, setUniqueKeys] = useState(Array.from(new Set(data[sortID].data.flatMap((item) => Object.keys(item)))));
   const [selectedValues, setSelectedValues] = useState<IDataItem>({});
-  const [defaultValues, setDefaultValues] = useState<IDataItem>({});
   const [price, setPrice] = useState(getPrice(data[sortID].data[0]));
   const [sale, setSale] = useState(getSale(data[sortID].data[0]));
 
   const { currency, thing, title } = getUnit(Object.keys(data[sortID].data[0])[Object.keys(data[sortID].data[0]).length - 1]);
   const formatterRUB = new Intl.NumberFormat('ru-RU');
 
-  const getFilteredData = useCallback((index: number): IDataItem[] => {
+  const getFilteredData = (index: number, values: IDataItem): IDataItem[] => {
     let filteredData = [...data[sortID].data];
-
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < index; i++) {
-      const selectedValue = selectedValues[uniqueKeys[i]];
+    for (let i = 0; i < index; i += 1) {
+      const selectedValue = values[uniqueKeys[i]];
       if (selectedValue) {
         filteredData = filteredData.filter((item) => item[uniqueKeys[i]] === selectedValue);
       }
     }
-
     return filteredData;
-  }, [data, selectedValues, sortID, uniqueKeys]);
+  };
 
   const handleSelectChange = (key: string, value: string) => {
     setSelectedValues((prevValues) => {
@@ -42,12 +38,14 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
         [key]: value,
       };
 
-      const keys = Object.keys(updatedValues);
-      const startIndex = keys.indexOf(key) + 1;
-      // eslint-disable-next-line no-plusplus
-      for (let i = startIndex; i < keys.length; i++) {
-        updatedValues[keys[i]] = '';
+      const startIndex = uniqueKeys.indexOf(key) + 1;
+      for (let i = startIndex; i < uniqueKeys.length; i += 1) {
+        const filteredData = getFilteredData(i, updatedValues);
+        const values = Array.from(new Set(filteredData.map((item) => item[uniqueKeys[i]])));
+        // eslint-disable-next-line prefer-destructuring
+        updatedValues[uniqueKeys[i]] = values[0];
       }
+
       return updatedValues;
     });
   };
@@ -57,33 +55,20 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
   }, [data, sortID]);
 
   useEffect(() => {
-    // console.log(uniqueKeys);
-    uniqueKeys.forEach((key, index) => {
-      const filteredData = getFilteredData(index);
-      const values = Array.from(new Set(filteredData.map((item) => item[key])));
-      handleSelectChange(key, values[0]);
+    uniqueKeys.forEach((k, i) => {
+      const filteredData = getFilteredData(i, selectedValues);
+      const values = Array.from(new Set(filteredData.map((item) => item[k])));
+      handleSelectChange(k, values[0]);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uniqueKeys]);
 
-  useEffect(() => {
-    const tempDefaultValue: IDataItem = {};
-    uniqueKeys.forEach((key, index) => {
-      const filteredData = getFilteredData(index);
-      const values = Array.from(new Set(filteredData.map((item) => item[key])));
-
-      tempDefaultValue[key] = selectedValues[key] || values[0];
-      setDefaultValues(tempDefaultValue);
-    });
+  useMemo(() => {
+    if(!Object.values(selectedValues)[uniqueKeys.length - 1]) return;
+    setPrice(getPrice(selectedValues));
+    setSale(getSale(selectedValues));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValues]);
-
-  useMemo(() => {
-    if(!Object.values(defaultValues)[uniqueKeys.length - 1]) return;
-    setPrice(getPrice(defaultValues));
-    setSale(getSale(defaultValues));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValues]);
 
   const handlerDis = () => {
     if (countProduct <= 1) return;
@@ -127,7 +112,6 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
                   onClick={() => {
                     setSortID(index);
                     setSelectedValues({});
-                    setDefaultValues({});
                   }}
                 >
                   {sort.id.replace(/\[(.*)\]/g, '').trim()}
@@ -136,12 +120,10 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
             })}
           </div>
         </div>
-        <div className="relative grid xl:w-[400px] w-full grid-cols-2 justify-start gap-x-2 gap-y-4
-          after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-white_dark/80 after:text-sm after:text-dark after:flex after:items-center after:justify-center
-          after:content-['Функционал_фильтра,_временно_не_доступен.']">
+        <div className="relative grid xl:w-[400px] w-full grid-cols-2 justify-start gap-x-2 gap-y-4">
           {uniqueKeys.map((key, index) => {
             if (index === uniqueKeys.length - 1) return null;
-            const filteredData = getFilteredData(index);
+            const filteredData = getFilteredData(index, selectedValues);
             const values = Array.from(new Set(filteredData.map((item) => item[key])));
             const defaultValue = values[0];
 
@@ -150,7 +132,6 @@ export default function Calculator({ data, contacts, info, product }: { data: ID
               <span className="mb-2 block text-sm text-gray_dark">{key}</span>
                 <Select
                   defaultValue={defaultValue}
-                  defaultValues={defaultValues}
                   handleSelectChange={handleSelectChange}
                   name={key}
                   selectedValues={selectedValues}
