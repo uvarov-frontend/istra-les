@@ -32,7 +32,6 @@ export default async function Header() {
           </div>
           <div className="hidden grid-flow-col items-center justify-start lg:grid lg:gap-16">
             <Address address={contacts.address1.address} />
-            <Address address={contacts.address2.address} />
           </div>
           <Phone callback={info.callback} phone={contacts.mainPhone} />
           <NavigationMobile categories={categories} />

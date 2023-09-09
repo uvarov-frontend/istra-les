@@ -33,7 +33,6 @@ export default async function Contacts() {
             <b className="text-lg font-bold">{contacts.addressTitle}</b>
             <ul>
               <li className="my-2">{contacts.address1.address}</li>
-              <li className="my-2">{contacts.address2.address}</li>
             </ul>
           </div>
           <div className="relative mb-6 pl-10">

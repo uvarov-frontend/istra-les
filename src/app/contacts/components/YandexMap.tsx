@@ -30,16 +30,6 @@ export default function YandexMap() {
               balloonContentFooter: contacts.phones,
             }}
           />
-          <Placemark
-            geometry={[55.879547, 37.095367]}
-            options={placemarkOptions}
-            properties={{
-              hintContent: contacts.address2.title,
-              balloonContentHeader: contacts.address2.title,
-              balloonContent: `${contacts.address2.address}<br>${contacts.schedule}`,
-              balloonContentFooter: contacts.phones,
-            }}
-          />
         </Map>
       </YMaps>
     </div>
