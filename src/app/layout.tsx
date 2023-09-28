@@ -2,7 +2,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import ModalCallback from '@/components/ModalCallback';
 import Scripts from '@/components/Scripts';
-import { ttnorms } from '@/fonts';
+import { lato } from '@/fonts';
 import translation from '@/translation.yaml';
 
 import ReCaptchaProviders from './ReCaptchaProviders';
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ReCaptchaProviders>
       <html lang="ru">
-        <body className={`${ttnorms.className} grid min-h-screen grid-rows-[auto_auto_1fr_auto] pt-[70px] text-dark md:pt-0`}>
+        <body className={`${lato.className} grid min-h-screen grid-rows-[auto_auto_1fr_auto] pt-[70px] text-dark md:pt-0`}>
           {/* @ts-expect-error Server Component */}
           <Header />
           {children}
